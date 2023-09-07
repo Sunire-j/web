@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/community-nav.css">
+    <link rel="stylesheet" href="../css/community-header.css">
+    <link rel="stylesheet" href="../css/community-ranking-and-postlist.css">
+
+
+</head>
+
+<body>
+    <!-- #region start -->
+    <nav>
+        <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
+        <div class="nav-01">
+            <div class="logo-area">
+                <a href="Community_home.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
+            </div>
+            <div class="banner_login">
+                <a href="#"><img src="../img/User.png" class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
+                <a href="#" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
+            </div>
+        </div>
+        <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
+        <div class="nav-02">
+            <div class="category">
+                <a href="Community_home.html">홈</a><!-- 홈 -->
+                <a href="#">자유게시판</a><!-- 자유게시판 -->
+                <a href="#">인증게시판</a><!-- 인증게시판 -->
+                <a href="#">Q&A게시판</a><!-- Q&A게시판 -->
+                <a href="#">헬스장찾기</a><!-- 헬스장찾기 -->
+            </div>
+            <div class="main-search-box">
+                <input type="search" name="main-search" id="main-search" class="main-search"><!-- 상단 검색박스 -->
+                <!-- 이건 이쁜거 있으면 그때 수정하는걸로 일단 input:search로 넣어둠 -->
+            </div>
+        </div>
+    </nav>
+    <hr>
+    <!-- #endregion -->
+
+    <!-- #region start -->
+    <header>
+        <!-- 게시판 알려주는 박스 -->
+        <div class="intro-board">
+            <div class="board-name">자유게시판</div>
+            <div class="board-introduce">흥미롭고 자유로운 이야기를 공유합니다.</div>
+        </div>
+    </header>
+    <!-- #endregion -->
+
+    <!-- #region start -->
+    <!-- 랭킹영역 -->
+    <!-- #region start -->
+    <div class="content">
+        <div class="left">
+            <div class="follow-ranking">
+                <ul>
+                    <li class="ranking-head">팔로워 랭킹</li>
+                    <br>
+                    <li><a href="#">#1 : 팔로워1등</a></li>
+                    <li><a href="#">#2 : 팔로워2등</a></li>
+                    <li><a href="#">#3 : 팔로워3등</a></li>
+                    <li><a href="#">#4 : 팔로워4등</a></li>
+                    <li><a href="#">#5 : 팔로워5등</a></li>
+                    <li><a href="#">#6 : 팔로워6등</a></li>
+                    <li><a href="#">#7 : 팔로워7등</a></li>
+                    <li><a href="#">#8 : 팔로워8등</a></li>
+                    <li><a href="#">#9 : 팔로워9등</a></li>
+
+                </ul>
+            </div>
+            <div class="like-ranking">
+                <ul>
+                    <li class="ranking-head">인기글 랭킹</li>
+                    <br>
+                    <li><a href="#">#1 : 인기글1등</a></li>
+                    <li><a href="#">#2 : 인기글2등</a></li>
+                    <li><a href="#">#3 : 인기글3등</a></li>
+                    <li><a href="#">#4 : 인기글4등</a></li>
+                    <li><a href="#">#5 : 인기글5등</a></li>
+                    <li><a href="#">#6 : 인기글6등</a></li>
+                    <li><a href="#">#7 : 인기글7등</a></li>
+                    <li><a href="#">#8 : 인기글8등</a></li>
+                    <li><a href="#">#9 : 인기글9등</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- #endregion -->
+        <!-- 게시글 영역 -->
+        <div class="right">
+            <!-- 2차카테고리, 전체글, 내글 버튼 -->
+            <div class="second-category">
+                <select name="2nd-category" id="second-cat">
+                    <!-- 이 부분 디자인은 나중에 바꿔야하나? 싶어요
+                    일단 완성해두고 셀렉트 디자인 찾아볼게요. -->
+                    <option value="none">부위 카테고리</option>
+                    <option value="1">상체</option>
+                    <option value="2">하체</option>
+                </select>
+                <div class="check-post"><a href="">전체 게시물</a></div>
+                <div class="check-post"><a href="">내 게시물</a></div>
+            </div>
+
+            <div class="post-list"></div>
+
+
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+
+<!--   세부카테고리, 전체게시물, 내 게시물
+        <div class="second-category">
+            <select name="2nd-category" id="second-cat">
+                <option value="1">상체</option>
+                <option value="2">허리</option>
+                <option value="3">다리</option>
+            </select>
+        </div>
+        <div class="check-post"><a href="#">전체 게시물</a></div>
+        <div class="check-post"><a href="#">내 게시물</a></div> -->
+<!-- 이건 나중에 게시글목록부분 상단에 붙여야함. 헤더에 붙일 수 있는 구조가 아님 -->
