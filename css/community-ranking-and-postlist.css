@@ -13,7 +13,7 @@ li {
 
 .left {
   width: 226px;
-  margin-top: 93px;
+  margin-top: 103px;
   align-items: center;
   align-content: center;
   color: white;
@@ -68,15 +68,15 @@ select {
   height: 35px;
   color: var(--blue-basic-color);
   font-weight: bold;
+  text-align: center;
 }
 
 .post-list {
-  margin-top: 58px;
+  margin-top: 43px;
   margin-right: 20px;
   width: 884px;
-  height: 1100px;
-  border: 3px solid var(--blue-basic-color);
-  border-radius: 10px;
+  height: 911px;
+  border: 4px solid var(--blue-basic-color);
   position: relative;
 }
 
@@ -133,6 +133,94 @@ select {
 }
 .second-line,
 .rate,
-.third-line {
+.third-line,
+.post-end-line {
   display: flex;
+}
+.posts-ul,
+.posts-li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.first-line,
+.second-line,
+.third-line,
+.board {
+  margin-left: 20px;
+}
+.first-line {
+  font-weight: bold;
+}
+.post-content,
+.third-line {
+  font-size: 14px;
+  width: 515px;
+}
+.second-line,
+.third-line {
+  margin-top: 3px;
+}
+.like,
+.view {
+  margin-left: 50px;
+}
+
+.date {
+  margin-left: 110px;
+}
+
+.post-end-line {
+  width: 884px;
+  margin-top: 30px;
+  justify-content: center;
+  display: flex;
+}
+
+.inboard-search-area {
+  margin-left: auto;
+}
+
+.post-button {
+  margin-left: auto;
+  width: 100px;
+  height: 35px;
+  color: white;
+  background-color: var(--blue-basic-color);
+  border: 0px;
+  border-radius: 5px;
+}
+.post-button:hover,
+.paging-button:hover {
+  background-color: #31386d;
+}
+.post-button:active,
+.paging-button:active {
+  background-color: var(--blue-basic-color);
+}
+.inboard-search {
+  width: 195px;
+  height: 29px;
+}
+
+.paging {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.paging-button {
+  margin: 0 10px;
+  background-color: white;
+  color: var(--blue-basic-color);
+  border: 1px solid var(--blue-basic-color);
+  border-radius: 3px;
+  font-size: 1em;
+  width: 42px;
+  height: 32px;
+}
+
+.dummy-button {
+  background: var(--blue-basic-color);
+  color: white;
 }
