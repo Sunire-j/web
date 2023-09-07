@@ -1,0 +1,17 @@
+#search-box {
+  margin-top: 53px;
+}
+#search-button {
+  color: white;
+  background-color: var(--blue-basic-color);
+  border-radius: 0.5em;
+}
+.map-container {
+  width: 884px;
+  height: 700px;
+  margin-top: 16px;
+}
+#map {
+  width: 100%;
+  height: 100%;
+}

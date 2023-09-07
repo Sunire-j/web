@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/community-nav.css">
+    <link rel="stylesheet" href="../css/community-header.css">
+    <link rel="stylesheet" href="../css/community-ranking-and-postlist.css">
+    <link rel="stylesheet" href="../css/community-map.css">
+    <!--     <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_API_KEY&libraries=services"></script> -->
+    <!-- API키 추가 + 서버켜고 확인해야 맵 표시됨 -->
+    <script src="../js/community-map.js"></script>
+</head>
+
+<body>
+    <!-- #region start -->
+    <nav>
+        <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
+        <div class="nav-01">
+            <div class="logo-area">
+                <a href="Community_home.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
+            </div>
+            <div class="banner_login">
+                <a href="#"><img src="../img/User.png" class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
+                <a href="#" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
+            </div>
+        </div>
+        <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
+        <div class="nav-02">
+            <div class="category">
+                <a href="Community_home.html">홈</a><!-- 홈 -->
+                <a href="#">자유게시판</a><!-- 자유게시판 -->
+                <a href="#">인증게시판</a><!-- 인증게시판 -->
+                <a href="#">Q&A게시판</a><!-- Q&A게시판 -->
+                <a href="#">헬스장찾기</a><!-- 헬스장찾기 -->
+            </div>
+            <div class="main-search-box">
+                <input type="search" name="main-search" id="main-search" class="main-search"><!-- 상단 검색박스 -->
+                <!-- 이건 이쁜거 있으면 그때 수정하는걸로 일단 input:search로 넣어둠 -->
+            </div>
+        </div>
+    </nav>
+    <hr>
+    <!-- #endregion -->
+    <!-- #region start -->
+    <header>
+        <!-- 게시판 알려주는 박스 -->
+        <div class="intro-board">
+            <div class="board-name">주변 헬스장 찾기</div>
+            <div class="board-introduce">문구는 적절하게? 넣어주세요.</div>
+        </div>
+    </header>
+    <!-- #endregion -->
+    <!-- #region start -->
+    <!-- 랭킹영역 -->
+    <!-- #region start -->
+    <div class="content">
+        <div class="left">
+            <div class="follow-ranking">
+                <ul>
+                    <li class="ranking-head">팔로워 랭킹</li>
+                    <br>
+                    <li><a href="#">#1 : 팔로워1등</a></li>
+                    <li><a href="#">#2 : 팔로워2등</a></li>
+                    <li><a href="#">#3 : 팔로워3등</a></li>
+                    <li><a href="#">#4 : 팔로워4등</a></li>
+                    <li><a href="#">#5 : 팔로워5등</a></li>
+                    <li><a href="#">#6 : 팔로워6등</a></li>
+                    <li><a href="#">#7 : 팔로워7등</a></li>
+                    <li><a href="#">#8 : 팔로워8등</a></li>
+                    <li><a href="#">#9 : 팔로워9등</a></li>
+                </ul>
+            </div>
+            <div class="like-ranking">
+                <ul>
+                    <li class="ranking-head">인기글 랭킹</li>
+                    <br>
+                    <li><a href="#">#1 : 인기글1등</a></li>
+                    <li><a href="#">#2 : 인기글2등</a></li>
+                    <li><a href="#">#3 : 인기글3등</a></li>
+                    <li><a href="#">#4 : 인기글4등</a></li>
+                    <li><a href="#">#5 : 인기글5등</a></li>
+                    <li><a href="#">#6 : 인기글6등</a></li>
+                    <li><a href="#">#7 : 인기글7등</a></li>
+                    <li><a href="#">#8 : 인기글8등</a></li>
+                    <li><a href="#">#9 : 인기글9등</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- #endregion -->
+        <!-- 지도 부분 -->
+        <div class="right">
+            <div id="search-box"">
+                <input type=" text" id="search-input" placeholder="장소 검색">
+                <button id="search-button" onclick="drawmap()">검색</button>
+            </div>
+            <div class=" map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+</body>
+
+</html>
