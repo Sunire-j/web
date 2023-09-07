@@ -53,31 +53,65 @@
         </div>
     </header>
     <!-- #endregion -->
+
+    <!-- #region start -->
+    <!-- 랭킹영역 -->
+    <!-- #region start -->
     <div class="content">
         <div class="left">
-            <!-- 랭킹 영역 -->
             <div class="follow-ranking">
                 <ul>
-                    <li class="follow-ranking-head">팔로워 랭킹</li>
-                    <li><a href="#">팔로워1등</a></li>
-                    <li><a href="#">팔로워2등</a></li>
-                    <li><a href="#">팔로워3등</a></li>
-                    <li><a href="#">팔로워4등</a></li>
-                    <li><a href="#">팔로워5등</a></li>
-                    <li><a href="#">팔로워6등</a></li>
-                    <li><a href="#">팔로워7등</a></li>
-                    <li><a href="#">팔로워8등</a></li>
-                    <li><a href="#">팔로워9등</a></li>
-                    <li><a href="#">팔로워10등</a></li>
-                </ul>
+                    <li class="ranking-head">팔로워 랭킹</li>
+                    <br>
+                    <li><a href="#">#1 : 팔로워1등</a></li>
+                    <li><a href="#">#2 : 팔로워2등</a></li>
+                    <li><a href="#">#3 : 팔로워3등</a></li>
+                    <li><a href="#">#4 : 팔로워4등</a></li>
+                    <li><a href="#">#5 : 팔로워5등</a></li>
+                    <li><a href="#">#6 : 팔로워6등</a></li>
+                    <li><a href="#">#7 : 팔로워7등</a></li>
+                    <li><a href="#">#8 : 팔로워8등</a></li>
+                    <li><a href="#">#9 : 팔로워9등</a></li>
 
+                </ul>
             </div>
             <div class="like-ranking">
-
+                <ul>
+                    <li class="ranking-head">인기글 랭킹</li>
+                    <br>
+                    <li><a href="#">#1 : 인기글1등</a></li>
+                    <li><a href="#">#2 : 인기글2등</a></li>
+                    <li><a href="#">#3 : 인기글3등</a></li>
+                    <li><a href="#">#4 : 인기글4등</a></li>
+                    <li><a href="#">#5 : 인기글5등</a></li>
+                    <li><a href="#">#6 : 인기글6등</a></li>
+                    <li><a href="#">#7 : 인기글7등</a></li>
+                    <li><a href="#">#8 : 인기글8등</a></li>
+                    <li><a href="#">#9 : 인기글9등</a></li>
+                </ul>
             </div>
         </div>
+        <!-- #endregion -->
         <!-- 게시글 영역 -->
-        <div class="right"></div>
+        <div class="right">
+            <!-- 2차카테고리, 전체글, 내글 버튼 -->
+            <div class="second-category">
+                <select name="2nd-category" id="second-cat">
+                    <!-- 이 부분 디자인은 나중에 바꿔야하나? 싶어요
+                    일단 완성해두고 셀렉트 디자인 찾아볼게요. -->
+                    <option value="none">부위 카테고리</option>
+                    <option value="1">상체</option>
+                    <option value="2">하체</option>
+                </select>
+                <div class="check-post"><a href="">전체 게시물</a></div>
+                <div class="check-post"><a href="">내 게시물</a></div>
+            </div>
+
+            <div class="post-list"></div>
+
+
+
+        </div>
     </div>
 
 
