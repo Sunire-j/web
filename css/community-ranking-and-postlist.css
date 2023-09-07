@@ -66,4 +66,73 @@ li {
 select {
   font-size: 18px;
   height: 35px;
+  color: var(--blue-basic-color);
+  font-weight: bold;
+}
+
+.post-list {
+  margin-top: 58px;
+  margin-right: 20px;
+  width: 884px;
+  height: 1100px;
+  border: 3px solid var(--blue-basic-color);
+  border-radius: 10px;
+  position: relative;
+}
+
+.post-list-head {
+  height: 50px;
+}
+.post-sort {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.post-sort-select {
+  margin-right: 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  height: 25px;
+}
+
+.post-list hr {
+  margin-top: 15px;
+}
+
+.second-head {
+  display: flex;
+}
+
+.second-head img {
+  width: 25px;
+  height: 25px;
+}
+.second-title {
+  margin-left: 30px;
+}
+.second-comment {
+  margin-left: 450px;
+}
+
+.second-like,
+.second-view {
+  margin-left: 30px;
+}
+.second-post-date {
+  margin-left: 100px;
+}
+.inbox {
+  margin-top: 5px !important;
+}
+
+.right {
+  height: 1500px;
+}
+.second-line,
+.rate,
+.third-line {
+  display: flex;
 }
