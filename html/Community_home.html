@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/community-nav.css">
     <link rel="stylesheet" href="../css/community-header.css">
     <link rel="stylesheet" href="../css/community-ranking-and-postlist.css">
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
 </head>
@@ -106,13 +107,74 @@
                 <div class="check-post"><a href="">전체 게시물</a></div>
                 <div class="check-post"><a href="">내 게시물</a></div>
             </div>
+            <!-- 게시글 목록 -->
+            <div class="post-list">
+                <div class="post-list-head">
+                    <div class="post-sort">
+                        <div style="color: #464d86;">정렬</div>
+                        <select name="post-sort" id="post-sort-select" class="post-sort-select">
+                            <option value="1">최신순</option>
+                            <option value="2">좋아요순</option>
+                            <option value="3">조회순</option>
+                        </select>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 제목, 댓글, 따봉, 조회, 날짜 -->
+                <div class="second-head">
+                    <div class="second-title">글 제목
+                    </div>
+                    <div class="second-comment">
+                        <img src="../img/comment.png">
+                    </div>
+                    <div class="second-like">
+                        <img src="../img/thumbs-up.png">
+                    </div>
+                    <div class="second-view">
+                        <img src="../img/view.png">
+                    </div>
+                    <div class="second-post-date">작성일</div>
+                </div>
+                <hr class="inbox">
+                <!-- 여기서부터 더미데이터 채우면 됨 -->
+                <div class="posts">
+                    <ul class="posts-ul">
+                        <!-- 글을 불러와서 html에 적을 때 여기서부터-->
+                        <li>
+                            <a href="#">
+                                <div class="first-line">제 운동계획 어떤가요?</div>
+                                <div class="second-line">
+                                    <div class="post-content">블라블라블라블라 운동짱</div>
+                                    <div class="rate">
+                                        <div class="comment">0</div>
+                                        <div class="like">0</div>
+                                        <div class="view">0</div>
+                                        <div class="date">04:32</div>
+                                    </div>
+                                </div>
+                                <div class="third-line">
+                                    <div class="writer">로니 콜먼</div>
+                                    <div class="board">자유게시판</div>
 
-            <div class="post-list"></div>
+                                </div>
+                            </a>
+                            <hr class="inbox">
+                        </li>
+                    </ul>
+                </div>
+
+
+
+
+
+            </div>
 
 
 
         </div>
     </div>
+
+    footer
 
 
 
