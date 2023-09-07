@@ -1,0 +1,19 @@
+.follow-ranking ul,
+li {
+  list-style-type: none;
+}
+
+.content {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 1200px;
+  /* background-color: lightgray; */ /* 영역 확인용, 나중에 지울 예정 */
+}
+
+.left {
+  width: 226px;
+  height: 488px;
+  margin-top: 93px;
+  background-color: lightgray;
+}
+/* 랭킹 사이에 높이차이 30px */
