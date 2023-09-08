@@ -16,3 +16,97 @@ a:active {
   color: var(--blue-basic-color);
   text-decoration: none;
 }
+
+.bottom_bar2 {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  bottom: 0;
+  background-color: var(--blue-basic-color);
+}
+
+.bottom_bar2_box {
+  position: relative;
+  margin: 0 auto;
+  width: 1000px;
+  height: 200px;
+  background-color: var(--blue-basic-color);
+}
+
+.bottom_bar2 p {
+  left: 30px;
+  top: 5px;
+  position: absolute;
+  color: white;
+}
+
+.bottom_bar2 p1 {
+  left: 30px;
+  top: 125px;
+  position: absolute;
+  color: white;
+}
+
+.bottom_bar2_box_box {
+  position: relative;
+  margin: 0 auto;
+  top: 25px;
+  width: 380px;
+  height: 150px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+#bottom_bar2_textbox1 {
+  position: absolute;
+  left: 12px;
+  height: 30px;
+  width: 160px;
+}
+#bottom_bar2_textbox2 {
+  position: absolute;
+  top: 40px;
+  left: 12px;
+  height: 30px;
+  width: 160px;
+}
+#bottom_bar2_textbox3 {
+  position: absolute;
+  top: 80px;
+  left: 12px;
+  height: 30px;
+  width: 160px;
+}
+
+#bottom_bar2_textbox4 {
+  position: absolute;
+  left: 190px;
+  width: 170px;
+  height: 110px;
+  text-align: center;
+}
+
+.bottom_bar2_box_box button {
+  position: relative;
+  top: 124px;
+  left: 267px;
+  width: 100px;
+  height: 25px;
+}
+
+.bottom_bar2_box_box button:hover {
+  cursor: pointer;
+}
+.bottom_bar2 p2 {
+  right: 100px;
+  top: 20px;
+  position: absolute;
+  color: white;
+}
+
+.bottom_bar2 p3 {
+  right: 200px;
+  top: 125px;
+  position: absolute;
+  color: white;
+}
