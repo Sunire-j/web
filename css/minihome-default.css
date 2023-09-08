@@ -1,0 +1,115 @@
+/* 미니홈 전체적인 영역 */
+/* 프로필 영역 */
+/* 출석체크 영역에 관한 css */
+p {
+  margin: 0;
+}
+
+.minihome-area {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.home-left {
+  left: 0;
+  width: 270px;
+  height: 680px;
+}
+.home-right {
+  right: 0;
+  height: 686px;
+  width: 677px;
+  border: 3px solid var(--blue-basic-color);
+}
+.profile-container,
+.count-area-container {
+  margin: 0 auto;
+  width: 198px;
+}
+.profile-area {
+  height: 475px;
+  width: 100%;
+  border: 3px solid var(--blue-basic-color);
+}
+.count-area {
+  margin-top: 15px;
+  height: 190px;
+  width: 100%;
+  border: 3px solid var(--blue-basic-color);
+}
+.profile-pic {
+  margin-top: 25px;
+  text-align: center;
+}
+.profile-pic > img {
+  width: 198px;
+  height: 223px;
+}
+.username-section {
+  margin-top: 9px;
+  font-weight: bold;
+}
+.userid-section {
+  font-size: 13px;
+}
+#self-comment {
+  margin-top: 10px;
+  width: 198px;
+  height: 83px;
+  resize: none;
+  border: 1px solid var(--blue-basic-color);
+}
+.follow-count-section {
+  display: flex;
+  justify-content: space-between;
+}
+.follow-count-section,
+.follower,
+.follow {
+  display: flex;
+}
+.edit-profile-section,
+.today-attend-section {
+  margin-top: 5px;
+  text-align: center;
+}
+.edit-profile,
+.today-attend {
+  width: 152px;
+  height: 40px;
+}
+.memo,
+.memo-count,
+.today,
+.today-count,
+.follower,
+.follower-count,
+.follow,
+.follow-count,
+.reg-date {
+  font-size: 14px;
+}
+.today-attend-section {
+  margin-top: 30px;
+}
+
+.memo-today-section {
+  margin-top: 20px;
+  justify-content: space-between;
+}
+.memo-today-section,
+.memo,
+.today,
+.reg-date {
+  display: flex;
+}
+
+.check-mine-post {
+  margin-top: 20px;
+}
+.reg-date {
+  margin-top: 15px;
+}
