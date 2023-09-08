@@ -113,3 +113,30 @@ p {
 .reg-date {
   margin-top: 15px;
 }
+#self-comment {
+  overflow: auto; /* comment가 넘칠 경우 스크롤바 생성 */
+}
+
+/* 아래쪽은 ai가 알려준 수정법 */
+
+.username-section {
+  margin-top: 9px;
+  font-weight: bold;
+  border: none; /* 외곽선 제거 */
+}
+
+.userid-section {
+  font-size: 13px;
+  border: none; /* 외곽선 제거 */
+}
+
+.follow-count-section {
+  display: flex;
+  justify-content: space-between;
+  border: none; /* 외곽선 제거 */
+}
+
+#self-comment-editable {
+  height: 100%; /* 부모 높이와 동일하게 설정 */
+  border: none; /* 외곽선 제거 */
+}

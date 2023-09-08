@@ -81,7 +81,7 @@ td {
   justify-content: space-between;
   align-items: center;
 }
-.month-controll-button {
+.month-control-button {
   width: 82px;
   height: 34px;
 }
@@ -90,4 +90,79 @@ td {
 }
 td:has(.check-mark) {
   background-color: lightcoral;
+}
+
+.visitor-comment-section,
+.comment-write-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.comment-write-section {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.comment-list-section {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid var(--blue-basic-color);
+  margin-left: 40px;
+  margin-right: 40px;
+  overflow-y: auto;
+  max-height: 100px;
+}
+.comment-input {
+  width: 500px;
+  height: 30px;
+}
+.dummydata {
+  font-size: 14px;
+  border: 1px solid var(--blue-basic-color);
+  border-radius: 2px;
+}
+.first-line-comment {
+  margin: 1px;
+  display: flex;
+  justify-content: space-between;
+}
+.second-line-comment {
+  margin: 1px;
+  margin-top: 2px;
+  text-align: right;
+}
+ul,
+li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.edit-profile,
+.today-attend,
+.month-control-button,
+.comment-post {
+  color: white;
+  background-color: var(--blue-basic-color);
+}
+.edit-profile:hover,
+.today-attend:hover,
+.month-control-button:hover,
+.comment-post:hover {
+  background-color: #31386d;
+}
+
+.edit-profile:active,
+.today-attend:active,
+.month-control-button:active,
+.comment-post:active {
+  background-color: var(--blue-basic-color);
+}
+
+.erase-button > a {
+  color: red;
 }
