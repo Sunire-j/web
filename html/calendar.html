@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 700px;
+            height: 500px;
+        }
+
+        th,
+        td {
+            width: 100px;
+            height: 66.67px;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        th {
+            background-color: #F2F2F2;
+        }
+
+        .emoji-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .emoji-menu button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: #E0E0E0;
+        }
+
+        .emoji-container {
+            text-align: center;
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+            /* 이모티콘을 왼쪽 정렬로 설정 */
+        }
+
+        .emoji-text {
+            text-align: right;
+            display: inline;
+            font-size: 24px;
+        }
+
+        .number-text {
+            text-align: left;
+            padding-left: 5px;
+            display: block;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .check-mark {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 16px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="previousMonth()">이전 달</button>
+    <button onclick="nextMonth()">다음 달</button>
+    <h2 id="currentMonthYear">월/년</h2>
+    <table id="calendar">
+        <thead>
+            <tr>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+        </thead>
+        <tbody id="calendarBody">
+        </tbody>
+    </table>
+    <div class="emoji-menu" id="emojiMenu">
+        <button onclick="insertEmoji('👍')">👍</button>
+        <button onclick="insertEmoji('🤔')">🤔</button>
+        <button onclick="insertEmoji('😎')">😎</button>
+        <!-- 다른 이모티콘을 추가할 수 있습니다. -->
+    </div>
+    <script>
+        const calendarBody = document.getElementById('calendarBody');
+        const currentMonthYear = document.getElementById('currentMonthYear');
+        const emojiMenu = document.getElementById('emojiMenu');
+        let currentDate = new Date();
+        let selectedCell = null;
+        function generateCalendar(year, month) {
+            calendarBody.innerHTML = '';
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay();
+            currentMonthYear.textContent = `${month + 1}월 ${year}년`;
+            let day = 1;
+            for (let i = 0; i < 6; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement('td');
+                    if (i === 0 && j < firstDay) {
+                        cell.textContent = '';
+                    } else if (day > daysInMonth) {
+                        cell.textContent = '';
+                    } else {
+
+                        cell.textContent = day++;
+
+                        cell.addEventListener('click', (event) => {
+                            selectedCell = event.target;
+                            if (selectedCell.tagName === 'SPAN') {
+                                selectedCell = selectedCell.parentNode;
+                            }
+                            emojiMenu.style.display = 'block';
+                            emojiMenu.style.left =
+                                selectedCell.offsetLeft + 'px';
+                            emojiMenu.style.top =
+                                selectedCell.offsetTop +
+                                selectedCell.offsetHeight + 'px';
+                        });
+                    }
+
+                    row.appendChild(cell);
+                }
+
+                calendarBody.appendChild(row);
+            }
+
+            // 마지막 행 숨기기
+            calendarBody.lastElementChild.style.display =
+                'none';
+        }
+
+        function insertEmoji(emoji) {
+            emojiMenu.style.display = 'none';
+
+            if (selectedCell) {
+                var originalContent = selectedCell.textContent;
+
+                // If there is a check mark in the content then replace the existing emoji with the new one
+                if (originalContent.includes('✓')) {
+                    var updatedContent = originalContent.slice(0, originalContent.indexOf(" ")) + ' ' + emoji;
+
+                    selectedCell.textContent = updatedContent;
+
+                    // Remove old check mark if exists
+                    if (selectedCell.querySelector('.check-mark')) {
+                        selectedCell.removeChild(selectedCell.querySelector('.check-mark'));
+                    }
+
+                    // Add new check mark
+                    var checkMark = document.createElement('span');
+                    checkMark.className = 'check-mark';
+                    checkMark.textContent = '✓';
+
+                    selectedCell.appendChild(checkMark);
+                } else {
+                    var updatedContent = originalContent + ' ' + emoji;
+
+                    selectedCell.textContent = updatedContent;
+
+                    // Add new check mark
+                    var checkMark = document.createElement('span');
+                    checkMark.className = 'check-mark';
+                    checkMark.textContent = '✓';
+
+                    selectedCell.appendChild(checkMark);
+                }
+            }
+        }
+
+        generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    </script>
+
+</body>
+
+</html>
+
+<!-- checkMark.className = 'check-mark';
+                checkMark.textContent = '✓';
+                selectedCell.appendChild(checkMark); -->
+
+<!-- .check-mark {
+            font-size: 16px;
+            color: green; -->
