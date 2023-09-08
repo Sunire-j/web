@@ -1,0 +1,93 @@
+table {
+  border-collapse: collapse;
+  width: 630px;
+  height: 400px;
+}
+
+th,
+td {
+  width: 90px;
+  height: 66.67px;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.emoji-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.emoji-menu button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #e0e0e0;
+}
+
+.emoji-container {
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  /* 이모티콘을 왼쪽 정렬로 설정 */
+}
+
+.emoji-text {
+  text-align: right;
+  display: inline;
+  font-size: 24px;
+}
+
+.number-text {
+  text-align: left;
+  padding-left: 5px;
+  display: block;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.check-mark {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+  color: green;
+}
+
+.controller-year-month-section {
+  margin-left: 23px;
+  margin-right: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.month-controll-button {
+  width: 82px;
+  height: 34px;
+}
+#calendar {
+  margin: 0 auto !important;
+}
+td:has(.check-mark) {
+  background-color: lightcoral;
+}
