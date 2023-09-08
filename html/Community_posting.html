@@ -26,17 +26,17 @@
             </div>
             <div class="banner_login">
                 <a href="#"><img src="../img/User.png" class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
-                <a href="#" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
+                <a href="Sign_In.html" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
             </div>
         </div>
         <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
         <div class="nav-02">
             <div class="category">
                 <a href="Community_home.html">홈</a><!-- 홈 -->
-                <a href="#">자유게시판</a><!-- 자유게시판 -->
-                <a href="#">인증게시판</a><!-- 인증게시판 -->
-                <a href="#">Q&A게시판</a><!-- Q&A게시판 -->
-                <a href="#">헬스장찾기</a><!-- 헬스장찾기 -->
+                <a href="Community_Free.html">자유게시판</a><!-- 자유게시판 -->
+                <a href="Community_Auth.html">인증게시판</a><!-- 인증게시판 -->
+                <a href="Community_QNA.html">Q&A게시판</a><!-- Q&A게시판 -->
+                <a href="Community_Map.html">헬스장찾기</a><!-- 헬스장찾기 -->
             </div>
             <div class="main-search-box">
                 <input type="search" name="main-search" id="main-search" class="main-search"><!-- 상단 검색박스 -->
@@ -63,7 +63,7 @@
     <div class="muscle-categories">
         <p>부위 카테고리</p>
     </div>
-  <!-- 부위 카테고리 리스트 끝 -->
+    <!-- 부위 카테고리 리스트 끝 -->
 
 
 
@@ -75,7 +75,7 @@
         CKEDITOR.ClassicEditor.create(document.getElementById("ckEditor"), {
             toolbar: {
                 items: [
-                    'exportPDF','exportWord', '|',
+                    'exportPDF', 'exportWord', '|',
                     'findAndReplace', 'selectAll', '|',
                     'heading', '|',
                     'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
@@ -126,7 +126,7 @@
                 supportAllValues: true
             },
             fontSize: {
-                options: [ 10, 12, 14, 'default', 18, 20, 22 ],
+                options: [10, 12, 14, 'default', 18, 20, 22],
                 supportAllValues: true
             },
             htmlSupport: {
@@ -198,7 +198,7 @@
 
 
 
-    <div class="write" >
+    <div class="write">
         <button id="writeButton">작성</button>
     </div>
 
@@ -226,5 +226,3 @@
 </body>
 
 </html>
-
-
