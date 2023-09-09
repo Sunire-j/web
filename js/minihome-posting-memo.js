@@ -16,12 +16,14 @@ firstSelect.addEventListener("change", function () {
   // 상체가 선택된 경우
   if (selectedValue == "1") {
     var options = ["가슴", "어깨", "등", "팔", "복부", "허리"];
-    secondSelect.style.backgroundColor = "lightgray";
+    secondSelect.style.backgroundColor = "#7aa5e9";
+    secondSelect.style.color = "#FFFFFF";
   }
   // 하체가 선택된 경우
   else if (selectedValue == "2") {
     var options = ["허벅지", "엉덩이", "종아리"];
-    secondSelect.style.backgroundColor = "brown";
+    secondSelect.style.backgroundColor = "#4066b0";
+    secondSelect.style.color = "#FFFFFF";
   }
 
   // 위에서 설정한 옵션을 두 번째 select box에 추가합니다.
@@ -45,10 +47,13 @@ secondSelect.addEventListener("change", function () {
 
   newOptionForSelectedList.text = `${firstSelectedValueText} - ${secondSelectedValueText}`;
 
-  if (firstSelectedValueText === "상체")
-    newOptionForSelectedList.style.backgroundColor = "lightgray";
-  else if (firstSelectedValueText === "하체")
-    newOptionForSelectedList.style.backgroundColor = "brown";
+  if (firstSelectedValueText === "상체") {
+    newOptionForSelectedList.style.backgroundColor = "#7aa5e9";
+    newOptionForSelectedList.style.color = "#ffffff";
+  } else if (firstSelectedValueText === "하체") {
+    newOptionForSelectedList.style.backgroundColor = "#4066b0";
+    newOptionForSelectedList.style.color = "#ffffff";
+  }
 
   selectedList.add(newOptionForSelectedList);
 });
