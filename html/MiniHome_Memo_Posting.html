@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/community-nav.css">
     <link rel="stylesheet" href="../css/minihome-default.css">
-    <link rel="stylesheet" href="../css/calendar-module.css">
+    <link rel="stylesheet" href="../css/memo_posting.css">
 
 
 </head>
@@ -104,96 +104,76 @@
 
             <div class="maincontainer">
                 <!-- 이 아래부터 수정 허용 -->
-                <div class="calendar-whole-section">
-                    <div class="controller-year-month-section">
-                        <input type="button" value="PREV" class="month-control-button" onclick="previousMonth()">
-                        <div>
-                            <h1 class="year-month" id="currentMonthYear">AUGUST 2023</h1>
+
+                <div class="memo-posting-left"><!-- 날짜, 부위선택, 본문, 이모지선택 -->
+                    <p class="year-month-day">2023년 09월 09일 출석체크</p>
+
+                    <p class="announce">부위선택</p>
+                    <div class="select-body-section">
+                        <div class="body-select-first">
+                            <select name="first" id="bodypart_first" size="2" class="body-select-box">
+                                <option value="1">상체</option>
+                                <option value="2">하체</option>
+                            </select>
                         </div>
-                        <input type="button" value="NEXT" class="month-control-button" onclick="nextMonth()">
+                        <div class="body-select-second">
+                            <!-- 여기에 JavaScript를 사용하여 첫 번째 선택에 따라 내용을 변경합니다. -->
+                            <select name="second" id="bodypart_second" size="2" class='body-select-box'>
+                                <!-- 기본값은 상체의 선택사항입니다. -->
+                                <option value="">세부 카테고리</option>
+                                <!-- ... 다른 옵션들 ... -->
+                            </select>
+                        </div>
                     </div>
-                    <table id="calendar">
-                        <thead>
-                            <tr>
-                                <th>일</th>
-                                <th>월</th>
-                                <th>화</th>
-                                <th>수</th>
-                                <th>목</th>
-                                <th>금</th>
-                                <th>토</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calendarBody">
-                        </tbody>
-                    </table>
-                    <div class="emoji-menu" id="emojiMenu">
-                        <button onclick="insertEmoji('👍')">👍</button>
-                        <button onclick="insertEmoji('🤔')">🤔</button>
-                        <button onclick="insertEmoji('😎')">😎</button>
-                        <!-- 다른 이모티콘을 추가할 수 있습니다. -->
-                    </div>
-                </div>
-                <div class="visitor-comment-section">
-                    <div class="comment-write-section">
-                        <input type="text" name="comment-input" id="comment-input" class="comment-input"
-                            placeholder="'로니 콜먼' 님의 미니홈 방명록">
-                        <input type="button" value="방명록 등록" class="comment-post">
-                    </div>
-                    <div class="comment-list-section">
-                        <ul class="commnet-list">
-                            <li class="dummydata">
-                                <div class="first-line-comment">
-                                    <div class="comment">몸 좋으시네요</div>
-                                    <div class="erase-button"><a href="#">삭제</a></div>
-                                </div>
-                                <div class="second-line-comment">
-                                    <div class="comment-writer-section">작성자 :&nbsp<a href="#">산본동왕쇼바</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dummydata">
-                                <div class="first-line-comment">
-                                    <div class="comment">로니햄 폼 미쳤다 ㄷㄷ</div>
-                                    <div class="erase-button"><a href="#">삭제</a></div>
-                                </div>
-                                <div class="second-line-comment">
-                                    <div class="comment-writer-section">작성자 :&nbsp<a href="#">월미도질주본능</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dummydata">
-                                <div class="first-line-comment">
-                                    <div class="comment">맞팔좀 해주세요</div>
-                                    <div class="erase-button"><a href="#">삭제</a></div>
-                                </div>
-                                <div class="second-line-comment">
-                                    <div class="comment-writer-section">작성자 :&nbsp<a href="#">상무지구1등삐끼</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dummydata">
-                                <div class="first-line-comment">
-                                    <div class="comment">몸 좋으시네요</div>
-                                    <div class="erase-button"><a href="#">삭제</a></div>
-                                </div>
-                                <div class="second-line-comment">
-                                    <div class="comment-writer-section">작성자 :&nbsp<a href="#">산본동왕쇼바</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
 
+                    <!-- 게시글 작성 영역 -->
+                    <textarea placeholder='게시글을 작성하세요.' class="post-text-area"></textarea>
+
+                    <!-- 이모티콘 선택 영역-->
+                    <div id='emoji-selection-show'>
+                        <div>😊</div>
+                        <div>😂</div>
+                        <div>😍</div>
+                        <div>🤔</div>
+                        <div>😥</div>
+                    </div>
+                    <div id="emoji-selection">
+                        <input type='radio' name='emoji' value='1'>
+                        <input type='radio' name='emoji' value='2'>
+                        <input type='radio' name='emoji' value='3'>
+                        <input type='radio' name='emoji' value='4'>
+                        <input type='radio' name='emoji' value='5'>
                     </div>
                 </div>
+                <div class="memo-posting-right">
+                    <div class="checkbox-section">
+                        <p><input type="checkbox" id="myCheck">인증게시판 연동</p>
+                    </div>
+                    <div class="selected-list">
+                        <select name="selected-list" id="selected-list" size="10" class="selected-list-class">
+                        </select>
+                    </div>
+                    <!-- ㅅㅂ 어캐하노 이걸 -->
+                    <div class="image-preview-section">
+                        <img id='preview' />
+                    </div>
+                    <input type='file' onchange='loadImage(event)' class="upload-image-button" />
+                    <input type="button" value="등록" class="submit-button">
+
+                </div>
+
+                <!-- 등록 버튼 -->
+
+
             </div>
-
         </div>
     </div>
 
-    <script src="../js/minihome-calander.js"></script>
+
+
 
     <script src="../js/minihome-default.js"></script>
+    <script src="../js/minihome-posting-memo.js"></script>
     <footer>
         <div class="bottom_bar2">
             <div class="bottom_bar2_box">

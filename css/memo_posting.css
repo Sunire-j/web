@@ -1,0 +1,130 @@
+.year-month-day {
+  font-weight: bold;
+  font-size: 26px;
+}
+.memo-posting-left {
+  width: 400px;
+  height: 650px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.select-body-section {
+  height: 200px;
+  overflow: auto; /* 스크롤바 추가 */
+}
+
+/* 게시글 작성 박스 스타일링 */
+textarea {
+  width: 100%;
+  height: 223px;
+}
+
+.memo-posting-right {
+  width: 225px;
+  height: 650px;
+}
+
+.checkbox-section {
+  margin-bottom: 20px;
+}
+
+.bodypart-listbox-section {
+  height: 200px;
+  overflow: auto; /* 스크롤바 추가 */
+}
+
+.image-preview-section {
+  width: 100%;
+  height: 200px;
+}
+.maincontainer,
+.select-body-section {
+  display: flex;
+}
+.body-select-box {
+  width: 170px;
+  height: 170px;
+  font-size: 22px;
+  text-align: center;
+}
+.announce {
+  font-size: 22px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.select-body-section {
+  justify-content: space-between;
+}
+#emoji-selection,
+#emoji-selection-show {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  margin: 10px auto;
+}
+#selected-bodyparts {
+  width: 170px;
+}
+.image-preview-section,
+#preview {
+  width: 198px;
+  height: 223px;
+}
+
+.image-preview-section {
+  border: var(--blue-basic-color) solid 3px;
+}
+.memo-posting-right,
+.memo-posting-right > * {
+  margin: 0 auto;
+}
+
+.selected-list,
+.selected-list-class {
+  width: 198px;
+  margin: 0 auto;
+  height: 168px;
+}
+.checkbox-section {
+  margin-top: 30px;
+  text-align: center;
+}
+.selected-list {
+  margin-top: 72px;
+}
+.image-preview-section {
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+.memo-posting-right {
+  text-align: center;
+}
+.upload-image-button {
+  width: 198px;
+}
+.submit-button {
+  background-color: var(--blue-basic-color);
+  color: white;
+  width: 136px;
+  height: 34px;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #31386d;
+}
+
+.submit-button:active {
+  background-color: var(--blue-basic-color);
+}
+
+#bodypart_first,
+#bodypart_second,
+.post-text-area,
+.selected-list-class {
+  border: 3px solid var(--blue-basic-color);
+}
+.post-text-area {
+  resize: none;
+}
