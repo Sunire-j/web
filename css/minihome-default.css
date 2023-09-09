@@ -140,3 +140,19 @@ p {
   height: 100%; /* 부모 높이와 동일하게 설정 */
   border: none; /* 외곽선 제거 */
 }
+
+.edit-profile,
+.today-attend {
+  color: white;
+  background-color: var(--blue-basic-color);
+}
+
+.edit-profile:hover,
+.today-attend:hover {
+  background-color: #31386d;
+}
+
+.edit-profile:active,
+.today-attend:active {
+  background-color: var(--blue-basic-color);
+}

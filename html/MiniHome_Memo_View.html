@@ -7,7 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/community-nav.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/minihome-default.css">
+    <link rel="stylesheet" href="../css/calendar-module.css">
 
 
 </head>
@@ -45,21 +46,73 @@
     <hr>
     <!-- #endregion -->
 
-    <div class="sign-in-area">
-        <div class="input-area">
-            <h1>로그인</h1>
-            <form action="#" method="post" class="input-area">
-                <input type="text" name="userid" id="userid" class="userid" placeholder="아이디">
-                <input type="password" name="userpwd" id="userpwd" class="userpwd" placeholder="비밀번호">
-                <div class="sign-in-up">
-                    <a href="Sign_Up.html">회원가입</a>
-                    <a href="Find-IDPW.html">아이디/비밀번호 찾기</a>
+    <!-- 미니홈피 좌측영역(수정 절대 금지) -->
+    <!-- #region start -->
+    <div class="minihome-area">
+        <div class="home-left">
+            <div class="profile-area">
+                <div class="profile-container">
+                    <div class="profile-pic">
+                        <img src="../img/images.jpg">
+                    </div>
+                    <div class="name-id-section">
+                        <div id="username-div" class="username-section" contentEditable="false">로니 콜먼</div>
+                        <p class="userid-section">@musclemuscle_man</p>
+                    </div>
+                    <div class="self-comment-section">
+                        <div id="self-comment">
+                            <div id="self-comment-editable" contentEditable='false'>운동은 내 인생</div>
+                        </div>
+
+                        <div class="follow-count-section">
+                            <div class="follower">팔로워 :&nbsp<p class="follower-count">0</p>
+                            </div>
+                            <div class="follow">팔로우 :&nbsp<p class="follow-count">30</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edit-profile-section">
+                        <input type="button" value="프로필 수정" class="edit-profile" id='edit-button'
+                            onclick='editProfile()'>
+                        <input type='button' value='확인' class='edit-profile' id='confirm-button' style='display: none;'
+                            onclick='confirmProfile()'>
+
+                    </div>
                 </div>
-                <input type="submit" value="로그인" class="login-submit">
-            </form>
+            </div>
+            <div class="count-area">
+                <div class="count-area-container">
+                    <div class="today-attend-section">
+                        <input type="button" value="출석체크" class="today-attend" id="today-attend">
+                    </div>
+                    <div class="memo-today-section">
+                        <div class="memo">Memo :&nbsp<p class="memo-count">2</div>
+                        <div class="today">Today :&nbsp<p class="today-count">13</div>
+                    </div>
+                    <div class="check-mine-post">
+                        <a href="#">내 글 보기</a>
+                    </div>
+                    <div class="reg-date">가입일자 :&nbsp<p>2023년 09월 08일</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- #endregion -->
+        <div class="home-right">
+
+            <div class="maincontainer">
+                <!-- 이 아래부터 수정 허용 -->
+
+            </div>
+
         </div>
     </div>
 
+    <script src="../js/minihome-calander.js"></script>
+
+    <script src="../js/minihome-default.js"></script>
     <footer>
         <div class="bottom_bar2">
             <div class="bottom_bar2_box">

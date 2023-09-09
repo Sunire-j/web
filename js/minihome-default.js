@@ -48,3 +48,7 @@ function confirmProfile() {
   editButton.style.display = "inline-block";
   confirmButton.style.display = "none";
 }
+
+document.getElementById("today-attend").addEventListener("click", function () {
+  window.location.href = "Minihome_Memo_Posting.html";
+});
