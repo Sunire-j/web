@@ -1,0 +1,34 @@
+.post-text-area {
+  margin-top: 8px;
+  margin-bottom: 13px;
+}
+
+.image-preview-section {
+  background-image: url("../img/images.jpg");
+  background-size: cover;
+  /* 이미지 크기 조절 */
+  width: 192px;
+  height: 227px;
+  /* 적절한 높이 설정 */
+  margin: 0 auto;
+}
+
+#preview {
+  width: 192px;
+  height: 227px;
+  border: 0;
+  /* 이미지 비율 유지하며 부모 요소 내부에 맞춤 */
+}
+
+.selected-list {
+  margin-top: 11px !important;
+  margin-bottom: 17px;
+  height: 240px;
+  padding: 0;
+}
+
+.selected-list-class {
+  height: 233px;
+  padding: 0;
+  margin: 0;
+}

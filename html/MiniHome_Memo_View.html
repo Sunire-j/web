@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/community-nav.css">
     <link rel="stylesheet" href="../css/minihome-default.css">
-    <link rel="stylesheet" href="../css/calendar-module.css">
+    <link rel="stylesheet" href="../css/memo_posting.css">
+    <link rel="stylesheet" href="../css/memo-view.css">
 
 
 </head>
@@ -105,14 +106,51 @@
             <div class="maincontainer">
                 <!-- 이 아래부터 수정 허용 -->
 
-            </div>
+                <div class="memo-posting-left"><!-- 날짜, 부위선택, 본문, 이모지선택 -->
+                    <p class="year-month-day">2023년 09월 09일 메모</p>
 
+
+                    <!-- 문구 띄우기-->
+                    <textarea readonly class="post-text-area">😀 오늘의 운동은 ~~ 하셨군요</textarea>
+
+                    <!-- 게시글 작성 영역 -->
+                    <textarea readonly class="post-text-area"> 오늘은 운동이 너무 잘되었다. </textarea>
+
+                    <!-- 이모티콘 선택 영역-->
+
+                </div>
+                <div class="memo-posting-right">
+                    <div class="checkbox-section">
+                        <p><input type="checkbox" id="myCheck">인증게시판 연동</p>
+                    </div>
+                    <div class="selected-list">
+                        <select name="selected-list" id="selected-list" size="10" class="selected-list-class">
+                            <option style="background-color : #7aa5e9; color : #ffffff; ">상체-가슴</option>
+                            <option style="background-color : #4066b0; color : #ffffff; ">하체-허벅지</option>
+                            <option style="background-color : #7aa5e9; color : #ffffff; ">상체-어깨</option>
+                            <option style="background-color : #7aa5e9; color : #ffffff; ">상체-복부</option>
+                            <option style="background-color : #4066b0; color : #ffffff; ">하체-종아리</option>
+                        </select>
+                    </div>
+                    <div class="image-preview-section">
+                        <img id='preview' />
+                    </div>
+
+                    <input type="button" value="수정" class="submit-button">
+                </div>
+
+                <!-- 등록 버튼 -->
+
+
+            </div>
         </div>
     </div>
 
-    <script src="../js/minihome-calander.js"></script>
+
+
 
     <script src="../js/minihome-default.js"></script>
+
     <footer>
         <div class="bottom_bar2">
             <div class="bottom_bar2_box">
