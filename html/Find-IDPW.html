@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/community-nav.css">
-
-
+    <link rel="stylesheet" href="../css/find-idpw.css">
+    <!-- 추가: CSS -->
 </head>
 
 <body>
@@ -20,8 +20,7 @@
                 <a href="Community_home.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
             </div>
             <div class="banner_login">
-                <a href="MiniHome_Home.html"><img src="../img/User.png"
-                        class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
+                <a href="#"><img src="../img/User.png" class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
                 <a href="Sign_In.html" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
             </div>
         </div>
@@ -43,17 +42,47 @@
     </nav>
     <hr>
     <!-- #endregion -->
-
-    <div class="find-area">
-
-        <div class="find-id-area">
-
+    <div class="find-container">
+        <div class="find-area-left">
+            <h1>아이디 찾기</h1>
+            <div class="email-input">
+                <input type="text" name="useremail" id="useremail" class="inputtext" placeholder="가입당시 이메일 입력">
+            </div>
+            <button type="button" class="find-id-button">아이디 찾기</button>
+            <div class="show-id">
+                <p>아이디는 <b style="color: red;">qwerty1234</b>입니다.</p>
+            </div>
         </div>
-        <div class="find-pw-area">
-
+        <div class="find-area-right">
+            <h1>비밀번호 찾기</h1>
+            <div class="id-input">
+                <input type="text" name="userid" id="userid" placeholder="아이디" class="inputtext">
+            </div>
+            <div class="email-input">
+                <input type="text" name="useremail" id="useremail" class="inputtext" placeholder="이메일">
+            </div>
+            <div class="Question">
+                <select name="find-q" id="find-q" class="find-q">
+                    <option value="none">비밀번호 찾기 질문</option>
+                    <option value="1">내가 태어난 도시 이름은?</option>
+                    <option value="2">어릴 적 다닌 초등학교 이름은?</option>
+                    <option value="3">어머니 이름은?</option>
+                    <option value="4">아버지 이름은?</option>
+                    <option value="5">본인의 좌우명?</option>
+                </select>
+            </div>
+            <div class="Answer">
+                <input type="text" name="useranswer" id="useranswer" class="inputtext" placeholder="비밀번호 찾기 답">
+            </div>
+            <button type="button" class="find-pw-button">비밀번호 찾기</button>
+            <div class="change-password">
+                <p>비밀번호 변경</p>
+                <input type="password" name="change-password-input" id="change-password-input"
+                    class="change-password-input" placeholder="바꿀 비밀번호">
+                <input type="button" value="비밀번호 변경" class="change-password-button">
+            </div>
         </div>
     </div>
-
     <footer>
         <div class="bottom_bar2">
             <div class="bottom_bar2_box">
