@@ -30,3 +30,6 @@
   display: flex;
   justify-content: flex-end;
 }
+.margin-for-search-result {
+  margin: 50px;
+}
