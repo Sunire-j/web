@@ -14,6 +14,13 @@ function generateCalendar(year, month) {
     const row = document.createElement("tr");
     for (let j = 0; j < 7; j++) {
       const cell = document.createElement("td");
+      //
+      if ((j + 1) % 7 === 1) {
+        cell.style.color = "red";
+      } else if ((j + 1) % 7 === 0) {
+        cell.style.color = "blue";
+      }
+      //
       if (i === 0 && j < firstDay) {
         cell.textContent = "";
       } else if (day > daysInMonth) {
