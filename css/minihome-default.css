@@ -6,10 +6,10 @@ p {
 }
 
 .minihome-area {
+  background-image: url("../img/minihome-background.png");
+  padding: 25px 22px;
   width: 1000px;
   margin: 0 auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
 }
@@ -22,7 +22,7 @@ p {
   right: 0;
   height: 686px;
   width: 677px;
-  border: 3px solid #bbb;
+  /* border: 3px solid #bbb; */
 }
 .profile-container,
 .count-area-container {
@@ -32,13 +32,13 @@ p {
 .profile-area {
   height: 475px;
   width: 100%;
-  border: 3px solid #bbb;
+  /* border: 3px solid #bbb; */
 }
 .count-area {
   margin-top: 15px;
   height: 190px;
   width: 100%;
-  border: 3px solid #bbb;
+  /* border: 3px solid #bbb; */
 }
 .profile-pic {
   margin-top: 25px;
@@ -155,4 +155,18 @@ p {
 .edit-profile:active,
 .today-attend:active {
   background-color: var(--blue-basic-color);
+}
+
+.home-left {
+  margin-left: 20px;
+}
+.follow-count-section {
+  margin-top: 10px;
+}
+.check-mine-post {
+  margin-top: 10px;
+}
+#calendar > *,
+.comment-list-section {
+  background-color: #f5f4eb;
 }

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 :root {
-  --blue-basic-color: #464d86;
+  --blue-basic-color: rgb(70, 77, 134);
 }
 
 hr {
@@ -109,4 +109,12 @@ a:active {
   top: 125px;
   position: absolute;
   color: black;
+}
+.nav-02 {
+  margin-left: auto;
+  margin-right: auto;
+}
+.main-search-box {
+  text-align: right !important;
+  float: right !important;
 }
