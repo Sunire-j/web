@@ -20,7 +20,7 @@
         <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
         <div class="nav-01">
             <div class="logo-area">
-                <a href="Community_home.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
+                <a href="index.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
             </div>
             <div class="banner_login">
                 <a href="MiniHome_Home.html"><img src="../img/User.png"
@@ -31,7 +31,7 @@
         <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
         <div class="nav-02">
             <div class="category">
-                <a href="Community_home.html">홈</a><!-- 홈 -->
+                <a href="index.html">홈</a><!-- 홈 -->
                 <a href="Community_Free.html">자유게시판</a><!-- 자유게시판 -->
                 <a href="Community_Auth.html">인증게시판</a><!-- 인증게시판 -->
                 <a href="Community_QNA.html">Q&A게시판</a><!-- Q&A게시판 -->
@@ -92,7 +92,7 @@
                             <div class="today">Today :&nbsp<p class="today-count">13</div>
                         </div>
                         <div class="check-mine-post">
-                            <a href="#">내 글 보기</a>
+                            <a href="Community_Show_MyPost.html">내 글 보기</a>
                         </div>
                         <div class="reg-date">가입일자 :&nbsp<p>2023년 09월 08일</p>
                         </div>
@@ -160,7 +160,8 @@
                             <img id='preview' />
                         </div>
                         <input type='file' onchange='loadImage(event)' class="upload-image-button" />
-                        <input type="button" value="등록" class="submit-button">
+                        <input type="button" value="등록" class="submit-button"
+                            onclick="window.location.href = 'MiniHome_Memo_View.html'">
 
                     </div>
 
@@ -177,6 +178,7 @@
 
     <script src="../js/minihome-default.js"></script>
     <script src="../js/minihome-posting-memo.js"></script>
+    <script src="../js/community-default.js"></script>
     <footer class="footer section">
         <div class="footer__container container grid">
             <div class="footer__content grid">
