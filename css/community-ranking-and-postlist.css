@@ -39,6 +39,12 @@ li {
   text-overflow: ellipsis;
 }
 
+.post-content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .ranking-head {
   text-align: center !important;
 }
@@ -165,13 +171,16 @@ select {
 .third-line {
   margin-top: 3px;
 }
-.like,
-.view {
-  margin-left: 50px;
+.comment-seper,
+.like-seper,
+.view-seper {
+  width: 60px;
 }
 
 .date {
-  margin-left: 110px;
+  width: 160px;
+  text-align: center;
+  padding-right: 10px;
 }
 
 .post-end-line {
