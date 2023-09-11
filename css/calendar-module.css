@@ -17,6 +17,12 @@ td {
   font-size: 15px;
 }
 
+.check-mark {
+  cursor: pointer;
+  position: relative;
+  z-index: 2; /* Higher value than the parent element */
+}
+
 th {
   background-color: #f2f2f2;
 }
