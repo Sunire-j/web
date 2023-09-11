@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/community-nav.css">
     <link rel="stylesheet" href="../css/minihome-default.css">
@@ -48,123 +49,125 @@
 
     <!-- 미니홈피 좌측영역(수정 절대 금지) -->
     <!-- #region start -->
-    <div class="minihome-area">
-        <div class="home-left">
-            <div class="profile-area">
-                <div class="profile-container">
-                    <div class="profile-pic">
-                        <img src="../img/images.jpg">
-                    </div>
-                    <div class="name-id-section">
-                        <div id="username-div" class="username-section" contentEditable="false">로니 콜먼</div>
-                        <p class="userid-section">@musclemuscle_man</p>
-                    </div>
-                    <div class="self-comment-section">
-                        <div id="self-comment">
-                            <div id="self-comment-editable" contentEditable='false'>운동은 내 인생</div>
+    <div class="master" style="background-color: aliceblue; padding: 60px 0px;">
+        <div class="minihome-area">
+            <div class="home-left">
+                <div class="profile-area">
+                    <div class="profile-container">
+                        <div class="profile-pic">
+                            <img src="../img/images.jpg">
                         </div>
-
-                        <div class="follow-count-section">
-                            <div class="follower">팔로워 :&nbsp<p class="follower-count">0</p>
+                        <div class="name-id-section">
+                            <div id="username-div" class="username-section" contentEditable="false">로니 콜먼</div>
+                            <p class="userid-section">@musclemuscle_man</p>
+                        </div>
+                        <div class="self-comment-section">
+                            <div id="self-comment">
+                                <div id="self-comment-editable" contentEditable='false'>운동은 내 인생</div>
                             </div>
-                            <div class="follow">팔로우 :&nbsp<p class="follow-count">30</p>
+
+                            <div class="follow-count-section">
+                                <div class="follower">팔로워 :&nbsp<p class="follower-count">0</p>
+                                </div>
+                                <div class="follow">팔로우 :&nbsp<p class="follow-count">30</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="edit-profile-section">
-                        <input type="button" value="프로필 수정" class="edit-profile" id='edit-button'
-                            onclick='editProfile()'>
-                        <input type='button' value='확인' class='edit-profile' id='confirm-button' style='display: none;'
-                            onclick='confirmProfile()'>
+                        <div class="edit-profile-section">
+                            <input type="button" value="프로필 수정" class="edit-profile" id='edit-button'
+                                onclick='editProfile()'>
+                            <input type='button' value='확인' class='edit-profile' id='confirm-button'
+                                style='display: none;' onclick='confirmProfile()'>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="count-area">
-                <div class="count-area-container">
-                    <div class="today-attend-section">
-                        <input type="button" value="출석체크" class="today-attend" id="today-attend">
-                    </div>
-                    <div class="memo-today-section">
-                        <div class="memo">Memo :&nbsp<p class="memo-count">2</div>
-                        <div class="today">Today :&nbsp<p class="today-count">13</div>
-                    </div>
-                    <div class="check-mine-post">
-                        <a href="#">내 글 보기</a>
-                    </div>
-                    <div class="reg-date">가입일자 :&nbsp<p>2023년 09월 08일</p>
+                <div class="count-area">
+                    <div class="count-area-container">
+                        <div class="today-attend-section">
+                            <input type="button" value="출석체크" class="today-attend" id="today-attend">
+                        </div>
+                        <div class="memo-today-section">
+                            <div class="memo">Memo :&nbsp<p class="memo-count">2</div>
+                            <div class="today">Today :&nbsp<p class="today-count">13</div>
+                        </div>
+                        <div class="check-mine-post">
+                            <a href="#">내 글 보기</a>
+                        </div>
+                        <div class="reg-date">가입일자 :&nbsp<p>2023년 09월 08일</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
+            <!-- #endregion -->
+            <div class="home-right">
 
-        <!-- #endregion -->
-        <div class="home-right">
+                <div class="maincontainer">
+                    <!-- 이 아래부터 수정 허용 -->
 
-            <div class="maincontainer">
-                <!-- 이 아래부터 수정 허용 -->
+                    <div class="memo-posting-left"><!-- 날짜, 부위선택, 본문, 이모지선택 -->
+                        <p class="year-month-day">2023년 09월 09일 출석체크</p>
 
-                <div class="memo-posting-left"><!-- 날짜, 부위선택, 본문, 이모지선택 -->
-                    <p class="year-month-day">2023년 09월 09일 출석체크</p>
+                        <p class="announce">부위선택</p>
+                        <div class="select-body-section">
+                            <div class="body-select-first">
+                                <select name="first" id="bodypart_first" size="2" class="body-select-box">
+                                    <option value="1">상체</option>
+                                    <option value="2">하체</option>
+                                </select>
+                            </div>
+                            <div class="body-select-second">
+                                <!-- 여기에 JavaScript를 사용하여 첫 번째 선택에 따라 내용을 변경합니다. -->
+                                <select name="second" id="bodypart_second" size="2" class='body-select-box'>
+                                    <!-- 기본값은 상체의 선택사항입니다. -->
+                                    <option value="">세부 카테고리</option>
+                                    <!-- ... 다른 옵션들 ... -->
+                                </select>
+                            </div>
+                        </div>
 
-                    <p class="announce">부위선택</p>
-                    <div class="select-body-section">
-                        <div class="body-select-first">
-                            <select name="first" id="bodypart_first" size="2" class="body-select-box">
-                                <option value="1">상체</option>
-                                <option value="2">하체</option>
+                        <!-- 게시글 작성 영역 -->
+                        <textarea placeholder='게시글을 작성하세요.' class="post-text-area"></textarea>
+
+                        <!-- 이모티콘 선택 영역-->
+                        <div id='emoji-selection-show'>
+                            <div>😊</div>
+                            <div>😂</div>
+                            <div>😍</div>
+                            <div>🤔</div>
+                            <div>😥</div>
+                        </div>
+                        <div id="emoji-selection">
+                            <input type='radio' name='emoji' value='1'>
+                            <input type='radio' name='emoji' value='2'>
+                            <input type='radio' name='emoji' value='3'>
+                            <input type='radio' name='emoji' value='4'>
+                            <input type='radio' name='emoji' value='5'>
+                        </div>
+                    </div>
+                    <div class="memo-posting-right">
+                        <div class="checkbox-section">
+                            <p><input type="checkbox" id="myCheck">인증게시판 연동</p>
+                        </div>
+                        <div class="selected-list">
+                            <select name="selected-list" id="selected-list" size="10" class="selected-list-class">
                             </select>
                         </div>
-                        <div class="body-select-second">
-                            <!-- 여기에 JavaScript를 사용하여 첫 번째 선택에 따라 내용을 변경합니다. -->
-                            <select name="second" id="bodypart_second" size="2" class='body-select-box'>
-                                <!-- 기본값은 상체의 선택사항입니다. -->
-                                <option value="">세부 카테고리</option>
-                                <!-- ... 다른 옵션들 ... -->
-                            </select>
+                        <!-- ㅅㅂ 어캐하노 이걸 -->
+                        <div class="image-preview-section">
+                            <img id='preview' />
                         </div>
+                        <input type='file' onchange='loadImage(event)' class="upload-image-button" />
+                        <input type="button" value="등록" class="submit-button">
+
                     </div>
 
-                    <!-- 게시글 작성 영역 -->
-                    <textarea placeholder='게시글을 작성하세요.' class="post-text-area"></textarea>
+                    <!-- 등록 버튼 -->
 
-                    <!-- 이모티콘 선택 영역-->
-                    <div id='emoji-selection-show'>
-                        <div>😊</div>
-                        <div>😂</div>
-                        <div>😍</div>
-                        <div>🤔</div>
-                        <div>😥</div>
-                    </div>
-                    <div id="emoji-selection">
-                        <input type='radio' name='emoji' value='1'>
-                        <input type='radio' name='emoji' value='2'>
-                        <input type='radio' name='emoji' value='3'>
-                        <input type='radio' name='emoji' value='4'>
-                        <input type='radio' name='emoji' value='5'>
-                    </div>
-                </div>
-                <div class="memo-posting-right">
-                    <div class="checkbox-section">
-                        <p><input type="checkbox" id="myCheck">인증게시판 연동</p>
-                    </div>
-                    <div class="selected-list">
-                        <select name="selected-list" id="selected-list" size="10" class="selected-list-class">
-                        </select>
-                    </div>
-                    <!-- ㅅㅂ 어캐하노 이걸 -->
-                    <div class="image-preview-section">
-                        <img id='preview' />
-                    </div>
-                    <input type='file' onchange='loadImage(event)' class="upload-image-button" />
-                    <input type="button" value="등록" class="submit-button">
 
                 </div>
-
-                <!-- 등록 버튼 -->
-
-
             </div>
         </div>
     </div>
@@ -174,24 +177,81 @@
 
     <script src="../js/minihome-default.js"></script>
     <script src="../js/minihome-posting-memo.js"></script>
-    <footer>
-        <div class="bottom_bar2">
-            <div class="bottom_bar2_box">
-                <p>전북 익산시 익산대로 460 (우)54538<br>지번: 신동 272<br><br>원광대학교 컴퓨터소프트웨어공학</p>
-                <p1>© 2023 by Group 4
-                </p1>
-                <div class="bottom_bar2_box_box">
-                    <input id="bottom_bar2_textbox1" type="text" name="IDInput" placeholder="아이디">
-                    <input id="bottom_bar2_textbox2" type="text" name="IDInput" placeholder="이메일">
-                    <input id="bottom_bar2_textbox3" type="text" name="IDInput" placeholder="전화번호">
-                    <input id="bottom_bar2_textbox4" type="text" name="IDInput" placeholder="문의 내용 입력">
-                    <button>제출하기</button>
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <div class="footer__content grid">
+                <div class="footer__data">
+                    <h3 class="footer__title">헬스엔에스</h3>
+                    <p class="footer__description"><br>
+                        사용자들에게 건강한 라이프 스타일을 쉽고 재미있게 유지할 수 있는 플랫폼을 제공합니다.</p>
+                    <div>
+                        <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                            <i class="ri-facebook-box-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="footer__social">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                            <i class="ri-youtube-fill"></i>
+                        </a>
+                    </div>
                 </div>
-                <p2>Contact Us<br><br>TEL: 123-4567-8900<br>E-MAIL: dddd@naver.com<br></p2>
-                <p3> Thank you.
-                </p3>
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">About</h3>
+                    <ul>
+                        <li class="footer__item">
+                            <a href="#top" class="footer__link">소개</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#community" class="footer__link">커뮤니티</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#miniHome" class="footer__link">미니 홈</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">Company</h3>
+                    <ul>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">멀티캠퍼스</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">HRD</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">8조</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">Support</h3>
+                    <ul>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">자주 묻는 질문</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">지원 센터</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">문의하기</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__rights">
+                <p class="footer__copy">&#169; 2023 Multi-Campus Semi-Project Team 8. All rigths reserved.</p>
+                <div class="footer__terms">
+                    <a href="#" class="footer__terms-link">Terms & Agreements</a>
+                    <a href="#" class="footer__terms-link">Privacy Policy</a>
+                </div>
             </div>
         </div>
+
     </footer>
 </body>
 

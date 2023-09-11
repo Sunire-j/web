@@ -73,6 +73,12 @@ function insertEmoji(emoji) {
       checkMark.className = "check-mark";
       checkMark.textContent = "✓";
 
+      // Add click event to the span element
+      checkMark.addEventListener("click", function () {
+        window.location.href = "./MiniHome_Memo_View.html"; // Update this with your actual path
+        return false; // Prevents the parent cell's click event from firing
+      });
+
       selectedCell.appendChild(checkMark);
     } else {
       var updatedContent = originalContent + " " + emoji;
