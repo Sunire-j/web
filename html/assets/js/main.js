@@ -23,6 +23,39 @@ links.forEach(n => n.addEventListener('click', activeLink))
 
 
 
+window.addEventListener('DOMContentLoaded', (event) => {
+  const target = document.querySelector('#miniHome');
+
+  let observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+          if(entry.isIntersecting){
+              entry.target.style.backgroundColor = '#ddd';
+          } else{
+              entry.target.style.backgroundColor = ''; // 원래 배경색으로 돌아감
+          }
+      });
+  }, { rootMargin: '-50% 0px -50% 0px' }); // 중간 지점에서 색상이 변경되도록 설정
+
+  observer.observe(target);
+});
+
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const target = document.querySelector('#miniHome2');
+
+  let observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+          if(entry.isIntersecting){
+              entry.target.style.backgroundColor = '#ddd';
+          } else{
+              entry.target.style.backgroundColor = ''; // 원래 배경색으로 돌아감
+          }
+      });
+  }, { rootMargin: '-50% 0px -50% 0px' }); // 중간 지점에서 색상이 변경되도록 설정
+
+  observer.observe(target);
+});
 
 
 

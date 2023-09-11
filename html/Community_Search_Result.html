@@ -22,7 +22,7 @@
         <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
         <div class="nav-01">
             <div class="logo-area">
-                <a href="Community_home.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
+                <a href="index.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
             </div>
             <div class="banner_login">
                 <a href="MiniHome_Home.html"><img src="../img/User.png"
@@ -33,7 +33,7 @@
         <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
         <div class="nav-02">
             <div class="category">
-                <a href="Community_home.html">홈</a><!-- 홈 -->
+                <a href="index.html">홈</a><!-- 홈 -->
                 <a href="Community_Free.html">자유게시판</a><!-- 자유게시판 -->
                 <a href="Community_Auth.html">인증게시판</a><!-- 인증게시판 -->
                 <a href="Community_QNA.html">Q&A게시판</a><!-- Q&A게시판 -->
@@ -99,7 +99,7 @@
                     <option value="2">하체</option>
                 </select>
                 <div class="check-post"><a href="">전체 게시물</a></div>
-                <div class="check-post"><a href="">내 게시물</a></div>
+                <div class="check-post"><a href="Community_Show_MyPost.html">내 게시물</a></div>
             </div>
             <!-- 게시글 목록 -->
             <div class="post-list">
@@ -198,7 +198,8 @@
             </div>
 
             <div class="show-result-area">
-                <input type="button" value="자유게시판 검색 결과 전체 보기" class="show-result-all">
+                <input type="button" value="자유게시판 검색 결과 전체 보기" class="show-result-all"
+                    onclick="window.location.href = 'Community_Free.html'">
             </div>
 
 
@@ -297,7 +298,8 @@
                 </div>
             </div>
             <div class="show-result-area">
-                <input type="button" value="인증게시판 검색 결과 전체 보기" class="show-result-all">
+                <input type="button" value="인증게시판 검색 결과 전체 보기" class="show-result-all"
+                    onclick="window.location.href = 'Community_Auth.html'">
             </div>
 
             <div class="post-list">
@@ -394,7 +396,8 @@
                 </div>
             </div>
             <div class="show-result-area">
-                <input type="button" value="Q&A 게시판 검색 결과 전체 보기" class="show-result-all">
+                <input type="button" value="Q&A 게시판 검색 결과 전체 보기" class="show-result-all"
+                    onclick="window.location.href = 'Community_QNA.html'">
             </div>
 
             <div class="margin-for-search-result"></div>

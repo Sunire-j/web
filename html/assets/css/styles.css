@@ -434,6 +434,17 @@ input {
   transform: var(--img-scale);
 }
 
+.community_line > hr {
+  border: none; /* 기본 border를 제거합니다 */
+  height: 30px; /* 굵기를 설정합니다 (예: 2px) */
+  width: 10%; /* 길이를 설정합니다 (예: 전체 너비의 절반) */
+  background-color: #ddd; /* 색상을 설정합니다 (예: 빨간색) */
+  border-radius: 10px;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*=============== cmt ===============*/
 .cmt__card {
   position: relative;
@@ -470,6 +481,9 @@ input {
   transform: var(--img-scale);
 }
 
+
+
+
 .swiper-container-3d .swiper-slide-shadow-left,
 .swiper-container-3d .swiper-slide-shadow-right {
   background-image: none;
@@ -477,6 +491,12 @@ input {
 
 
 /*=============== miniHome ===============*/
+
+#miniHome {
+  transition: background-color 0.4s ease; /* 부드러운 전환 효과 */
+}
+
+
 
 .miniHome__container {
   row-gap: 2.5rem;
@@ -532,6 +552,10 @@ input {
   transform: var(--img-scale);
 }
 
+.dummyDiv{
+  margin-top: 100px;
+}
+
 /*=============== miniHome2 ===============*/
 
 .miniHome2__container {
@@ -547,7 +571,9 @@ input {
   position: relative;
 }
 
-
+#miniHome2 {
+  transition: background-color 0.4s ease; /* 부드러운 전환 효과 */
+}
 
 /*=============== SUBSCRIBE ===============*/
 .miniHome_search_bar__bg {
@@ -584,6 +610,17 @@ input {
   color: var(--text-color);
 }
 
+.miniHome_line > hr {
+  border: none; /* 기본 border를 제거합니다 */
+  height: 30px; /* 굵기를 설정합니다 (예: 2px) */
+  width: 10%; /* 길이를 설정합니다 (예: 전체 너비의 절반) */
+  background-color: #ddd; /* 색상을 설정합니다 (예: 빨간색) */
+  border-radius: 10px;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*=============== SPONSORS ===============*/
 
 .sponsor__container {
@@ -593,7 +630,7 @@ input {
 }
 
 .sponsor__img1 {
-  width: 90px;
+  width: 180px;
   filter: invert(0.7);
   transition: var(--img-transition);
 }
@@ -603,7 +640,7 @@ input {
 }
 
 .sponsor__img2 {
-  width: 120px;
+  width: 240px;
   filter: invert(0.7);
   transition: var(--img-transition);
 }
@@ -613,7 +650,7 @@ input {
 }
 
 .sponsor__img3 {
-  width: 50px;
+  width: 100px;
   filter: invert(0.7);
   transition: var(--img-transition);
 }
@@ -623,7 +660,7 @@ input {
 }
 
 .sponsor__img4 {
-  width: 60px;
+  width: 120px;
   filter: invert(0.7);
   transition: var(--img-transition);
 }
@@ -633,7 +670,7 @@ input {
 }
 
 .sponsor__img5 {
-  width: 90px;
+  width: 180px;
   filter: invert(0.7);
   transition: var(--img-transition);
 }
