@@ -16,27 +16,36 @@ li {
   margin-top: 103px;
   align-items: center;
   align-content: center;
-  color: white;
+  color: #31386d;
   margin-left: 20px;
 }
 
 .left a {
   font-size: 15px;
-  color: white;
+  color: #31386d;
+  font-weight: bold;
 }
 /* 랭킹 사이에 높이차이 30px */
 
 .left ul {
-  padding: 0;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .left li {
-  text-align: center;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ranking-head {
+  text-align: center !important;
 }
 
 .follow-ranking,
 .like-ranking {
-  background-color: var(--blue-basic-color);
+  background-color: #94a5db;
   margin-top: 30px;
   box-sizing: border-box;
   padding-top: 20px;
@@ -46,7 +55,7 @@ li {
   font-weight: bold;
   font-size: 18px;
   text-align: center;
-  color: white;
+  color: #31386d;
   padding-left: 0;
 }
 .right {
@@ -169,15 +178,18 @@ select {
   width: 884px;
   margin-top: 30px;
   justify-content: center;
-  display: flex;
 }
 
 .inboard-search-area {
+  width: 100%;
   margin-left: auto;
+  text-align: center;
+  position: relative;
 }
 
 .post-button {
-  margin-left: auto;
+  position: absolute;
+  right: 30px;
   width: 100px;
   height: 35px;
   color: white;

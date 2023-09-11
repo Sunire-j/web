@@ -22,7 +22,7 @@ a:active {
   width: 100%;
   height: 200px;
   bottom: 0;
-  background-color: var(--blue-basic-color);
+  background-color: #bbb;
 }
 
 .bottom_bar2_box {
@@ -30,21 +30,21 @@ a:active {
   margin: 0 auto;
   width: 1000px;
   height: 200px;
-  background-color: var(--blue-basic-color);
+  background-color: #bbb;
 }
 
 .bottom_bar2 p {
   left: 30px;
   top: 5px;
   position: absolute;
-  color: white;
+  color: black;
 }
 
 .bottom_bar2 p1 {
   left: 30px;
   top: 125px;
   position: absolute;
-  color: white;
+  color: black;
 }
 
 .bottom_bar2_box_box {
@@ -101,12 +101,12 @@ a:active {
   right: 100px;
   top: 20px;
   position: absolute;
-  color: white;
+  color: black;
 }
 
 .bottom_bar2 p3 {
   right: 200px;
   top: 125px;
   position: absolute;
-  color: white;
+  color: black;
 }

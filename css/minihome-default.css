@@ -22,7 +22,7 @@ p {
   right: 0;
   height: 686px;
   width: 677px;
-  border: 3px solid var(--blue-basic-color);
+  border: 3px solid #bbb;
 }
 .profile-container,
 .count-area-container {
@@ -32,13 +32,13 @@ p {
 .profile-area {
   height: 475px;
   width: 100%;
-  border: 3px solid var(--blue-basic-color);
+  border: 3px solid #bbb;
 }
 .count-area {
   margin-top: 15px;
   height: 190px;
   width: 100%;
-  border: 3px solid var(--blue-basic-color);
+  border: 3px solid #bbb;
 }
 .profile-pic {
   margin-top: 25px;
