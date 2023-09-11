@@ -1,7 +1,3 @@
-document.getElementById("post-button").addEventListener("click", function () {
-  window.location.href = "Community_posting.html";
-});
-
 document
   .getElementById("main-search")
   .addEventListener("keydown", function (e) {

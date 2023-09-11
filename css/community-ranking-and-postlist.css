@@ -39,6 +39,12 @@ li {
   text-overflow: ellipsis;
 }
 
+.post-content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .ranking-head {
   text-align: center !important;
 }
