@@ -320,7 +320,8 @@ li {
   margin-bottom: 5px;
 }
 
-.icon {
+.icon,
+.icon2 {
   width: 25px;
   height: 25px;
 }
@@ -358,4 +359,22 @@ li {
 .dummydata,
 .first-line-comment {
   margin-bottom: 10px;
+}
+.second-line-comment {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+}
+.comment-writer-section {
+  vertical-align: middle;
+}
+.comment-like > a {
+  height: 29px;
+  vertical-align: middle;
+}
+.comment-like {
+  display: flex;
+}
+p {
+  margin: auto 0;
 }
