@@ -1,0 +1,338 @@
+.check-post {
+  width: 1000px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--blue-basic-color);
+  margin: 70px auto 0;
+}
+
+.muscle-categories {
+  width: 1000px;
+  margin: 10px auto 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(28, 13, 75);
+}
+
+/******** 게시글 안 내용 시작 ********/
+/* 화면 전체 크기 */
+.post_div {
+  width: 1000px;
+  height: auto;
+  margin: 10px auto 0;
+  display: flex;
+}
+
+/* 게시글 내용 크기 */
+.content {
+  width: 800px;
+  margin-left: 0px;
+  flex-direction: column;
+}
+
+/* 게시글 제목 */
+.content_title {
+  width: 800px;
+  height: 100px;
+}
+
+.content_title > h1 {
+  color: #464d86;
+}
+
+/* 게시글 내용 */
+.content_post {
+  width: 800px;
+  margin-top: 70px;
+  margin-left: 0px;
+}
+
+.content_post > p {
+  color: #292e51;
+  font-weight: bold;
+}
+
+.content_post > img {
+  max-width: 800px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+/******** 게시글 안 내용 끝 ********/
+
+/******** 게시글 아래 댓글 시작 ********/
+
+/******** 게시글 아래 댓글 끝 ********/
+
+/* 게시글 우측 버튼(댓글, 작성자 팔로우 등) 들어갈 div */
+.content_side_div {
+  width: 200px;
+  height: 600px;
+  margin-top: 28px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* 우측 상단 댓글 버튼 */
+.comment_button_side > button {
+  width: 170px;
+  height: 60px;
+  color: #ffffff;
+  background-color: #464d86;
+  border-radius: 10px;
+  margin-left: 30px;
+  font-size: 20px;
+}
+
+/* 우측 상단 팔로우 버튼 */
+.follow_button > button {
+  width: 170px;
+  height: 60px;
+  color: #464d86;
+  background-color: #ffffff;
+  border: #464d86;
+  border-style: solid;
+  border-radius: 10px;
+  margin-left: 30px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* 클릭했을 때 */
+.comment_button_side > button:active {
+  background-color: #ffffff;
+  color: #464d86;
+}
+
+/* 마우스를 올렸을 때 */
+.follow_button > button:hover {
+  background-color: #464d86;
+  color: #ffffff;
+}
+
+/* 클릭했을 때 */
+.follow_button > button:active {
+  background-color: #ffffff;
+  color: #464d86;
+}
+
+/* 우측 상단 조회수, 댓글 수 */
+.like_comment_count {
+  width: 165px;
+  height: 115px;
+  color: #464d86;
+  background-color: #ffffff;
+  border: #464d86;
+  border-style: solid;
+  border-radius: 10px;
+  margin-left: 30px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* 아이템들 사이에 공간 배분 */
+  flex-direction: column;
+  font-size: 15px;
+}
+
+/* 안에 내용 정렬 */
+.like_comment_count > .item {
+  margin-left: 15px;
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.like_comment_count > .item > img {
+  width: 28px;
+}
+
+.like_comment_count > .item > p {
+  margin-left: 20px; /* 이미지와 텍스트 사이의 간격 */
+}
+
+/* 수정 버튼 */
+.write {
+  width: 950px;
+  height: 50px;
+  text-align: right;
+  margin: 10px auto 0;
+  margin-bottom: 100px;
+}
+
+.write > button {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 8px;
+  color: #ffffff; /* 선택된 상태의 텍스트 색상  */
+  background-color: #464d86;
+}
+
+/**************** footer 영역 시작 ****************/
+.bottom_bar2 {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  bottom: 0;
+  background-color: var(--blue-basic-color);
+}
+
+.bottom_bar2_box {
+  position: relative;
+  margin: 0 auto;
+  width: 1000px;
+  height: 200px;
+  background-color: var(--blue-basic-color);
+}
+
+.bottom_bar2 p {
+  left: 30px;
+  top: 5px;
+  position: absolute;
+  color: white;
+}
+
+.bottom_bar2 p1 {
+  left: 30px;
+  top: 125px;
+  position: absolute;
+  color: white;
+}
+
+.bottom_bar2_box_box {
+  position: relative;
+  margin: 0 auto;
+  top: 25px;
+  width: 380px;
+  height: 150px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+#bottom_bar2_textbox1 {
+  position: absolute;
+  left: 12px;
+  height: 30px;
+  width: 160px;
+}
+
+#bottom_bar2_textbox2 {
+  position: absolute;
+  top: 40px;
+  left: 12px;
+  height: 30px;
+  width: 160px;
+}
+
+#bottom_bar2_textbox3 {
+  position: absolute;
+  top: 80px;
+  left: 12px;
+  height: 30px;
+  width: 160px;
+}
+
+#bottom_bar2_textbox4 {
+  position: absolute;
+  left: 190px;
+  width: 170px;
+  height: 110px;
+  text-align: center;
+}
+
+.bottom_bar2_box_box button {
+  position: relative;
+  top: 124px;
+  left: 267px;
+  width: 100px;
+  height: 25px;
+}
+
+.bottom_bar2_box_box button:hover {
+  cursor: pointer;
+}
+
+.bottom_bar2 p2 {
+  right: 100px;
+  top: 20px;
+  position: absolute;
+  color: white;
+}
+
+.bottom_bar2 p3 {
+  right: 200px;
+  top: 125px;
+  position: absolute;
+  color: white;
+}
+/**************** footer 영역 끝 ****************/
+
+.comment-area {
+  width: 100%;
+  margin: 0 auto;
+}
+.visitor-comment-section,
+.comment-write-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.comment-write-section {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.comment-list-section {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid var(--blue-basic-color);
+  margin-left: 40px;
+  margin-right: 40px;
+  overflow-y: auto;
+  max-height: 100px;
+  padding-right: 20px;
+}
+.comment-input {
+  width: 500px;
+  height: 30px;
+}
+.dummydata {
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 2px;
+}
+.first-line-comment {
+  margin: 1px;
+  display: flex;
+  justify-content: space-between;
+}
+.second-line-comment {
+  margin: 1px;
+  margin-top: 2px;
+  text-align: right;
+}
+ul,
+li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+}
+.content-post-tail {
+  margin-top: 30px;
+  align-items: center;
+}
+
+.comment-list-section {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  max-height: none;
+  border: 0;
+}

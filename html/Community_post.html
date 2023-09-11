@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/community-nav.css">
+    <link rel="stylesheet" href="../css/community-header.css">
+    <link rel="stylesheet" href="../css/community-ranking-and-postlist.css">
+    <link rel="stylesheet" href="../css/community-post.css">
+
+    <!-- ck에디터  -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
+
+</head>
+
+<body>
+    <!-- #상단 바 시작 -->
+    <nav>
+        <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
+        <div class="nav-01">
+            <div class="logo-area">
+                <a href="Community_home.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
+            </div>
+            <div class="banner_login">
+                <a href="#"><img src="../img/User.png" class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
+                <a href="Sign_In.html" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
+            </div>
+        </div>
+        <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
+        <div class="nav-02">
+            <div class="category">
+                <a href="Community_home.html">홈</a><!-- 홈 -->
+                <a href="Community_Free.html">자유게시판</a><!-- 자유게시판 -->
+                <a href="Community_Auth.html">인증게시판</a><!-- 인증게시판 -->
+                <a href="Community_QNA.html">Q&A게시판</a><!-- Q&A게시판 -->
+                <a href="Community_Map.html">헬스장찾기</a><!-- 헬스장찾기 -->
+            </div>
+            <div class="main-search-box">
+                <input type="search" name="main-search" id="main-search" class="main-search"><!-- 상단 검색박스 -->
+                <!-- 이건 이쁜거 있으면 그때 수정하는걸로 일단 input:search로 넣어둠 -->
+            </div>
+        </div>
+    </nav>
+    <hr>
+    <!-- #상단 바 끝/ -->
+
+
+
+    <!-- #게시물 선택 바 시작-->
+    <div class="check-post">
+        <a href="">전체 게시물</a>&nbsp;&nbsp;&nbsp;
+        <a href="">내 게시물</a>
+        <hr>
+    </div>
+    <!-- #게시물 선택 바 끝/-->
+
+
+
+    <!-- 부위 카테고리 리스트 시작 -->
+    <div class="muscle-categories">
+        <p>부위 카테고리</p>
+    </div>
+    <!-- 부위 카테고리 리스트 끝 -->
+
+
+    <div class="post_div">
+        <div class="content">
+            <div class="content_title">
+                <h1>게시글 제목이 들어갑니다.</h1>
+                <h4>게시판 : <span><a href="#">자유게시판</a></span></h4>
+                <hr>
+            </div>
+
+            <div class="content_post">
+                <p>에디터에서 작성한 내용이 들어갑니다. 에디터에서 작성한 내용이 들어갑니다. 에디터에서 작성한 내용이 들어갑니다.<br><br>
+                    에디터에서 작성한 내용이 들어갑니다.<br>
+                    에디터에서 작성한 내용이 들어갑니다.</p>
+                <img src="https://kr.imboldn.com/wp-content/uploads/2022/07/newbie_guide_fitness_pt1_main.jpg"
+                    alt="이미지 설명">
+            </div>
+            <div class="content-post-tail">
+                <a href="#"><img src="../img/thumbs-up.png" alt="" class="icon">&nbsp;&nbsp;좋아요</a>
+
+                <a href="#"><img src="../img/view.png" alt="" class="icon">&nbsp;&nbsp;공유(이미지 바꿔야함)</a>
+                <hr>
+            </div>
+
+
+            <div class="comment-area">
+                <div class="comment-header" id="comment-anchor">댓글</div>
+                <div class="comment-write-area">
+                    <input type="text" name="comment" id="comment">
+                </div>
+                <div class="comment-list-section">
+                    <ul class="commnet-list">
+                        <li class="dummydata">
+                            <div class="first-line-comment">
+                                <div class="comment">몸 좋으시네요</div>
+                                <div class="erase-button"><a href="#">삭제</a></div>
+                            </div>
+                            <div class="second-line-comment">
+                                <div class="comment-writer-section">작성자 :&nbsp<a href="#">산본동왕쇼바</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="dummydata">
+                            <div class="first-line-comment">
+                                <div class="comment">로니햄 폼 미쳤다 ㄷㄷ</div>
+                                <div class="erase-button"><a href="#">삭제</a></div>
+                            </div>
+                            <div class="second-line-comment">
+                                <div class="comment-writer-section">작성자 :&nbsp<a href="#">월미도질주본능</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="dummydata">
+                            <div class="first-line-comment">
+                                <div class="comment">맞팔좀 해주세요</div>
+                                <div class="erase-button"><a href="#">삭제</a></div>
+                            </div>
+                            <div class="second-line-comment">
+                                <div class="comment-writer-section">작성자 :&nbsp<a href="#">상무지구1등삐끼</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="dummydata">
+                            <div class="first-line-comment">
+                                <div class="comment">몸 좋으시네요</div>
+                                <div class="erase-button"><a href="#">삭제</a></div>
+                            </div>
+                            <div class="second-line-comment">
+                                <div class="comment-writer-section">작성자 :&nbsp<a href="#">산본동왕쇼바</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="content_side_div">
+            <div class="comment_button_side">
+                <button onclick="scrollToElement('comment-anchor')">댓글</button>
+            </div>
+
+            <div class="follow_button">
+                <button>작성자 팔로우</button>
+            </div>
+
+            <div class="like_comment_count">
+                <div class="item">
+                    <img src="../img/view.png" alt="조회수">
+                    <p>조회수 : 10</p>
+                </div>
+                <div class="item">
+                    <img src="../img/comment.png" alt="댓글">
+                    <p>댓글 : 20</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/community-post.js"></script>
+
+
+
+
+    <!-- footer 영역 시작 -->
+    <footer>
+        <div class="bottom_bar2">
+            <div class="bottom_bar2_box">
+                <p>전북 익산시 익산대로 460 (우)54538<br>지번: 신동 272<br><br>원광대학교 컴퓨터소프트웨어공학</p>
+                <p1>© 2023 by Group 4
+                </p1>
+                <div class="bottom_bar2_box_box">
+                    <input id="bottom_bar2_textbox1" type="text" name="IDInput" placeholder="아이디">
+                    <input id="bottom_bar2_textbox2" type="text" name="IDInput" placeholder="이메일">
+                    <input id="bottom_bar2_textbox3" type="text" name="IDInput" placeholder="전화번호">
+                    <input id="bottom_bar2_textbox4" type="text" name="IDInput" placeholder="문의 내용 입력">
+                    <button>제출하기</button>
+                </div>
+                <p2>Contact Us<br><br>TEL: 123-4567-8900<br>E-MAIL: dddd@naver.com<br></p2>
+                <p3> Thank you.
+                </p3>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
