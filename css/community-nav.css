@@ -51,6 +51,7 @@ nav {
 }
 
 .main-search {
-  width: 195px;
-  height: 29px;
+  width: 200px;
+  height: 35px;
+  border-radius: 0.5em;
 }
