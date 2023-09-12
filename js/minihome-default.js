@@ -50,5 +50,5 @@ function confirmProfile() {
 }
 
 document.getElementById("today-attend").addEventListener("click", function () {
-  window.location.href = "Minihome_Memo_Posting.html";
+  window.location.href = "MiniHome_Memo_Posting.html";
 });
