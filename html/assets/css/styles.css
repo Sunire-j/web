@@ -392,7 +392,12 @@ input {
   background: none;
 }
 
-/*=============== ABOUT ===============*/
+/*=============== community ===============*/
+
+#community {
+  transition: background-color 0.4s ease; /* 부드러운 전환 효과 */
+}
+
 .community__data {
   text-align: center;
 }
@@ -446,6 +451,11 @@ input {
 }
 
 /*=============== cmt ===============*/
+
+#cmt {
+  transition: background-color 0.4s ease; /* 부드러운 전환 효과 */
+}
+
 .cmt__card {
   position: relative;
   width: 200px;
@@ -614,7 +624,7 @@ input {
   border: none; /* 기본 border를 제거합니다 */
   height: 30px; /* 굵기를 설정합니다 (예: 2px) */
   width: 10%; /* 길이를 설정합니다 (예: 전체 너비의 절반) */
-  background-color: #ddd; /* 색상을 설정합니다 (예: 빨간색) */
+  background-color: #464d86; /* 색상을 설정합니다 (예: 빨간색) */
   border-radius: 10px;
   margin-top: 150px;
   margin-left: auto;
@@ -630,8 +640,7 @@ input {
 }
 
 .sponsor__img1 {
-  width: 180px;
-  filter: invert(0.7);
+  width: 150px;
   transition: var(--img-transition);
 }
 
@@ -640,8 +649,7 @@ input {
 }
 
 .sponsor__img2 {
-  width: 240px;
-  filter: invert(0.7);
+  width: 155px;
   transition: var(--img-transition);
 }
 
@@ -651,7 +659,6 @@ input {
 
 .sponsor__img3 {
   width: 100px;
-  filter: invert(0.7);
   transition: var(--img-transition);
 }
 
@@ -660,8 +667,8 @@ input {
 }
 
 .sponsor__img4 {
-  width: 120px;
-  filter: invert(0.7);
+  width: 130px;
+
   transition: var(--img-transition);
 }
 
@@ -670,8 +677,7 @@ input {
 }
 
 .sponsor__img5 {
-  width: 180px;
-  filter: invert(0.7);
+  width: 125px;
   transition: var(--img-transition);
 }
 

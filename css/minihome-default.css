@@ -12,6 +12,7 @@ p {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  margin-top: 60px;
 }
 .home-left {
   left: 0;

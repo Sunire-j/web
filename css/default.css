@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body {
+  margin: 0;
+}
 :root {
   --blue-basic-color: rgb(70, 77, 134);
 }
@@ -9,6 +12,7 @@ hr {
 }
 ul {
   padding-inline-start: 0px;
+  list-style-type: none;
 }
 
 a,
@@ -120,4 +124,14 @@ a:active {
 .main-search-box {
   text-align: right !important;
   float: right !important;
+}
+.footer-second-right {
+  display: flex;
+}
+.footer-PrivacyPolicy {
+  margin-left: 30px;
+}
+.footer-second-area div {
+  font-size: 14px;
+  color: rgb(145, 147, 161);
 }
