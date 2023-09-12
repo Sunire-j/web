@@ -28,16 +28,20 @@ function generateCalendar(year, month) {
       } else {
         cell.textContent = day++;
 
-        cell.addEventListener("click", (event) => {
-          selectedCell = event.target;
-          if (selectedCell.tagName === "SPAN") {
-            selectedCell = selectedCell.parentNode;
-          }
-          emojiMenu.style.display = "block";
-          emojiMenu.style.left = selectedCell.offsetLeft + "px";
-          emojiMenu.style.top =
-            selectedCell.offsetTop + selectedCell.offsetHeight + "px";
-        });
+        cell.addEventListener(
+          "click",
+          (event) => {
+            selectedCell = event.target;
+            if (selectedCell.tagName === "SPAN") {
+              selectedCell = selectedCell.parentNode;
+            }
+            emojiMenu.style.display = "block";
+            emojiMenu.style.left = selectedCell.offsetLeft + "px";
+            emojiMenu.style.top =
+              selectedCell.offsetTop + selectedCell.offsetHeight + "px";
+          },
+          { once: true }
+        );
       }
 
       row.appendChild(cell);
@@ -73,12 +77,6 @@ function insertEmoji(emoji) {
       checkMark.className = "check-mark";
       checkMark.textContent = "✓";
 
-      // Add click event to the span element
-      checkMark.addEventListener("click", function () {
-        window.location.href = "./MiniHome_Memo_View.html"; // Update this with your actual path
-        return false; // Prevents the parent cell's click event from firing
-      });
-
       selectedCell.appendChild(checkMark);
     } else {
       var updatedContent = originalContent + " " + emoji;
@@ -91,6 +89,13 @@ function insertEmoji(emoji) {
       checkMark.textContent = "✓";
 
       selectedCell.appendChild(checkMark);
+
+      // Add click event to the span element
+      checkMark.addEventListener("click", function () {
+        console.log("test");
+        window.location.href = "MiniHome_Memo_View.html"; // Update this with your actual path
+        return false; // Prevents the parent cell's click event from firing
+      });
     }
   }
 }
