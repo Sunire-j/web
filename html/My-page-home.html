@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/community-nav.css">
+    <link rel="stylesheet" href="../css/minihome-default.css">
+    <link rel="stylesheet" href="../css/calendar-module.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/my-page-default.css">
+
+
+</head>
+
+<body>
+    <!-- #region start -->
+    <nav>
+        <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
+        <div class="nav-01">
+            <div class="logo-area">
+                <a href="index.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
+            </div>
+            <div class="banner_login">
+                <a href="MiniHome_Home.html"><img src="../img/User.png"
+                        class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
+                <a href="Sign_In.html" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
+            </div>
+        </div>
+        <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
+        <div class="nav-02">
+            <div class="category">
+                <a href="index.html">홈</a><!-- 홈 -->
+                <a href="Community_Free.html">자유게시판</a><!-- 자유게시판 -->
+                <a href="Community_Auth.html">인증게시판</a><!-- 인증게시판 -->
+                <a href="Community_QNA.html">Q&A게시판</a><!-- Q&A게시판 -->
+                <a href="Community_Map.html">헬스장찾기</a><!-- 헬스장찾기 -->
+            </div>
+            <div class="main-search-box">
+                <input type="search" name="main-search" id="main-search" class="main-search"
+                    placeholder="전체 게시물 검색"><!-- 상단 검색박스 -->
+                <!-- 이건 이쁜거 있으면 그때 수정하는걸로 일단 input:search로 넣어둠 -->
+            </div>
+        </div>
+    </nav>
+    <hr style="margin-bottom: 0px;">
+    <!-- #endregion -->
+
+    <!-- 미니홈피 좌측영역(수정 절대 금지) -->
+    <!-- #region start -->
+
+    <div class="minihome-area">
+        <div class="home-left">
+            <div class="profile-area">
+                <div class="profile-container">
+                    <div class="profile-pic">
+                        <img src="../img/images.jpg">
+                    </div>
+                    <div class="name-id-section">
+                        <div id="username-div" class="username-section" contentEditable="false">로니 콜먼</div>
+                        <p class="userid-section">@musclemuscle_man</p>
+                    </div>
+                    <div class="self-comment-section">
+                        <div id="self-comment">
+                            <div id="self-comment-editable" contentEditable='false'>운동은 내 인생</div>
+                        </div>
+
+                        <div class="follow-count-section">
+                            <div class="follower">팔로워 :&nbsp<p class="follower-count">0</p>
+                            </div>
+                            <div class="follow">팔로우 :&nbsp<p class="follow-count">30</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edit-profile-section">
+                        <input type="button" value="프로필 수정" class="edit-profile" id='edit-button'
+                            onclick='editProfile()'>
+                        <input type='button' value='확인' class='edit-profile' id='confirm-button' style='display: none;'
+                            onclick='confirmProfile()'>
+
+                    </div>
+                </div>
+            </div>
+            <div class="count-area">
+                <div class="count-area-container">
+                    <div class="today-attend-section">
+                        <input type="button" value="출석체크" class="today-attend" id="today-attend">
+                    </div>
+                    <div class="memo-today-section">
+                        <div class="memo">Memo :&nbsp<p class="memo-count">2</div>
+                        <div class="today">Today :&nbsp<p class="today-count">13</div>
+                    </div>
+                    <div class="check-mine-post">
+                        <a href="Community_Show_MyPost.html">내 글 보기</a>
+                    </div>
+                    <div class="reg-date">가입일자 :&nbsp<p>2023년 09월 08일</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- #endregion -->
+        <div class="home-right">
+
+            <div class="maincontainer">
+                <!-- 이 아래부터 수정 허용 -->
+
+                <div class="my-page-select-section">
+                    <div class="my-page-select">마이페이지</div>
+                    <div class="my-page-select">개인정보 변경</div>
+                    <div class="my-page-select">회원 탈퇴</div>
+                </div>
+
+                <div class="section-area">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="../js/community-default.js"></script>
+    <script src="../js/minihome-calander.js"></script>
+
+    <script src="../js/minihome-default.js"></script>
+    <footer class="footer-section">
+        <div class="footer-first-area">
+            <div class="footer-first-first">
+                <div class="footer-title">헬스엔에스</div>
+                <div class="footer-content">사용자들에게 건강한 라이프 스타일을 쉽고 재미있게 유지할 수 있는 플랫폼을 제공합니다.</div>
+                <div class="footer-social-section">
+                    <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                        <i class="ri-facebook-box-fill"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" class="footer__social">
+                        <i class="ri-twitter-fill"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                        <i class="ri-instagram-fill"></i>
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                        <i class="ri-youtube-fill"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-first-second">
+                <div class="footer-title">About</div>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="index.html">소개</a></li>
+                        <li><a href="Community_Free.html">커뮤니티</a></li>
+                        <li><a href="MiniHome_Home.html">미니 홈</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-first-third">
+                <div class="footer-title">Company</div>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="https://www.multicampus.com/kr/index.html">멀티캠퍼스</a></li>
+                        <li><a href="https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do">HRD</a></li>
+                        <li><a href="index.html">2조</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-first-4th">
+                <div class="footer-title">Support</div>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="https://www.naver.com">자주 묻는 질문</a></li>
+                        <li><a href="https://www.daum.net">지원 센터</a></li>
+                        <li><a href="https://www.nate.com">문의하기</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-second-area">
+            <div class="footer-second-left">
+                © 2023 Multi-Campus Semi-Project Team 2. All rigths reserved.
+            </div>
+            <div class="footer-second-right">
+                <div class="footer-TermsNAgreements"><a href="https://youtu.be/9PfIi4nXJ6E?si=VoHRlilst2YOdQiP">Terms &
+                        Agreements</a></div>
+                <div class="footer-PrivacyPolicy"><a href="https://youtu.be/Eb-JAjWSxkI?si=g6xiT8-0tVViOcT2">Privacy
+                        Policy</a></div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
