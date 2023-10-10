@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--
+    Interceptor는 접속하면 DispacherServlet의 매핑주소에 따라 실행이 인터셉터된다
+
+    AOP : Aspect Oriented Programming
+
+    환경설정
+    beans시작태그에 context, mvc 추가(인텔리제이는 namespace에서, 인텔리제이는 알아서 엘리먼트 쓰면 추가
+
+    Interceptor 클래스 생성
+    -->
+
+
+    <!--<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/logout"/>
+            <mvc:mapping path="/board/write"/>
+            <mvc:mapping path="/board/writeOk"/>
+            <mvc:mapping path="/board/edit"/>
+            <mvc:mapping path="/board/editOk"/>
+            <mvc:mapping path="/board/delete"/>
+            <mvc:mapping path="/data/write"/>
+
+            <bean class="com.multi.campus.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors> -->
+
+    <!-- 파일업로드 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+
+</beans>

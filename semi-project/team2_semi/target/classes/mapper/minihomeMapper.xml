@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team2.healthsns.mapper.minihomeMapper">
+
+    <insert id="userSelect">
+        select userid, username, date, profile_img
+        from user_info
+        where userid = ${param1}
+    </insert>
+</mapper>

@@ -1,0 +1,175 @@
+table {
+  border-collapse: collapse;
+  width: 630px;
+  height: 400px;
+}
+
+th,
+td {
+  width: 90px;
+  height: 66.67px;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+.check-mark {
+  cursor: pointer;
+  position: relative;
+  z-index: 2; /* Higher value than the parent element */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.emoji-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.emoji-menu button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #e0e0e0;
+}
+
+.emoji-container {
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  /* 이모티콘을 왼쪽 정렬로 설정 */
+}
+
+.emoji-text {
+  text-align: right;
+  display: inline;
+  font-size: 24px;
+}
+
+.number-text {
+  text-align: left;
+  padding-left: 5px;
+  display: block;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.check-mark {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+  color: green;
+}
+
+.controller-year-month-section {
+  margin-left: 23px;
+  margin-right: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.month-control-button {
+  width: 82px;
+  height: 34px;
+}
+#calendar {
+  margin: 0 auto !important;
+}
+td:has(.check-mark) {
+  background-color: lightcoral;
+}
+
+.visitor-comment-section,
+.comment-write-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.comment-write-section {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.comment-list-section {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid var(--blue-basic-color);
+  margin-left: 40px;
+  margin-right: 40px;
+  overflow-y: auto;
+  max-height: 100px;
+  padding-right: 20px;
+}
+.comment-input {
+  width: 500px;
+  height: 30px;
+}
+.dummydata {
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 2px;
+}
+.first-line-comment {
+  margin: 1px;
+  display: flex;
+  justify-content: space-between;
+}
+.second-line-comment {
+  margin: 1px;
+  margin-top: 2px;
+  text-align: right;
+}
+ul,
+li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.edit-profile,
+.today-attend,
+.month-control-button,
+.comment-post {
+  color: white;
+  background-color: var(--blue-basic-color);
+}
+.edit-profile:hover,
+.today-attend:hover,
+.month-control-button:hover,
+.comment-post:hover {
+  background-color: #31386d;
+}
+
+.edit-profile:active,
+.today-attend:active,
+.month-control-button:active,
+.comment-post:active {
+  background-color: var(--blue-basic-color);
+}
+
+.erase-button > a {
+  color: red;
+}
