@@ -16,4 +16,5 @@ public class UserVO {
     private String pwd_a;
     private String date;
     private String profile_img;
+    private String comment;
 }

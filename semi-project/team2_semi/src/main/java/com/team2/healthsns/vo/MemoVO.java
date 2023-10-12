@@ -14,4 +14,6 @@ public class MemoVO {
     private String write_date;
     private String cat;
     private String content;
+    private String bodypart;
+    private int add_auth;
 }
