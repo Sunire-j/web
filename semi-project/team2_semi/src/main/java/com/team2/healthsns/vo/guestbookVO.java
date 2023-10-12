@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class guestbookVO {
+public class GuestbookVO {
     private String target_home;
     private String userid;
     private String write_date;
     private String content;
+    private int guestbookID;
 }

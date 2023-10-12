@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -18,19 +19,25 @@
     -->
 
 
-    <!--<mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/user/logout"/>
-            <mvc:mapping path="/board/write"/>
-            <mvc:mapping path="/board/writeOk"/>
-            <mvc:mapping path="/board/edit"/>
+            <mvc:mapping path="/minihome/guestbookWrite"/>
+            <mvc:mapping path="/minihome/guestbookDelete"/>
+            <mvc:mapping path="/minihome/unfollow"/>
+            <mvc:mapping path="/minihome/follow"/>
             <mvc:mapping path="/board/editOk"/>
             <mvc:mapping path="/board/delete"/>
             <mvc:mapping path="/data/write"/>
 
-            <bean class="com.multi.campus.LoginInterceptor"/>
+            <bean class="com.team2.healthsns.LoginInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors> -->
+    </mvc:interceptors>
+
+    <!-- 파일업로드 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+
+</beans>
 
     <!-- 파일업로드 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
