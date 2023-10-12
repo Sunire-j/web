@@ -107,7 +107,7 @@
     $(document).on('click', '#follow-button', function () {
         var ownerid = '${uVO.userid}';//값 잘 넘어옴
         if (confirm("정말" + ownerid + "님을 팔로우하시겠습니까?")) {
-            if(${LogStatus == "" || LogStatus==null}){
+            if(${LogStatus == "" || LogStatus==null || LogStatus!='Y'}){
                 alert("로그인 후에 진행해주세요. 로그인 화면으로 이동합니다.");
                 window.location.href = "${pageContext.servletContext.contextPath}/";
             }
