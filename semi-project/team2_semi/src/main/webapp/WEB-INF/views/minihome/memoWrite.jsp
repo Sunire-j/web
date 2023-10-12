@@ -74,6 +74,11 @@
     /**************** ckEditor5 커스터마이징 끝 ****************/
 </style>
 <script>
+
+    $(document).on('click',"#edit-button", function(){
+        window.location.href = '${pageContext.servletContext.contextPath}/myPage';
+    });
+
     $(document).on('click',"#today-attend", function(){
         window.location.href = '${pageContext.servletContext.contextPath}/minihome/memo/write';
     });
@@ -81,6 +86,13 @@
         CKEDITOR.ClassicEditor.create(document.getElementById("editor"), option);
     }
     $(document).ready(function () {
+
+        var email = "${uVO.email}" ; //프로필 사진 주인의 이메일을 받고
+        var hash = CryptoJS.MD5(email.trim().toLowerCase());
+        //resourse->header.jspf에 포함됨, email을 MD5해시값으로 변경
+        var gravatarUrl = "https://www.gravatar.com/avatar/" + hash + "?s=200&d=retro";
+        $("#home-image").attr("src", gravatarUrl);//id가 home-image인 img태그의 src속성에 url입력
+
         var now = new Date();
         var year = now.getFullYear();
         var month = ("0" + (now.getMonth() + 1)).slice(-2);
@@ -112,7 +124,7 @@
         <div class="profile-area">
             <div class="profile-container">
                 <div class="profile-pic">
-                    <img src="${pageContext.servletContext.contextPath}/img/images.jpg"><!-- 경로 수정해야함-->
+                    <img id="home-image"><!-- 경로 수정해야함-->
                 </div>
                 <div class="name-id-section">
                     <div id="username-div" class="username-section">${uVO.username}</div>

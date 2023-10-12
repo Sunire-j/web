@@ -77,6 +77,12 @@
     });
     $(document).ready(function () {
         $(".year-month-day").text(${year} +"년 " + ${month} +"월 " + ${day} +"일 출석");
+
+        var email = "${uVO.email}" ; //프로필 사진 주인의 이메일을 받고
+        var hash = CryptoJS.MD5(email.trim().toLowerCase());
+        //resourse->header.jspf에 포함됨, email을 MD5해시값으로 변경
+        var gravatarUrl = "https://www.gravatar.com/avatar/" + hash + "?s=200&d=retro";
+        $("#home-image").attr("src", gravatarUrl);//id가 home-image인 img태그의 src속성에 url입력
     });
     $(document).on('click', '#un-follow-button', function () {
         var ownerid = '${uVO.userid}';//값 잘 넘어옴
@@ -105,6 +111,10 @@
             });
         }
 
+    });
+
+    $(document).on('click',"#edit-button", function(){
+        window.location.href = '${pageContext.servletContext.contextPath}/myPage';
     });
 
     $(document).on('click', '#follow-button', function () {
@@ -147,7 +157,7 @@
         <div class="profile-area">
             <div class="profile-container">
                 <div class="profile-pic">
-                    <img src="${pageContext.servletContext.contextPath}/img/images.jpg"><!-- 경로 수정해야함-->
+                    <img id="home-image" style="height: 200px; width: 200px">
                 </div>
                 <div class="name-id-section">
                     <div id="username-div" class="username-section">${uVO.username}</div>
@@ -167,8 +177,7 @@
                 </div>
                 <div class="edit-profile-section">
                     <c:if test="${LogId==uVO.userid}">
-                        <input type="button" value="프로필 수정" class="edit-profile" id='edit-button'
-                               onclick='editProfile()'>
+                        <input type="button" value="프로필 수정" class="edit-profile" id='edit-button'>
                     </c:if>
                     <c:if test="${LogId!=uVO.userid}">
                         <c:if test="${follower.contains(LogId)}">

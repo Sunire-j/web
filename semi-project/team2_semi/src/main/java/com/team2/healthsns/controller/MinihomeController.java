@@ -1,6 +1,7 @@
 package com.team2.healthsns.controller;
 
 import com.team2.healthsns.service.MinihomeService;
+import com.team2.healthsns.vo.BoardVO;
 import com.team2.healthsns.vo.MemoVO;
 import com.team2.healthsns.vo.UserVO;
 import com.team2.healthsns.vo.GuestbookVO;
@@ -28,6 +29,7 @@ public class MinihomeController {
                 mav.setViewName("/minihome/wrong");
                 return mav;
             }
+
             List<String> follower = service.FollowerSelect(id);//팔로워 정보 불러오기
             int follow = service.FollowSelect(id);//팔로우 수 불러오기
             int follower_count = follower.size();
@@ -193,6 +195,7 @@ public class MinihomeController {
         mVO.setContent(content);
         int addauth = (myCheck == null || !myCheck) ? 0 : 1;
         mVO.setAdd_auth(addauth);
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < bodyParts.size(); i++) {
             sb.append(bodyParts.get(i)).append("/");
@@ -203,6 +206,17 @@ public class MinihomeController {
         if (result > 0) {//insert성공시
             mav.setViewName("redirect:/minihome?id=" + mVO.getUserid());//뷰페이지로 이동해야하는데, 일단 미니홈으로 이동
             System.out.println("성공");
+
+            /*if(addauth==1){//인증게시판 연동 true라면?
+                BoardVO bVO = new BoardVO();
+                String logid = (String) session.getAttribute("LogId");
+                bVO.setUserid(logid);
+                Calendar calender = Calendar.getInstance();
+                bVO.setTitle("@"+logid+"님의 "+calender.get(Calendar.YEAR)+"년 "+calender.get(Calendar.MONTH)+"월 "+calender.get(Calendar.DATE)+"일 출석");
+                bVO.setContent(content);
+                bVO.setCat();
+            }*/
+
             return mav;
         } else {
             mav.setViewName("redirect:/minihome?id=" + mVO.getUserid());
