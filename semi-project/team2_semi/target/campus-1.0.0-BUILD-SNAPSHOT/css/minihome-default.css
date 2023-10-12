@@ -5,15 +5,7 @@ p {
   margin: 0;
 }
 
-.minihome-area {
-  background-image: url("../img/minihome-background.png");
-  padding: 25px 22px;
-  width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 60px;
-}
+
 .home-left {
   left: 0;
   width: 270px;
@@ -78,7 +70,9 @@ p {
   text-align: center;
 }
 .edit-profile,
-.today-attend {
+.today-attend,
+.un-follow-button,
+.follow-button{
   width: 152px;
   height: 40px;
 }
@@ -143,18 +137,24 @@ p {
 }
 
 .edit-profile,
-.today-attend {
+.today-attend,
+.un-follow-button,
+.follow-button{
   color: white;
   background-color: var(--blue-basic-color);
 }
 
 .edit-profile:hover,
-.today-attend:hover {
+.today-attend:hover,
+.un-follow-button:hover,
+.un-follow-button:hover{
   background-color: #31386d;
 }
 
 .edit-profile:active,
-.today-attend:active {
+.today-attend:active,
+.un-follow-button:active,
+.follow-button:active{
   background-color: var(--blue-basic-color);
 }
 
