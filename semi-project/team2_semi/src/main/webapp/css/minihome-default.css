@@ -168,3 +168,6 @@ p {
 .comment-list-section {
     background-color: #f5f4eb;
 }
+.today-attend:disabled{
+    background-color: #ddd;
+}
