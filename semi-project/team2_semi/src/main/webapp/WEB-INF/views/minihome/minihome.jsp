@@ -19,10 +19,19 @@
     }
 </style>
 <script>
-    $(document).on('click',"#today-attend", function(){
+    $(document).on('click',"#edit-button", function(){
+        window.location.href = '${pageContext.servletContext.contextPath}/myPage';
+    });
+    $(document).on('click', "#today-attend", function () {
         window.location.href = '${pageContext.servletContext.contextPath}/minihome/memo/write';
     });
     $(function () {
+
+        var email = "${uVO.email}" ; //프로필 사진 주인의 이메일을 받고
+        var hash = CryptoJS.MD5(email.trim().toLowerCase());
+        //resourse->header.jspf에 포함됨, email을 MD5해시값으로 변경
+        var gravatarUrl = "https://www.gravatar.com/avatar/" + hash + "?s=200&d=retro";
+        $("#home-image").attr("src", gravatarUrl);//id가 home-image인 img태그의 src속성에 url입력
 
         $(document).on('submit', '#commentForm', function () {//방명록 등록 눌렀을 때 호출 함수
             event.preventDefault();
@@ -30,7 +39,7 @@
                 alert("방명록 내용 작성 후 시도해주세요!");
                 return false;
             }
-            if(${LogStatus==null || LogStatus=="N"}){
+            if (${LogStatus==null || LogStatus=="N"}) {
                 alert("로그인 후 다시 시도해주세요!");
                 window.location.href = "${pageContext.servletContext.contextPath}/";
                 return false;
@@ -143,7 +152,7 @@
         $(document).on('click', '#un-follow-button', function () {
             var ownerid = '${uVO.userid}';//값 잘 넘어옴
             if (confirm("정말" + ownerid + "님 팔로우를 해제하시겠습니까?")) {
-                if(${LogStatus == "" || LogStatus==null || LogStatus!='Y'}){
+                if (${LogStatus == "" || LogStatus==null || LogStatus!='Y'}) {
                     alert("로그인 후에 진행해주세요. 로그인 화면으로 이동합니다.");
                     window.location.href = "${pageContext.servletContext.contextPath}/";
                 }
@@ -152,16 +161,16 @@
                     data: {
                         ownerid: ownerid
                     },
-                    type:'POST',
-                    success:function (result){
-                        if(result==1){
-                            alert(ownerid+"님 언팔로우 성공");
+                    type: 'POST',
+                    success: function (result) {
+                        if (result == 1) {
+                            alert(ownerid + "님 언팔로우 성공");
                             location.reload();
-                        }else{
+                        } else {
                             alert("알 수 없는 오류가 발생했습니다.");
                         }
                     },
-                    error:function (error){
+                    error: function (error) {
                         console.log(error.responseText);
                     }
                 });
@@ -172,7 +181,7 @@
         $(document).on('click', '#follow-button', function () {
             var ownerid = '${uVO.userid}';//값 잘 넘어옴
             if (confirm("정말" + ownerid + "님을 팔로우하시겠습니까?")) {
-                if(${LogStatus == "" || LogStatus==null}){
+                if (${LogStatus == "" || LogStatus==null}) {
                     alert("로그인 후에 진행해주세요. 로그인 화면으로 이동합니다.");
                     window.location.href = "${pageContext.servletContext.contextPath}/";
                 }
@@ -181,16 +190,16 @@
                     data: {
                         ownerid: ownerid
                     },
-                    type:'POST',
-                    success:function (result){
-                        if(result==1){
+                    type: 'POST',
+                    success: function (result) {
+                        if (result == 1) {
                             alert("팔로우 성공");
                             location.reload();
-                        }else{
+                        } else {
                             alert("알 수 없는 오류가 발생했습니다.");
                         }
                     },
-                    error:function (error){
+                    error: function (error) {
                         console.log(error.responseText);
                     }
                 });
@@ -209,7 +218,7 @@
         <div class="profile-area">
             <div class="profile-container">
                 <div class="profile-pic">
-                    <img src="${pageContext.servletContext.contextPath}/img/images.jpg"><!-- 경로 수정해야함-->
+                    <img id="home-image"><!-- 경로 수정해야함-->
                 </div>
                 <div class="name-id-section">
                     <div id="username-div" class="username-section">${uVO.username}</div>
@@ -335,12 +344,13 @@
     const emojiMenu = document.getElementById("emojiMenu");
     let currentDate = new Date();
     let selectedCell = null;
+
     function generateCalendar(year, month) {
         calendarBody.innerHTML = "";
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
         const monthText = getMonthText(month);
-        currentMonthYear.textContent = monthText+" "+year;
+        currentMonthYear.textContent = monthText + " " + year;
         let day = 1;
         for (let i = 0; i < 6; i++) {
             const row = document.createElement("tr");
@@ -377,15 +387,15 @@
                 year: year
             },
             type: 'POST',
-            dataType:'json',
-            success:function(memoList){
-                memoList.forEach(function(memoVO) {
+            dataType: 'json',
+            success: function (memoList) {
+                memoList.forEach(function (memoVO) {
                     var write_date = memoVO.write_date;
                     var cat = memoVO.cat;
-                    if(cat=='lower'){
-                        cat='2';
-                    }else{
-                        cat='1';
+                    if (cat == 'lower') {
+                        cat = '2';
+                    } else {
+                        cat = '1';
                     }
 
                     const emoji = memoVO.emoji;
@@ -424,36 +434,36 @@
                     }
 
 
-                    $('td').each(function() {
+                    $('td').each(function () {
                         var dayValue = $(this).text();
                         var today_day = new Date();
                         today_day = today_day.getDate();
-                        if(dayValue==today_day){
+                        if (dayValue == today_day) {
                             console.log("도달!");
-                            console.log("dayValue = "+dayValue+"today_day = "+today_day);
+                            console.log("dayValue = " + dayValue + "today_day = " + today_day);
                             $("#today-attend").prop('disabled', true);
                         }
 
-                        if(dayValue<10) dayValue="0"+dayValue;
+                        if (dayValue < 10) dayValue = "0" + dayValue;
 
                         if (dayValue == write_date) {
-                            var memocell =$(this).text()+' '+emojiText;
+                            var memocell = $(this).text() + ' ' + emojiText;
                             var checkMark = document.createElement("span");
-                            checkMark.className="check-mark";
-                            checkMark.textContent="✓";
+                            checkMark.className = "check-mark";
+                            checkMark.textContent = "✓";
 
                             $(this).text(memocell);
                             $(this).css('background-color', bgColor);
                             $(this).append(checkMark);
-                            checkMark.addEventListener("click",function(){
+                            checkMark.addEventListener("click", function () {
                                 console.log("arrive");
-                                window.location.href="${pageContext.servletContext.contextPath}/minihome/memoView?no="+memoid;
+                                window.location.href = "${pageContext.servletContext.contextPath}/minihome/memoView?no=" + memoid;
                             });
                         }
                     });
                 });
             },
-            error:function(error){
+            error: function (error) {
                 console.log(error.responseText);
             }
         });
@@ -487,6 +497,7 @@
         currentDate.setMonth(currentDate.getMonth() - 1);
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     }
+
     function nextMonth() {
         currentDate.setMonth(currentDate.getMonth() + 1);
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());

@@ -5,4 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
+    public UserVO UserSelectAll(String id);
+    public String GetSessionEmail(String logId);
 }

@@ -6,7 +6,7 @@
 <mapper namespace="com.team2.healthsns.mapper.MinihomeMapper">
 
     <select id="UserSelect" resultType="com.team2.healthsns.vo.UserVO">
-        select userid, username, date_format(date,'%Y년 %m월 %d일') as date, profile_img, comment
+        select userid, username, date_format(date,'%Y년 %m월 %d일') as date, email, comment
         from user_info
         where userid = #{param1}
     </select>

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,10 +28,19 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session) {
 		//자동로그인용 나중에 지워야함
-		session.setAttribute("LogId", "helloworld3");
+		session.setAttribute("LogId", "helloworld2");
 		session.setAttribute("LogStatus","Y");
 
 		return "home";
+	}
+
+	@GetMapping("/logout")
+	public ModelAndView Logout(HttpSession session){
+		session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		System.out.println("로그아웃찍먹하다옴");
+		mav.setViewName("redirect:/");
+		return mav;
 	}
 	
 }
