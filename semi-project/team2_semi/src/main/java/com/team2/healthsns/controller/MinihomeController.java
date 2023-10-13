@@ -1,7 +1,7 @@
 package com.team2.healthsns.controller;
 
 import com.team2.healthsns.service.MinihomeService;
-import com.team2.healthsns.vo.BoardVO;
+import com.team2.healthsns.vo.CommunityVO;
 import com.team2.healthsns.vo.MemoVO;
 import com.team2.healthsns.vo.UserVO;
 import com.team2.healthsns.vo.GuestbookVO;
@@ -207,7 +207,7 @@ public class MinihomeController {
             mav.setViewName("redirect:/minihome?id=" + mVO.getUserid());
 
             if (addauth == 1) {//인증게시판 연동 true라면?
-                BoardVO bVO = new BoardVO();
+                CommunityVO bVO = new CommunityVO();
                 String logid = (String) session.getAttribute("LogId");
                 bVO.setUserid(logid);
                 Calendar calender = Calendar.getInstance();

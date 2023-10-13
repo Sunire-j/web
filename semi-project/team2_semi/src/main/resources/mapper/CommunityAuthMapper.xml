@@ -5,11 +5,6 @@
 
 <mapper namespace="com.team2.healthsns.mapper.CommunityAuthMapper">
 
-    <insert id="communityInsertAuth">
-        insert into board(title, content, userid, board_cat)
-        values(#{title}, #{content}, #{userid}, 'auth');
-    </insert>
-
     <select id="communityPageListAuth" resultType="com.team2.healthsns.vo.CommunityVO">
         select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as writedate
         from board
@@ -52,5 +47,12 @@
         delete from board
         where post_id = #{param1}
     </update>
+
+
+    <!-- 아래부터는 조석훈이 수정-->
+    <insert id="communityInsertAuth">
+        insert into board(title, content, userid, board_cat, cat, bodypart)
+        values(#{title}, #{content}, #{userid}, #{board_cat}, #{cat}, #{bodypart});
+    </insert>
 
 </mapper>
