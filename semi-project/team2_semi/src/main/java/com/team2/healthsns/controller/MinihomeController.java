@@ -26,7 +26,7 @@ public class MinihomeController {
         try {
             UserVO uservo = service.UserSelect(id);//owner정보 불러오기
             if (uservo == null) {
-                mav.setViewName("/minihome/wrong");
+                mav.setViewName("/minihome/wron g");
                 return mav;
             }
 
@@ -135,14 +135,14 @@ public class MinihomeController {
         int year = calendar.get(Calendar.YEAR);
         int date = calendar.get(Calendar.DATE);
 
-        System.out.println(month+" "+year);
+        System.out.println(month + " " + year);
 
 
-        List<MemoVO> memolist = service.MemoListSelect((String) session.getAttribute("LogId"),month,year);
+        List<MemoVO> memolist = service.MemoListSelect((String) session.getAttribute("LogId"), month, year);
 
-        for(int i = 0; i<memolist.size(); i++){
+        for (int i = 0; i < memolist.size(); i++) {
             System.out.println(memolist.get(i).getWrite_date());
-            if(date==Integer.parseInt(memolist.get(i).getWrite_date())){
+            if (date == Integer.parseInt(memolist.get(i).getWrite_date())) {
                 mav.setViewName("/minihome/wrong");
                 System.out.println("리턴 직전");
                 return mav;
@@ -204,104 +204,108 @@ public class MinihomeController {
 
         int result = service.MemoInsert(mVO);
         if (result > 0) {//insert성공시
-            mav.setViewName("redirect:/minihome?id=" + mVO.getUserid());//뷰페이지로 이동해야하는데, 일단 미니홈으로 이동
-            System.out.println("성공");
+            mav.setViewName("redirect:/minihome?id=" + mVO.getUserid());
 
-            /*if(addauth==1){//인증게시판 연동 true라면?
+            if (addauth == 1) {//인증게시판 연동 true라면?
                 BoardVO bVO = new BoardVO();
                 String logid = (String) session.getAttribute("LogId");
                 bVO.setUserid(logid);
                 Calendar calender = Calendar.getInstance();
-                bVO.setTitle("@"+logid+"님의 "+calender.get(Calendar.YEAR)+"년 "+calender.get(Calendar.MONTH)+"월 "+calender.get(Calendar.DATE)+"일 출석");
+                bVO.setTitle("@" + logid + "님의 " + calender.get(Calendar.YEAR) + "년 " + (calender.get(Calendar.MONTH)+1) + "월 " + calender.get(Calendar.DATE) + "일 출석");
                 bVO.setContent(content);
-                bVO.setCat();
-            }*/
+                bVO.setCat(firstPart);
+                bVO.setBoard_cat("auth");
+                bVO.setBodypart(String.valueOf(sb));
 
-            return mav;
-        } else {
-            mav.setViewName("redirect:/minihome?id=" + mVO.getUserid());
-            System.out.println("실패");
-            return mav;
-        }
-    }
-
-    @GetMapping("/minihome/memoView")
-    public ModelAndView MemoView(int no, HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        MemoVO mVO = service.MemoSelect(no);
-        if(mVO==null){
-            mav.setViewName("/minihome/wrong");
-            return mav;
-        }
-
-        int checkDate = 1;
-        //날짜 체크 시작
-        Calendar calendar = Calendar.getInstance();
-        int month_forcheck = calendar.get(Calendar.MONTH)+1;
-        int year_forcheck = calendar.get(Calendar.YEAR);
-        int date_forcheck = calendar.get(Calendar.DATE);
-        List<MemoVO> memolist = service.MemoListSelect((String) session.getAttribute("LogId"), month_forcheck, year_forcheck);
-        for(int i = 0; i<memolist.size(); i++){
-            if(date_forcheck == Integer.parseInt(memolist.get(i).getWrite_date())){
-                checkDate=0;
+                result = service.MemoToAuth(bVO);
+                if(result>0) System.out.println("연동성공");
+                return mav;
+            } else {
+                mav.setViewName("redirect:/minihome?id=" + mVO.getUserid());
+                System.out.println("실패");
+                return mav;
             }
         }
-
-        //날짜 체크 끝
-
-        mav.addObject("checkDate",checkDate);
-        UserVO uVO = service.UserSelect(mVO.getUserid());
-        mav.addObject("uVO", uVO);
-
-        List<String> follower = service.FollowerSelect(uVO.getUserid());//팔로워 정보 불러오기
-        int follow = service.FollowSelect(uVO.getUserid());//팔로우 수 불러오기
-        int follower_count = follower.size();
-        int today = service.CountToday(uVO.getUserid());
-
-        mav.addObject("follower",follower);
-
-        mav.addObject("follow", follow);
-        mav.addObject("follower_count", follower_count);
-        mav.addObject("today", today);
-
-        //날짜쪼개기
-        String temp = mVO.getWrite_date();
-
-        String[] dateTimeParts = temp.split(" ");
-
-        String[] dateParts = dateTimeParts[0].split("-");
-
-        int memo_count = service.CountMemo(uVO.getUserid());
-        mav.addObject("memo_count", memo_count);
-
-        String year = String.valueOf(Integer.parseInt(dateParts[0]));
-        String month = String.valueOf(Integer.parseInt(dateParts[1]));
-        String day = String.valueOf(Integer.parseInt(dateParts[2]));
-        //쪼개기 끝
-        System.out.println(mVO.getAdd_auth());
-
-        mav.addObject("mVO", mVO);//일단 그대로 넣어줌
-        mav.addObject("year", year);
-        mav.addObject("month", month);
-        mav.addObject("day", day);
-        List<String> bodypart = new ArrayList<String>();
-
-        StringTokenizer st = new StringTokenizer(mVO.getBodypart(), "/");//바디파트 /기준으로 나눠줌 테스트해야함
-        while (st.hasMoreTokens()) {
-            bodypart.add(st.nextToken());
-        }
-        for (int i = 0; i < bodypart.size(); i++) {
-            System.out.println(bodypart.get(i));
-        }
-        mav.addObject("bodypart", bodypart);
         return mav;
     }
 
-    @PostMapping("/minihome/generateMemo")
-    @ResponseBody
-    public List<MemoVO> SelectMonthMemo(String userid, int month, int year){
-        month++;
-        List<MemoVO> list = service.MemoListSelect(userid, month, year);
-        return list;
+        @GetMapping("/minihome/memoView")
+        public ModelAndView MemoView(int no, HttpSession session){
+            ModelAndView mav = new ModelAndView();
+            MemoVO mVO = service.MemoSelect(no);
+            if (mVO == null) {
+                mav.setViewName("/minihome/wrong");
+                return mav;
+            }
+
+            int checkDate = 1;
+            //날짜 체크 시작
+            Calendar calendar = Calendar.getInstance();
+            int month_forcheck = calendar.get(Calendar.MONTH) + 1;
+            int year_forcheck = calendar.get(Calendar.YEAR);
+            int date_forcheck = calendar.get(Calendar.DATE);
+            List<MemoVO> memolist = service.MemoListSelect((String) session.getAttribute("LogId"), month_forcheck, year_forcheck);
+            for (int i = 0; i < memolist.size(); i++) {
+                if (date_forcheck == Integer.parseInt(memolist.get(i).getWrite_date())) {
+                    checkDate = 0;
+                }
+            }
+
+            //날짜 체크 끝
+
+            mav.addObject("checkDate", checkDate);
+            UserVO uVO = service.UserSelect(mVO.getUserid());
+            mav.addObject("uVO", uVO);
+
+            List<String> follower = service.FollowerSelect(uVO.getUserid());//팔로워 정보 불러오기
+            int follow = service.FollowSelect(uVO.getUserid());//팔로우 수 불러오기
+            int follower_count = follower.size();
+            int today = service.CountToday(uVO.getUserid());
+
+            mav.addObject("follower", follower);
+
+            mav.addObject("follow", follow);
+            mav.addObject("follower_count", follower_count);
+            mav.addObject("today", today);
+
+            //날짜쪼개기
+            String temp = mVO.getWrite_date();
+
+            String[] dateTimeParts = temp.split(" ");
+
+            String[] dateParts = dateTimeParts[0].split("-");
+
+            int memo_count = service.CountMemo(uVO.getUserid());
+            mav.addObject("memo_count", memo_count);
+
+            String year = String.valueOf(Integer.parseInt(dateParts[0]));
+            String month = String.valueOf(Integer.parseInt(dateParts[1]));
+            String day = String.valueOf(Integer.parseInt(dateParts[2]));
+            //쪼개기 끝
+            System.out.println(mVO.getAdd_auth());
+
+            mav.addObject("mVO", mVO);//일단 그대로 넣어줌
+            mav.addObject("year", year);
+            mav.addObject("month", month);
+            mav.addObject("day", day);
+            List<String> bodypart = new ArrayList<String>();
+
+            StringTokenizer st = new StringTokenizer(mVO.getBodypart(), "/");//바디파트 /기준으로 나눠줌 테스트해야함
+            while (st.hasMoreTokens()) {
+                bodypart.add(st.nextToken());
+            }
+            for (int i = 0; i < bodypart.size(); i++) {
+                System.out.println(bodypart.get(i));
+            }
+            mav.addObject("bodypart", bodypart);
+            return mav;
+        }
+
+        @PostMapping("/minihome/generateMemo")
+        @ResponseBody
+        public List<MemoVO> SelectMonthMemo (String userid,int month, int year){
+            month++;
+            List<MemoVO> list = service.MemoListSelect(userid, month, year);
+            return list;
+        }
     }
-}

@@ -17,4 +17,5 @@ public class BoardVO {
     private int views;
     private String write_date;
     private String board_cat;
+    private String bodypart;
 }
