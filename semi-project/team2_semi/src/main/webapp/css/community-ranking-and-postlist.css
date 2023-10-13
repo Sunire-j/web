@@ -196,24 +196,6 @@ select {
   position: relative;
 }
 
-.post-button {
-  position: absolute;
-  right: 30px;
-  width: 100px;
-  height: 35px;
-  color: white;
-  background-color: var(--blue-basic-color);
-  border: 0px;
-  border-radius: 5px;
-}
-.post-button:hover,
-.paging-button:hover {
-  background-color: #31386d;
-}
-.post-button:active,
-.paging-button:active {
-  background-color: var(--blue-basic-color);
-}
 .inboard-search {
   width: 200px;
   height: 35px;
@@ -227,6 +209,8 @@ select {
   margin-top: 30px;
 }
 
+/*아래 내용 수정한 내용들*/
+
 .paging-button {
   margin: 0 10px;
   background-color: white;
@@ -236,9 +220,38 @@ select {
   font-size: 1em;
   width: 42px;
   height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dummy-button {
-  background: var(--blue-basic-color);
+.paging ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+
+.post-button {
+  width: 100px;
+  height: 35px;
   color: white;
+  background-color: var(--blue-basic-color);
+  border: 0px;
+  border-radius: 5px;
+}
+
+.post-button:hover,
+.paging-button:hover {
+  background-color: #31386d;
+}
+
+.post-button:active,
+.paging-button:active {
+  background-color: var(--blue-basic-color);
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -30,7 +29,49 @@ public class CommunityQaController {
         return mav;
     }
 
+    @GetMapping("/QaCommunity/write")
+    public String CommunityWrite(HttpSession session) {
+        String logstatus = (String) session.getAttribute("LogStatus");
+        if (!logstatus.equals("Y")) {
+            return "/minihome/wrong";
+        }
+        return "/community/Community_Posting_Qa";
+    }
 
+    @PostMapping("/QaCommunity/writeOk")
+    public ModelAndView CommunityWriteOk(@RequestParam(value = "first-part", required = false) String firstpart,
+            @RequestParam(value = "body-part", required = false) List<String> bodyparts,
+            @RequestParam("subject") String subject,
+            @RequestParam("content") String content,
+            HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        String userid = (String) session.getAttribute("LogId");
+        CommunityVO bVO = new CommunityVO();
+        bVO.setUserid(userid);
+        bVO.setBoard_cat("qa");
+        bVO.setTitle(subject);
+        bVO.setContent(content);
+        if (firstpart != null) {
+            bVO.setCat(firstpart);
+        }
+        if (bodyparts != null) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bodyparts.size(); i++) {
+                sb.append(bodyparts.get(i)).append("/");
+            }
+            bVO.setBodypart(String.valueOf(sb));
+        }
+
+        int result = service.CommunityInsertQa(bVO);
+
+        if (result > 0) {
+            mav.setViewName("redirect:/QaCommunity/list");
+        } else {
+            mav.setViewName("/minihome/wrong");
+        }
+
+        return mav;
+    }
 
     @GetMapping("/QaCommunity/view")
     public ModelAndView CommunityView(int post_id, PagingVO pVO) {
@@ -73,51 +114,6 @@ public class CommunityQaController {
         } else {
             mav.setViewName("redirect:view?no=" + post_id);
         }
-        return mav;
-    }
-
-    //아래로 조석훈이 수정
-    @GetMapping("/QaCommunity/write")
-    public String CommunityWrite(HttpSession session) {
-        String logstatus = (String) session.getAttribute("LogStatus");
-        if(!logstatus.equals("Y")){
-            return "/minihome/wrong";
-        }
-        return "/community/Community_Posting_Qa";
-    }
-
-    @PostMapping("/QaCommunity/writeOk")
-    public ModelAndView CommunityWriteOk(@RequestParam(value ="first-part", required = false)String firstpart,
-                                         @RequestParam(value ="body-part", required = false)List<String> bodyparts,
-                                         @RequestParam("subject")String subject,
-                                         @RequestParam("content")String content,
-                                         HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        String userid = (String) session.getAttribute("LogId");
-        CommunityVO bVO = new CommunityVO();
-        bVO.setUserid(userid);
-        bVO.setBoard_cat("qa");
-        bVO.setTitle(subject);
-        bVO.setContent(content);
-        if(firstpart!=null){
-            bVO.setCat(firstpart);
-        }
-        if(bodyparts!=null){
-            StringBuilder sb = new StringBuilder();
-            for(int i = 0; i<bodyparts.size(); i++){
-                sb.append(bodyparts.get(i)).append("/");
-            }
-            bVO.setBodypart(String.valueOf(sb));
-        }
-
-        int result = service.CommunityInsertQa(bVO);
-
-        if(result>0){
-            mav.setViewName("redirect:/QaCommunity/list");
-        }else{
-            mav.setViewName("/minihome/wrong");
-        }
-
         return mav;
     }
 }

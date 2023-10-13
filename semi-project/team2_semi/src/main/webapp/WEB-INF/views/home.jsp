@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
+<<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h1>
 	테스트용 임시 페이지
@@ -12,3 +13,5 @@
 <a href="${pageContext.servletContext.contextPath}/AuthCommunity/write">인증게시판 작성</a><br/>
 <a href="${pageContext.servletContext.contextPath}/FreeCommunity/write">자유게시판 작성</a><br/>
 <a href="${pageContext.servletContext.contextPath}/QaCommunity/write">QNA게시판 작성</a>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 package com.team2.healthsns.vo;
 
 import lombok.AllArgsConstructor;
@@ -18,3 +19,4 @@ public class CommunityVO {
     private String board_cat;
     private String bodypart;
 }
+

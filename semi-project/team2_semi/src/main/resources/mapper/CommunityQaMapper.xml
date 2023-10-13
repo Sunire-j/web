@@ -5,19 +5,11 @@
 
 <mapper namespace="com.team2.healthsns.mapper.CommunityQaMapper">
 
+    <insert id="communityInsertQa">
+        insert into board(title, content, userid, board_cat, cat, bodypart)
+        values(#{title}, #{content}, #{userid}, #{board_cat}, #{cat}, #{bodypart});
+    </insert>
 
-
-    <select id="communityPageListQa" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as writedate
-        from board
-        where board_cat = 'qa'
-        <if test="searchWord != null and searchWord != ''">
-            AND title like CONCAT('%', #{searchWord}, '%')
-        </if>
-        order by post_id desc
-        limit #{onePageRecord}
-        offset #{offsetPoint}
-    </select>
 
     <select id="totalRecordQa">
         select count(post_id) from board
@@ -28,7 +20,7 @@
     </select>
 
     <select id="communitySelectQa" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as writedate
+        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as write_date, bodypart
         from board
         where post_id = #{param1}
     </select>
@@ -49,11 +41,18 @@
         delete from board
         where post_id = #{param1}
     </update>
+    <!--sql문 수정-->
+    <select id="communityPageListQa" resultType="com.team2.healthsns.vo.CommunityVO">
+        select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as write_date
+        from board
+        where board_cat = 'qa'
+        <if test="searchWord != null and searchWord != ''">
+            AND title like CONCAT('%', #{searchWord}, '%')
+        </if>
+        order by post_id desc
+        limit #{onePageRecord}
+        offset #{offsetPoint}
+    </select>
 
-    <!-- 조석훈이 수정함-->
-    <insert id="communityInsertQa">
-        insert into board(title, content, userid, board_cat, cat, bodypart)
-        values(#{title}, #{content}, #{userid}, #{board_cat}, #{cat}, #{bodypart});
-    </insert>
 
 </mapper>
