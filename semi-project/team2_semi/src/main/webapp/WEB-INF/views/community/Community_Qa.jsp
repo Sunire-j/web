@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
         <script>
@@ -17,7 +17,7 @@
         <!-- External Libraries -->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        
+
         <style>
      	   .page {
     			text-align: center; /* 텍스트와 인라인 요소 중앙 정렬 */
@@ -37,15 +37,14 @@
 			}
         
         </style>
-
-
+        
         <body>
             <!-- #region start -->
             <header>
                 <!-- 게시판 알려주는 박스 -->
                 <div class="intro-board"
                     style="background-image: url(${pageContext.servletContext.contextPath}/img/Free_Banner.png);">
-                    <div class="board-name">인증게시판</div>
+                    <div class="board-name">Q&A게시판</div>
                 </div>
             </header>
             <!-- #endregion -->
@@ -111,7 +110,7 @@
                                     </div>
                                     <div class="third-line">
                                         <div class="writer">${bVO.userid}</div>
-                                        <div class="board">인증게시판</div>
+                                        <div class="board">Q&A게시판</div>
                                     </div>
                                 </a>
                                 <hr class="inbox">
@@ -132,7 +131,7 @@
                                     <input type="submit" value="search">
                                 </form>
                             </div>
-                            <c:if test="${LogStatus!=''&&LogStatus=='Y'}">
+                            <c:if test="${logStatus!=''&&logStatus=='Y'}">
                                 <div><a href="">글쓰기</a></div>
                             </c:if>
                         </div>
