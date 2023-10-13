@@ -230,7 +230,7 @@
                 <div class="memo-posting-left"><!-- 날짜, 부위선택, 본문, 이모지선택 -->
                     <p class="year-month-day"></p>
                     <div class="checkbox-section" style="align-content: space-between; display: flex">
-                        <p><input type="checkbox" id="myCheck" name="myCheck" disabled
+                        <p><input type="checkbox" id="myCheck" name="myCheck" readonly
                         <c:if test="${mVO.add_auth==1}">
                             checked
                         </c:if>
@@ -239,50 +239,50 @@
                     <div class="body-select" style="margin-top: 30px; margin-bottom: 30px">
                         <b>주요부위</b> &nbsp; &nbsp;
                         <c:if test="${mVO.cat=='upper'}">
-                            상체 : <input type="radio" name="first-part" value="upper" checked disabled/>
-                            하체 : <input type="radio" name="first-part" value="lower" disabled/>
+                            상체 : <input type="radio" name="first-part" value="upper" checked readonly/>
+                            하체 : <input type="radio" name="first-part" value="lower" readonly/>
                         </c:if>
                         <c:if test="${mVO.cat=='lower'}">
-                            상체 : <input type="radio" name="first-part" value="upper" disabled/>
-                            하체 : <input type="radio" name="first-part" value="lower" checked disabled/>
+                            상체 : <input type="radio" name="first-part" value="upper" readonly/>
+                            하체 : <input type="radio" name="first-part" value="lower" checked readonly/>
                         </c:if>
                         <hr/>
-                        가슴 : <input type="checkbox" name="body-part" value="chest" disabled
+                        가슴 : <input type="checkbox" name="body-part" value="chest" readonly
                     <c:if test="${bodypart.contains('chest')}">
                                     checked
                     </c:if>
                     >
-                        어깨 : <input type="checkbox" name="body-part" value="shoulder" disabled
+                        어깨 : <input type="checkbox" name="body-part" value="shoulder" readonly
                     <c:if test="${bodypart.contains('shoulder')}">
                                     checked
                     </c:if>>
-                        등 : <input type="checkbox" name="body-part" value="back" disabled
+                        등 : <input type="checkbox" name="body-part" value="back" readonly
                     <c:if test="${bodypart.contains('back')}">
                                    checked
                     </c:if>>
-                        팔 : <input type="checkbox" name="body-part" value="arm" disabled
+                        팔 : <input type="checkbox" name="body-part" value="arm" readonly
                     <c:if test="${bodypart.contains('arm')}">
                                    checked
                     </c:if>>
-                        복부 : <input type="checkbox" name="body-part" value="stomach" disabled
+                        복부 : <input type="checkbox" name="body-part" value="stomach" readonly
                     <c:if test="${bodypart.contains('stomach')}">
                                     checked
                     </c:if>>
 
-                        허리 : <input type="checkbox" name="body-part" value="waist" disabled
+                        허리 : <input type="checkbox" name="body-part" value="waist" readonly
                     <c:if test="${bodypart.contains('waist')}">
                                     checked
                     </c:if>>
                         <br/>
-                        허벅지 : <input type="checkbox" name="body-part" value="thigh" disabled
+                        허벅지 : <input type="checkbox" name="body-part" value="thigh" readonly
                     <c:if test="${bodypart.contains('thigh')}">
                                      checked
                     </c:if>>
-                        엉덩이 : <input type="checkbox" name="body-part" value="hip" disabled
+                        엉덩이 : <input type="checkbox" name="body-part" value="hip" readonly
                     <c:if test="${bodypart.contains('hip')}">
                                      checked
                     </c:if>>
-                        종아리 : <input type="checkbox" name="body-part" value="calf" disabled
+                        종아리 : <input type="checkbox" name="body-part" value="calf" readonly
                     <c:if test="${bodypart.contains('calf')}">
                                      checked
                     </c:if>>
