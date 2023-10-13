@@ -17,4 +17,6 @@ public class CommunityVO {
     private String write_date;
     private String board_cat; 
     private String bodypart;
+    //정은 추가
+    private int commentsCount;
 }

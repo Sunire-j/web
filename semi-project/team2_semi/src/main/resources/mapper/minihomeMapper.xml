@@ -87,4 +87,10 @@
         where userid=#{param1} and year(write_date)=#{param3} and month(write_date)=#{param2}
         order by write_date
     </select>
+
+    <insert id="MemoToAuth">
+        insert into board(userid, title, content, cat, board_cat, bodypart)
+        values(#{userid}, #{title}, #{content}, #{cat}, #{board_cat}, #{bodypart})
+    </insert>
+    
 </mapper>
