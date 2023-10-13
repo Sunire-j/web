@@ -84,4 +84,7 @@ replay_pid*
 # Ignore all local history of files
 .history
 .ionide
+
+semi-project/team2_semi/target/*
+semi-project/team2_semi/Servers/*
 # End of https://www.toptal.com/developers/gitignore/api/java,visualstudiocode,eclipse
