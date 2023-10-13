@@ -11,7 +11,7 @@
     </insert>
 
     <select id="communityPageListAuth" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as writedate
+        select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as writedate, bodypart
         from board
         where board_cat = 'auth'
         <if test="searchWord != null and searchWord != ''">

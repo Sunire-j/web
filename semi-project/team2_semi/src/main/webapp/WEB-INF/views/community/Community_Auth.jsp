@@ -98,14 +98,14 @@
                         <hr class="inbox">
                         <c:forEach var="bVO" items="${list}">
                             <li class="posts-li">
-                                <a href="/campus/board/view?no=${bVO.no}">
-                                    <div class="first-line">${bVO.subject}</div>
+                                <a href="/campus/board/view?post_id=${bVO.post_id}">
+                                    <div class="first-line">${bVO.title}</div>
                                     <div class="second-line">
-                                        <div class="post-content">${bVO.content}</div>
+                                        <div class="post-content">${bVO.bodypart}</div>
                                         <div class="rate">
                                             <div class="comment-seper">${bVO.commentsCount}</div>
-                                            <div class="like-seper">${bVO.likesCount}</div>
-                                            <div class="view-seper">${bVO.hit}</div>
+                                            <div class="like-seper">${bVO.like}</div>
+                                            <div class="view-seper">${bVO.views}</div>
                                             <div class="date">${bVO.writedate}</div>
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                             <div class="search">
                                 <form method="get" action="/campus/board/list" onsubmit="return searchCheck()">
                                     <select name="searchKey">
-                                        <option value="subject">제목</option>
+                                        <option value="title">제목</option>
                                         <option value="content">글내용</option>
                                         <option value="userid">글쓴이</option>
                                     </select>
@@ -144,7 +144,7 @@
                                 <li>prev</li>
                             </c:if>
                             <c:if test="${pVO.nowPage>1}">
-                                <li><a href="/campus/board/list?nowPage=${pVO.nowPage-1}<c:if test="
+                                <li><a href="/campus/board/list?post_idwPage=${pVO.nowPage-1}<c:if test="
                                         ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                             </c:if>">prev</a></li>
                             </c:if>
@@ -158,14 +158,14 @@
                                     <c:if test="${p!=pVO.nowPage}">
                                         <li>
                                     </c:if>
-                                    <a href="/campus/board/list?nowPage=${p}<c:if test="
+                                    <a href="/campus/board/list?post_idwPage=${p}<c:if test="
                                         ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                                 </c:if>">${p}</a></li>
                                 </c:if>
                             </c:forEach>
                             <!-- next 페이지 -->
                             <c:if test="${pVO.nowPage<pVO.totalPage}">
-                                <li><a href="/campus/board/list?nowPage=${pVO.nowPage+1}<c:if test="
+                                <li><a href="/campus/board/list?post_idwPage=${pVO.nowPage+1}<c:if test="
                                         ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                             </c:if>">next</a></li>
                             </c:if>
