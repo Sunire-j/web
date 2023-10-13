@@ -1,5 +1,6 @@
 package com.team2.healthsns.service;
 
+import com.team2.healthsns.vo.BoardVO;
 import com.team2.healthsns.vo.MemoVO;
 import com.team2.healthsns.vo.UserVO;
 import com.team2.healthsns.vo.GuestbookVO;
@@ -22,4 +23,5 @@ public interface MinihomeService {
     public MemoVO MemoSelect(int no);
     public int CountMemo(String id);
     public List<MemoVO> MemoListSelect(String id, int month, int year);
+    public int MemoToAuth(BoardVO bvo);
 }

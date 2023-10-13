@@ -1,6 +1,7 @@
 package com.team2.healthsns.service;
 
 import com.team2.healthsns.mapper.MinihomeMapper;
+import com.team2.healthsns.vo.BoardVO;
 import com.team2.healthsns.vo.MemoVO;
 import com.team2.healthsns.vo.UserVO;
 import com.team2.healthsns.vo.GuestbookVO;
@@ -82,5 +83,10 @@ public class MinihomeServicempl implements MinihomeService {
     @Override
     public List<MemoVO> MemoListSelect(String id, int month, int year){
         return mapper.MemoListSelect(id,month,year);
+    }
+
+    @Override
+    public int MemoToAuth(BoardVO bvo) {
+        return mapper.MemoToAuth(bvo);
     }
 }
