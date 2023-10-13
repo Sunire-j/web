@@ -5,10 +5,7 @@
 
 <mapper namespace="com.team2.healthsns.mapper.CommunityQaMapper">
 
-    <insert id="communityInsertQa">
-        insert into board(title, content, userid, board_cat)
-        values(#{title}, #{content}, #{userid}, 'qa');
-    </insert>
+
 
     <select id="communityPageListQa" resultType="com.team2.healthsns.vo.CommunityVO">
         select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as writedate
@@ -52,5 +49,11 @@
         delete from board
         where post_id = #{param1}
     </update>
+
+    <!-- 조석훈이 수정함-->
+    <insert id="communityInsertQa">
+        insert into board(title, content, userid, board_cat, cat, bodypart)
+        values(#{title}, #{content}, #{userid}, #{board_cat}, #{cat}, #{bodypart});
+    </insert>
 
 </mapper>
