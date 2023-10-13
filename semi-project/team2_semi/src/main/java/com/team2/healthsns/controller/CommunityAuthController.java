@@ -5,13 +5,16 @@ import com.team2.healthsns.vo.CommunityVO;
 import com.team2.healthsns.vo.PagingVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -73,7 +76,8 @@ public class CommunityAuthController {
 
         return mav;
     }
-
+  
+  
     @GetMapping("/AuthCommunity/view")
     public ModelAndView CommunityView(int post_id, PagingVO pVO) {
         ModelAndView mav = new ModelAndView();

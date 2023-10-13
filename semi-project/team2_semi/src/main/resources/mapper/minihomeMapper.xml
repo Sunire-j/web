@@ -92,5 +92,4 @@
         insert into board(userid, title, content, cat, board_cat, bodypart)
         values(#{userid}, #{title}, #{content}, #{cat}, #{board_cat}, #{bodypart})
     </insert>
-    
 </mapper>

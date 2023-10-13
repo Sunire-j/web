@@ -29,7 +29,6 @@ public class CommunityFreeController {
         return mav;
     }
 
-    // 아래부터는 조석훈이 수정
     @GetMapping("/FreeCommunity/write")
     public String CommunityWrite(HttpSession session) {
         String logstatus = (String) session.getAttribute("LogStatus");

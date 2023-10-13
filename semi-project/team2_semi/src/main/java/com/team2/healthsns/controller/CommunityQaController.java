@@ -29,7 +29,6 @@ public class CommunityQaController {
         return mav;
     }
 
-    // 아래로 조석훈이 수정
     @GetMapping("/QaCommunity/write")
     public String CommunityWrite(HttpSession session) {
         String logstatus = (String) session.getAttribute("LogStatus");

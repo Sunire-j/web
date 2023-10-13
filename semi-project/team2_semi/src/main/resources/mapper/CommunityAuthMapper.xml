@@ -10,6 +10,19 @@
         values(#{title}, #{content}, #{userid}, #{board_cat}, #{cat}, #{bodypart});
     </insert>
 
+    <select id="communityPageListAuth" resultType="com.team2.healthsns.vo.CommunityVO">
+        select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as writedate
+        from board
+        where board_cat = 'auth'
+        <if test="searchWord != null and searchWord != ''">
+            AND title like CONCAT('%', #{searchWord}, '%')
+        </if>
+        order by post_id desc
+        limit #{onePageRecord}
+        offset #{offsetPoint}
+    </select>
+
+
     <select id="totalRecordAuth">
         select count(post_id) from board
         where board_cat = 'auth'
@@ -40,20 +53,5 @@
         delete from board
         where post_id = #{param1}
     </update>
-
-
-    <!--sql문 수정-->
-
-    <select id="communityPageListAuth" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as write_date, bodypart
-        from board
-        where board_cat = 'auth'
-        <if test="searchWord != null and searchWord != ''">
-            AND title like CONCAT('%', #{searchWord}, '%')
-        </if>
-        order by post_id desc
-        limit #{onePageRecord}
-        offset #{offsetPoint}
-    </select>
 
 </mapper>
