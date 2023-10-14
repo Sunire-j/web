@@ -53,7 +53,7 @@
             <header>
                 <!-- 게시판 알려주는 박스 -->
                 <div class="intro-board"
-                    style="background-image: url(${pageContext.servletContext.contextPath}/img/Free_Banner.png);">
+                    style="background-image: url(${pageContext.servletContext.contextPath}/img/Qa_Banner.png);">
                     <div class="board-name">Q&A게시판</div>
                 </div>
             </header>
@@ -107,7 +107,7 @@
                         <hr class="inbox">
                         <c:forEach var="bVO" items="${list}">
                             <li class="posts-li">
-                                <a href="/campus/board/view?post_id=${bVO.post_id}">
+                                <a href="${pageContext.servletContext.contextPath}/QaCommunity/view?post_id=${bVO.post_id}">
                                     <div class="first-line">${bVO.title}</div>
                                     <div class="second-line">
                                         <div class="post-content">${bVO.bodypart}</div>
@@ -131,7 +131,7 @@
                     <div class="post-end-line">
                         <div class="inboard-search-area">
                             <div class="search flex-container"> <!-- Add a class to make this a flex container -->
-                                <form method="get" action="/campus/board/list" onsubmit="return searchCheck()">
+                                <form method="get" action="${pageContext.servletContext.contextPath}/QaCommunity/list" onsubmit="return searchCheck()">
                                     <select name="searchKey">
                                         <option value="title">제목</option>
                                         <option value="content">글내용</option>
@@ -142,7 +142,7 @@
                                     <input type="submit" value="search" class="post-button" id="search-button">
                                 </form>
                                 <c:if test="${LogStatus=='Y'}">
-                                    <a href="${pageContext.servletContext.contextPath}/FreeCommunity/write">
+                                    <a href="${pageContext.servletContext.contextPath}/QaCommunity/write">
                                         <input type="button" value="글 작성" class="post-button" id="write-button">
                                     </a>
                                 </c:if>
@@ -157,7 +157,7 @@
                                 <li>prev</li>
                             </c:if>
                             <c:if test="${pVO.nowPage>1}">
-                                <li><a href="/campus/board/list?post_idwPage=${pVO.nowPage-1}<c:if test="
+                                <li><a href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${pVO.nowPage-1}<c:if test="
                                         ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                             </c:if>">prev</a></li>
                             </c:if>
@@ -171,7 +171,7 @@
                                     </c:if>
                                     <c:if test="${p!=pVO.nowPage}">
                                         <li class="paging-button"><a
-                                                href="/campus/board/list?post_idwPage=${p}<c:if test="
+                                                href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${p}<c:if test="
                                                 ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                                     </c:if>">${p}</a></li>
                                 </c:if>
@@ -180,7 +180,7 @@
 
                             <!-- next 페이지 -->
                             <c:if test="${pVO.nowPage<pVO.totalPage}">
-                                <li><a href="/campus/board/list?post_idwPage=${pVO.nowPage+1}<c:if test="
+                                <li><a href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${pVO.nowPage+1}<c:if test="
                                         ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                             </c:if>">next</a></li>
                             </c:if>

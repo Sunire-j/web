@@ -26,8 +26,8 @@ public class UserController {
 
     @PostMapping("/getuseremail")
     @ResponseBody
-    public String getSessionEmail(HttpSession session){
-     //매개변수 logId를 이용해서 이메일만 select
+    public String getSessionEmail(HttpSession session) {
+        //매개변수 logId를 이용해서 이메일만 select
         return service.GetSessionEmail((String) session.getAttribute("LogId"));
     }
 
@@ -82,15 +82,17 @@ public class UserController {
 
     @PostMapping("/getfollowranking")
     @ResponseBody
-    public List<UserVO> GetFollowRank(){
+    public List<UserVO> GetFollowRank() {
         List<UserVO> ranklist = service.GetFollowRanking();
         System.out.println(ranklist.get(0).getUsername());
         return ranklist;
+
+
     }
 
     @PostMapping("/getpostranking")
     @ResponseBody
-    public List<CommunityVO> GetPostRank(){
+    public List<CommunityVO> GetPostRank() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new Date());
         return service.getTopPostsByDate(date);
