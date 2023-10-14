@@ -42,7 +42,7 @@
     </select>
 
     <select id="communitySelectAuth" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as write_date,bodypart
+        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as write_date,bodypart, board_cat
         from board
         where post_id = #{param1}
     </select>
