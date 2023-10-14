@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
+
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,7 +29,7 @@ public class CommunityAuthController {
         ModelAndView mav = new ModelAndView();
         pVO.setTotalRecord(service.totalRecordAuth(pVO));
         List<CommunityVO> list = service.CommunityPageListAuth(pVO);
-        
+
         mav.addObject("list", list);
         mav.addObject("pVO", pVO);
         mav.setViewName("community/Community_Auth");
@@ -46,10 +47,10 @@ public class CommunityAuthController {
 
     @PostMapping("/AuthCommunity/writeOk")
     public ModelAndView CommunityWriteOk(@RequestParam(value = "first-part", required = false) String firstpart,
-            @RequestParam(value = "body-part", required = false) List<String> bodyparts,
-            @RequestParam("subject") String subject,
-            @RequestParam("content") String content,
-            HttpSession session) {
+                                         @RequestParam(value = "body-part", required = false) List<String> bodyparts,
+                                         @RequestParam("subject") String subject,
+                                         @RequestParam("content") String content,
+                                         HttpSession session) {
         ModelAndView mav = new ModelAndView();
         String userid = (String) session.getAttribute("LogId");
         CommunityVO bVO = new CommunityVO();
@@ -78,17 +79,23 @@ public class CommunityAuthController {
 
         return mav;
     }
-  
-  
+
+
     @GetMapping("/AuthCommunity/view")
     public ModelAndView CommunityView(int post_id, PagingVO pVO) {
         ModelAndView mav = new ModelAndView();
-        service.hitCountAuth(post_id);
-        CommunityVO vo = service.CommunitySelectAuth(post_id);
-        mav.addObject("vo", vo);
-        mav.addObject("pVO", pVO);
-        mav.setViewName("/community/Community_Auth");
-        return mav;
+        try {
+            service.hitCountAuth(post_id);
+            CommunityVO vo = service.CommunitySelectAuth(post_id);
+            mav.addObject("vo", vo);
+            mav.addObject("pVO", pVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            mav.setViewName("/community/Community_post");
+            return mav;
+
+        }
     }
 
     @GetMapping("/AuthCommunity/edit")
