@@ -68,11 +68,7 @@
         </if>
     </select>
 
-    <select id="communitySelectAuth" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as write_date,bodypart, board_cat
-        from board
-        where post_id = #{param1}
-    </select>
+
 
     <update id="hitCountAuth">
         update board
@@ -90,5 +86,21 @@
         delete from board
         where post_id = #{param1}
     </update>
+
+    <select id="communitySelectAuth" resultType="com.team2.healthsns.vo.CommunityVO">
+        SELECT
+        b.post_id AS post_id,
+        b.title AS title,
+        b.userid AS userid,
+        b.content AS content,
+        b.views AS views,
+        DATE_FORMAT(b.write_date,'%m-%d %h:%i') AS write_date,
+        b.bodypart AS bodypart,
+        b.board_cat AS board_cat,
+        b.cat as cat,
+        (SELECT COUNT(*) FROM comment c WHERE c.target_post_id = b.post_id) AS commentsCount
+        FROM board b
+        WHERE post_id = #{param1}
+    </select>
 
 </mapper>
