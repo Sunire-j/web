@@ -26,7 +26,7 @@
                     type: 'post',
                     success: function (result) {
                         console.log(result);
-                        //댓글 리로드해줘야함
+                        commentList();
                     },
                     error: function (error) {
                         console.log(error.responseText);
@@ -50,7 +50,7 @@
 
     /* 크기 및 위치 */
     .ck-editor__editable {
-        height: 100px;
+        height: 150px;
         margin: 0 auto;
     }
 
@@ -83,6 +83,11 @@
     .ck.ck-toolbar .ck-button.ck-on {
         background-color: rgb(255, 255, 255); /* 선택된 상태의 배경색 */
         color: #464d86; /* 선택된 상태의 텍스트 색상  */
+    }
+
+    .comments-block #contentdiv img{
+        max-width: 100%;
+        height: auto;
     }
 
     /**************** ckEditor5 커스터마이징 끝 ****************/
@@ -156,25 +161,8 @@
                         </form>
                     </c:if>
                     <div class="panel">
-                        <div class="panel-body">
-                            <div class="comments-block">
-                                <div class="media-left"><img class="img-circle img-sm" alt="Profile Picture"
-                                                             src="${pageContext.servletContext.contextPath}/img/profile1.png">
-                                </div>
-                                <div class="media-body" id="1"> <!-- 여기있는 id는 답글에 사용할 것-->
-                                    <div class="mar-btm">
-                                        <a href="#"
-                                           class="btn-link text-semibold media-heading box-inline">로니콜먼2</a>
-                                        <!-- userid-->
-                                        <p class="text-muted text-sm">11분 전</p> <!-- 작성일자-->
-                                    </div>
-                                    <p>와 몸 진짜 좋으세요 어떤 운동하세요?</p><!-- content -->
-                                    <div class="pad-ver">
-                                        <a class="btn btn-sm btn-default btn-hover-primary" href="#">답글 작성</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
+                        <div class="panel-body panel-body-second">
+                            <hr/>
                         </div>
                     </div>
                 </div>
@@ -182,8 +170,52 @@
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
             <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             <script>
+                function commentList(){
+                    var no = ${vo.post_id};
+                    $.ajax({
+                       url:"${pageContext.servletContext.contextPath}/CommunityReply/list",
+                        data:{
+                           no:no
+                        },
+                       type:'post',
+                       success:function(result){
+                           $('.panel-body-second').empty();
+                           for(var i = 0; i<result.length; i++){
+                               var comment = result[i];
+                               var email = comment.email;
+                               console.log(email+"hello");
+                               var hash = CryptoJS.MD5(email.trim().toLowerCase());
+                               var gravatarUrl = "https://www.gravatar.com/avatar/" + hash + "?s=200&d=retro";
+                               var marginLeft =comment.depth ==1?'70px':'10px';
+
+                               var commentBlock = $(
+                                   '<div class="comments-block" style="margin-left:' + marginLeft + '">' +
+                                   '<div class="media-left"><img class="img-circle img-sm" alt="Profile Picture" src="'+gravatarUrl+'"></div>' +
+                                   '<div class="media-body" id="' + comment.comment_id + '">' +
+                                   '<div class="mar-btm">' +
+                                   '<a href="#" class="btn-link text-semibold media-heading box-inline">' + comment.writer + '</a>' +
+                                   '<p class="text-muted text-sm">' + comment.write_date + '</p>' +
+                                   '</div>' +
+                                   '<div id="contentdiv">' + comment.content + '</div>' +
+                                   '<div class="pad-ver">' +
+                                   '<a class="btn btn-sm btn-default btn-hover-primary" href="#">답글 작성</a>' +
+                                   '</div>' +
+                                   '</div>'+
+                                   '</div>'+
+                                   '<hr/>'
+                               );
+                               $('.panel-body-second').append(commentBlock);
+                           }
+                       },
+                        error:function(error){
+                           console.log(error.responseText);
+                        }
+                    });
+
+                }
                 $(document).ready(function () {
-                    $('.btn-hover-primary').click(function (e) {
+                    commentList();
+                    $('.panel-body-second').on('click', '.btn-hover-primary', function (e) {
                         e.preventDefault();
 
                         // 기존의 열려있는 답글 폼이 있다면 제거
@@ -211,7 +243,8 @@
 
                         $("#reply-reply").submit(function () {
                             event.preventDefault();
-                            if ($("#content").val().trim() === '') {
+                            var content = $(this).find('textarea[name="content"]').val().trim();
+                            if (content === '') {
                                 alert("댓글을 입력 후 시도해주세요");
                                 event.preventDefault();
                             } else {
@@ -223,8 +256,8 @@
                                     success: function (result) {
                                         event.preventDefault();
                                         console.log(result);
-                                        //댓글 리로드해줘야함
-                                        //reply-reply 없애줘야함
+                                        commentList();
+                                        $('.reply-form').remove();
                                     },
                                     error: function (error) {
                                         console.log(error.responseText);
