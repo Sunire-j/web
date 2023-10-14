@@ -2,15 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-        <script>
-            function searchCheck() {
-                if (document.getElementById("searchWord").value == "") {
-                    alert("검색어를 입력해주세요");
-                    return false;
-                }
-            }
-        </script>
-
         <!-- Stylesheets -->
         <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/default.css">
         <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/community-header.css">
@@ -19,6 +10,7 @@
         <!-- External Libraries -->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <style>
             .page {
@@ -67,15 +59,16 @@
                 <div class="right">
                     <!-- 2차카테고리, 전체글, 내글 버튼 -->
                     <div class="second-category">
-                        <select name="2nd-category" id="second-cat">
-                            <!-- 이 부분 디자인은 나중에 바꿔야하나? 싶어요
-                    일단 완성해두고 셀렉트 디자인 찾아볼게요. -->
-                            <option value="none">부위 카테고리</option>
-                            <option value="1">상체</option>
-                            <option value="2">하체</option>
+                        <select name="category" id="second-cat">
+                            <option value="0" ${pagingVO.category=='0' ? 'selected' : '' }>카테고리</option>
+                            <option value="1" ${pagingVO.category=='1' ? 'selected' : '' }>상체</option>
+                            <option value="2" ${pagingVO.category=='2' ? 'selected' : '' }>하체</option>
                         </select>
-                        <div class="check-post"><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list">전체 게시물</a></div>
-                        <div class="check-post"><a href="${pageContext.servletContext.contextPath}/Community_Show_MyPost.html">내 게시물</a></div>
+                        <div class="check-post"><a
+                                href="${pageContext.servletContext.contextPath}/AuthCommunity/list">전체 게시물</a></div>
+                        <div class="check-post"><a
+                                href="${pageContext.servletContext.contextPath}/Community_Show_MyPost.html">내 게시물</a>
+                        </div>
                     </div>
                     <!-- 게시글 목록 -->
                     <div class="post-list">
@@ -83,9 +76,9 @@
                             <div class="post-sort">
                                 <div style="color: #464d86;">정렬</div>
                                 <select name="post-sort" id="post-sort-select" class="post-sort-select">
-                                    <option value="1">최신순</option>
-                                    <option value="2">좋아요순</option>
-                                    <option value="3">조회순</option>
+                                    <option value="1" ${pagingVO.postSort=='1' ? 'selected' : '' }>최신순</option>
+                                    <option value="2" ${pagingVO.postSort=='2' ? 'selected' : '' }>좋아요순</option>
+                                    <option value="3" ${pagingVO.postSort=='3' ? 'selected' : '' }>조회순</option>
                                 </select>
                             </div>
                             <hr>
@@ -107,7 +100,8 @@
                         <hr class="inbox">
                         <c:forEach var="bVO" items="${list}">
                             <li class="posts-li">
-                                <a href="${pageContext.servletContext.contextPath}/community_post?post_id=${bVO.post_id}">
+                                <a
+                                    href="${pageContext.servletContext.contextPath}/community_post?post_id=${bVO.post_id}">
                                     <div class="first-line">${bVO.title}</div>
                                     <div class="second-line">
                                         <div class="post-content">${bVO.bodypart}</div>
@@ -138,7 +132,7 @@
                                         <option value="userid">글쓴이</option>
                                     </select>
                                     <input type="search" name="inboard-search" id="inboard-search"
-                                        class="inboard-search" placeholder="자유게시판 내 검색">
+                                        value="${pagingVO.searchWord}" class="inboard-search" placeholder="자유게시판 내 검색">
                                     <input type="submit" value="search" class="post-button" id="search-button">
                                 </form>
                                 <c:if test="${LogStatus=='Y'}">
@@ -193,3 +187,35 @@
             </div>
             <script src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
         </body>
+
+        <script>
+            function searchCheck() {
+                let searchWord = $("#inboard-search").val();
+                if (searchWord === "") {
+                    alert("검색어를 입력해주세요");
+                    return false;
+                }
+                return true;
+            }
+
+            function constructUrl() {
+                let category = $("#second-cat").val();
+                let postSort = $("#post-sort-select").val();
+                let searchWord = $("#inboard-search").val();
+
+                let url = "${pageContext.servletContext.contextPath}/AuthCommunity/list";
+                url += "?category=" + category;
+                url += "&postSort=" + postSort;
+                url += "&searchWord=" + encodeURIComponent(searchWord);
+                return url;
+            }
+
+            $("#second-cat, #post-sort-select").change(function () {
+                window.location.href = constructUrl();
+            });
+
+            $("#search-button").click(function (e) {
+                e.preventDefault();  // prevent the default form submission
+                window.location.href = constructUrl();
+            });
+        </script>
