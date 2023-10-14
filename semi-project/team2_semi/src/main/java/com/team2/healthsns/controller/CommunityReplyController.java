@@ -21,9 +21,12 @@ public class CommunityReplyController {
     @PostMapping("/write")
     @ResponseBody
     public String replyWrite(CommunityReplyVO vo, HttpSession session){
-        vo.setWriter((String) session.getAttribute("logId"));
+        vo.setWriter((String) session.getAttribute("LogId"));
         int result = service.replyInsert(vo);
+        if(vo.getDepth()==0){
+            service.SetNormalReplyTP(vo); //depth가 0이면 target_parent를 자신의 comment_id로 설정하는
 
+        }
         return String.valueOf(result);
     }
 

@@ -31,4 +31,9 @@ public class CommunityReplyServicempl implements CommunityReplyService{
     public int replyDelete(int replyno) {
         return mapper.replyDelete(replyno);
     }
+
+    @Override
+    public void SetNormalReplyTP(CommunityReplyVO vo) {
+        mapper.SetNormalReplyTP(vo);
+    }
 }
