@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team2.healthsns.mapper.CommunityAuthMapper">
+
+    <insert id="communityInsertAuth">
+        insert into board(title, content, userid, board_cat, cat, bodypart)
+        values(#{title}, #{content}, #{userid}, #{board_cat}, #{cat}, #{bodypart});
+    </insert>
+
+    <select id="communityPageListAuth" resultType="com.team2.healthsns.vo.CommunityVO">
+        select b.post_id, b.title, b.userid, b.views, b.like, date_format(b.write_date,'%m-%d %h:%i') as write_date, b.cat, count(c.comment_id) as commentsCount
+        from board b
+        left join comment c on b.post_id = c.target_post_id
+        where board_cat = 'auth'
+        <if test="category != null and category == '1'">
+            AND b.cat = '상체'
+        </if>
+        <if test="category != null and category == '2'">
+            AND b.cat = '하체'
+        </if>
+        <if test="searchWord != null and searchWord != ''">
+            AND title like CONCAT('%', #{searchWord}, '%')
+        </if>
+        GROUP BY 
+            b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
+        order by post_id desc
+        limit #{onePageRecord}
+        offset #{offsetPoint}
+    </select>
+    
+
+    <select id="totalRecordAuth">
+        select count(post_id) from board
+        where board_cat = 'auth'
+        <if test="searchWord != null and searchWord != ''">
+            AND title like CONCAT('%', #{searchWord}, '%')
+        </if>
+    </select>
+
+    <select id="communitySelectAuth" resultType="com.team2.healthsns.vo.CommunityVO">
+        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as write_date,bodypart
+        from board
+        where post_id = #{param1}
+    </select>
+
+    <update id="hitCountAuth">
+        update board
+        set views = views + 1
+        where post_id = #{param1}
+    </update>
+
+    <update id="communityUpdateAuth">
+        update board
+        set title = #{title}, content = #{content}
+        where post_id = #{post_id}
+    </update>
+
+    <update id="communityDeleteAuth">
+        delete from board
+        where post_id = #{param1}
+    </update>
+
+</mapper>
