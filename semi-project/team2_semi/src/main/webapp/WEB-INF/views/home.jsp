@@ -11,6 +11,9 @@
 <a href="${pageContext.servletContext.contextPath}/myPage">마이페이지이동(임시)</a><br/>
 <a href="${pageContext.servletContext.contextPath}/AuthCommunity/write">인증게시판 작성</a><br/>
 <a href="${pageContext.servletContext.contextPath}/FreeCommunity/write">자유게시판 작성</a><br/>
-<a href="${pageContext.servletContext.contextPath}/QaCommunity/write">QNA게시판 작성</a>
-</body>
-</html>
+<a href="${pageContext.servletContext.contextPath}/QaCommunity/write">QNA게시판 작성</a><br/>
+<a href="${pageContext.servletContext.contextPath}/home">시작페이지 이동</a><br/>
+<br/>
+<a href="${pageContext.servletContext.contextPath}/board/list?board=free">자유게시판 테스트</a><br/>
+<a href="${pageContext.servletContext.contextPath}/board/list?board=auth">인증게시판 테스트</a><br/>
+<a href="${pageContext.servletContext.contextPath}/board/list?board=qna">QNA게시판 테스트</a><br/>

@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String pageName = request.getRequestURI();
+    if(!pageName.contains("home_temp")){
+%>
 
 <!DOCTYPE html>
 <html>
@@ -58,7 +62,7 @@
     <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
     <div class="nav-02">
         <div class="category">
-            <a href="index.html">홈</a><!-- 홈 -->
+            <a href="${pageContext.servletContext.contextPath}/home">홈</a><!-- 홈 -->
             <a href="${pageContext.servletContext.contextPath}/FreeCommunity/list">자유게시판</a><!-- 자유게시판 -->
             <a href="${pageContext.servletContext.contextPath}/AuthCommunity/list">인증게시판</a><!-- 인증게시판 -->
             <a href="${pageContext.servletContext.contextPath}/QaCommunity/list">Q&A게시판</a><!-- Q&A게시판 -->
@@ -72,3 +76,4 @@
     </div>
 </nav>
 <hr style="margin-bottom: 0px;">
+<% } %>
