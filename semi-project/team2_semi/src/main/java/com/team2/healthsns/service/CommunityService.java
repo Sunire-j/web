@@ -2,6 +2,7 @@ package com.team2.healthsns.service;
 
 import com.team2.healthsns.vo.CommunityVO;
 import com.team2.healthsns.vo.PagingVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

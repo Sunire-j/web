@@ -125,7 +125,7 @@
                     <div class="post-end-line">
                         <div class="inboard-search-area">
                             <div class="search flex-container"> <!-- Add a class to make this a flex container -->
-                                <form method="get" action="/campus/board/list" onsubmit="return searchCheck()">
+                                <form method="get" action="${pageContext.servletContext.contextPath}/AuthCommunity/list" onsubmit="return searchCheck()">
                                     <select name="searchKey">
                                         <option value="title">제목</option>
                                         <option value="content">글내용</option>
@@ -151,7 +151,7 @@
                                 <li>prev</li>
                             </c:if>
                             <c:if test="${pVO.nowPage>1}">
-                                <li><a href="/campus/board/list?post_idwPage=${pVO.nowPage-1}<c:if test="
+                                <li><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage-1}<c:if test="
                                         ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                             </c:if>">prev</a></li>
                             </c:if>
@@ -165,7 +165,7 @@
                                     </c:if>
                                     <c:if test="${p!=pVO.nowPage}">
                                         <li class="paging-button"><a
-                                                href="/campus/board/list?post_idwPage=${p}<c:if test="
+                                                href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${p}<c:if test="
                                                 ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                                     </c:if>">${p}</a></li>
                                 </c:if>
@@ -174,7 +174,7 @@
 
                             <!-- next 페이지 -->
                             <c:if test="${pVO.nowPage<pVO.totalPage}">
-                                <li><a href="/campus/board/list?post_idwPage=${pVO.nowPage+1}<c:if test="
+                                <li><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage+1}<c:if test="
                                         ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
                             </c:if>">next</a></li>
                             </c:if>

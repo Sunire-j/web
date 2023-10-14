@@ -2,6 +2,7 @@ package com.team2.healthsns.controller;
 
 import com.team2.healthsns.mapper.UserMapper;
 import com.team2.healthsns.service.UserService;
+import com.team2.healthsns.vo.CommunityVO;
 import com.team2.healthsns.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -21,8 +26,8 @@ public class UserController {
 
     @PostMapping("/getuseremail")
     @ResponseBody
-    public String getSessionEmail(HttpSession session){
-     //매개변수 logId를 이용해서 이메일만 select
+    public String getSessionEmail(HttpSession session) {
+        //매개변수 logId를 이용해서 이메일만 select
         return service.GetSessionEmail((String) session.getAttribute("LogId"));
     }
 
@@ -73,6 +78,24 @@ public class UserController {
              */
         return mav;
 
+    }
+
+    @PostMapping("/getfollowranking")
+    @ResponseBody
+    public List<UserVO> GetFollowRank() {
+        List<UserVO> ranklist = service.GetFollowRanking();
+        System.out.println(ranklist.get(0).getUsername());
+        return ranklist;
+
+
+    }
+
+    @PostMapping("/getpostranking")
+    @ResponseBody
+    public List<CommunityVO> GetPostRank() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        return service.getTopPostsByDate(date);
     }
 
 
