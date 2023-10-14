@@ -27,6 +27,7 @@ public class CommunityAuthController {
         ModelAndView mav = new ModelAndView();
         pVO.setTotalRecord(service.totalRecordAuth(pVO));
         List<CommunityVO> list = service.CommunityPageListAuth(pVO);
+        
         mav.addObject("list", list);
         mav.addObject("pVO", pVO);
         mav.setViewName("community/Community_Auth");
