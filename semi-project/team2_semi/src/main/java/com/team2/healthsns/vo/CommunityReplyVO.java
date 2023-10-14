@@ -12,4 +12,5 @@ public class CommunityReplyVO {
     private int target_parent;
     private String write_date;
     private int depth;
+    private String email;
 }

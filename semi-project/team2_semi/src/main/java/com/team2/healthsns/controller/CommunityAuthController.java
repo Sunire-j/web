@@ -148,5 +148,4 @@ public class CommunityAuthController {
         }
         return mav;
     }
-
 }

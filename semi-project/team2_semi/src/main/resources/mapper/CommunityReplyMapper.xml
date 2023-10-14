@@ -16,10 +16,17 @@
     </insert>
 
     <select id="replySelect" resultType="com.team2.healthsns.vo.CommunityReplyVO">
-        select comment_id, content, userid, write_date
-        from comment
-        where target_post_id = ${param1}
-        order by target_parent asc, depth asc, write_date asc;
+        SELECT c.comment_id as comment_id,
+        c.content as content,
+        c.userid AS writer,
+        c.write_date as write_date,
+        c.depth as depth,
+        c.target_post_id AS post_id,
+        u.email as email
+        FROM comment AS c
+        JOIN user_info AS u ON u.userid = c.userid
+        WHERE target_post_id = ${param1}
+        ORDER BY target_parent ASC, depth ASC, write_date ASC;
     </select>
 
     <update id="SetNormalReplyTP">
