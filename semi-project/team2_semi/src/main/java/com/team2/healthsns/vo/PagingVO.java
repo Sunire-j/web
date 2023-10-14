@@ -6,7 +6,7 @@ import lombok.ToString;
 @ToString
 public class PagingVO {
     private int nowPage = 1;//현재페이지
-    private int onePageRecord = 5;//한번에 표시할 레코드
+    private int onePageRecord = 10;//한번에 표시할 레코드
 
     private int totalRecord;//총 레코드 수
     private int totalPage;//총 페이지 수

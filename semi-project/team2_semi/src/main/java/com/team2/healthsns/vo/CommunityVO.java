@@ -18,5 +18,6 @@ public class CommunityVO {
     private String write_date;
     private String board_cat;
     private String bodypart;
+    private int commentsCount;
 }
 

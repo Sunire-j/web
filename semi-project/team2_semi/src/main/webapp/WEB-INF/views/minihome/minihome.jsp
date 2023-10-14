@@ -93,6 +93,7 @@
                                 writeDate.getDate() + '일';
                         }
 
+
                         // li 태그 생성 및 내용 추가
                         var listItemHtml =
                             '<li class="dummydata">' +

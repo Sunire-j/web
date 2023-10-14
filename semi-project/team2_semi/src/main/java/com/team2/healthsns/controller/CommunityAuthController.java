@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @Controller
 public class CommunityAuthController {
@@ -121,4 +122,5 @@ public class CommunityAuthController {
         }
         return mav;
     }
+
 }

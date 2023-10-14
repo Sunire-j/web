@@ -190,4 +190,3 @@
                 </div>
             </div>
             <script src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
-        </body>
