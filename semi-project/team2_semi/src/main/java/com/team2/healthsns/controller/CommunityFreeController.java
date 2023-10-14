@@ -1,6 +1,7 @@
 package com.team2.healthsns.controller;
 
 import com.team2.healthsns.service.CommunityService;
+import com.team2.healthsns.util.UriUtil;
 import com.team2.healthsns.vo.CommunityVO;
 import com.team2.healthsns.vo.PagingVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.StringTokenizer;
+import com.team2.healthsns.util.UriUtil;
 
 @Controller
 public class CommunityFreeController {
@@ -21,10 +24,22 @@ public class CommunityFreeController {
     @GetMapping("/FreeCommunity/list")
     public ModelAndView CommunityListFree(PagingVO pVO) {
         ModelAndView mav = new ModelAndView();
+
         pVO.setTotalRecord(service.totalRecordFree(pVO));
         List<CommunityVO> list = service.CommunityPageListFree(pVO);
+
+        // URI 생성
+        int page = pVO.getNowPage();
+        int perPageNum = pVO.getOnePageRecord();
+        String searchType = pVO.getSearchKey();
+        String keyword = pVO.getSearchWord();
+        String category = pVO.getCategory(); // 카테고리 정보 가져오기
+        String postSort = pVO.getPostSort(); // 정렬 옵션 가져오기
+        String uri = UriUtil.makeSearch(page, perPageNum, searchType, keyword, category, postSort);
+
         mav.addObject("list", list);
         mav.addObject("pVO", pVO);
+        mav.addObject("uri", uri);
         mav.setViewName("community/Community_Free");
         return mav;
     }

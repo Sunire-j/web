@@ -48,7 +48,6 @@
         select b.post_id, b.title, b.userid, b.views, b.like, date_format(b.write_date,'%m-%d %h:%i') as write_date, b.cat, count(c.comment_id) as commentsCount, b.bodypart
         from board b
         left join comment c on b.post_id = c.target_post_id
-
         where board_cat = 'auth'
         <include refid="categoryFilter" />
         <if test="searchWord != null and searchWord != ''">
