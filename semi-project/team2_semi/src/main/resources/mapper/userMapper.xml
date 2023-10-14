@@ -16,4 +16,23 @@
         from user_info
         where userid=#{param1}
     </select>
+
+    <select id="GetFollowRanking">
+        select u.userid as userid, u.username as username
+        from user_info u
+        order by (
+        select count(f.userid)
+        from follow f
+        where f.userid = u.userid
+        ) desc
+        limit 9;
+    </select>
+
+    <select id="getTopPostsByDate">
+        SELECT post_id, userid, title
+        FROM board
+        WHERE DATE(write_date) = #{date}
+        ORDER BY views DESC
+        LIMIT 9;
+    </select>
 </mapper>
