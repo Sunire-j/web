@@ -8,13 +8,13 @@ public class PagingVO {
     private int nowPage = 1;//현재페이지
     private int onePageRecord = 10;//한번에 표시할 레코드
 
-    private int totalRecord;//총 레코드 수
-    private int totalPage;//총 페이지 수
-    private int offsetPoint = (nowPage - 1) * onePageRecord;//레코드 선택 시 시작위치
+    private int totalRecord;// 총 레코드 수
+    private int totalPage;// 총 페이지 수
+    private int offsetPoint = (nowPage - 1) * onePageRecord;// 레코드 선택 시 시작위치
 
-    //페이지 넘버링
-    private int onePageCount = 5; //페이징 버튼 최대 갯수
-    private int startPage = 1; //페이징 버튼 시작 숫자
+    // 페이지 넘버링
+    private int onePageCount = 5; // 페이징 버튼 최대 갯수
+    private int startPage = 1; // 페이징 버튼 시작 숫자
 
     public String getSearchKey() {
         return searchKey;
@@ -32,7 +32,7 @@ public class PagingVO {
         this.searchWord = searchWord;
     }
 
-    //검색어
+    // 검색어
     private String searchKey;
     private String searchWord;
 
@@ -52,8 +52,6 @@ public class PagingVO {
         this.startPage = startPage;
     }
 
-
-
     public int getNowPage() {
         return nowPage;
     }
@@ -61,11 +59,11 @@ public class PagingVO {
     public void setNowPage(int nowPage) {
         this.nowPage = nowPage;
 
-        //해당 페이지 위치 계산
+        // 해당 페이지 위치 계산
         offsetPoint = (nowPage - 1) * onePageRecord;
 
-        //시작페이지 : 현재페이지 번호 바뀌면
-        startPage = (nowPage-1)/onePageCount*onePageCount+1;
+        // 시작페이지 : 현재페이지 번호 바뀌면
+        startPage = (nowPage - 1) / onePageCount * onePageCount + 1;
     }
 
     public int getOnePageRecord() {
@@ -85,7 +83,7 @@ public class PagingVO {
 
         this.setTotalPage((int) Math.ceil(totalRecord / (double) onePageRecord));
 
-        //총 페이지 수
+        // 총 페이지 수
     }
 
     public int getTotalPage() {
@@ -103,4 +101,17 @@ public class PagingVO {
     public void setOffsetPoint(int offsetPoint) {
         this.offsetPoint = offsetPoint;
     }
+
+    
+    //카테고리별로 반응 주려고
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
 }
