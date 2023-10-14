@@ -74,8 +74,8 @@
                             <option value="1">상체</option>
                             <option value="2">하체</option>
                         </select>
-                        <div class="check-post"><a href="">전체 게시물</a></div>
-                        <div class="check-post"><a href="Community_Show_MyPost.html">내 게시물</a></div>
+                        <div class="check-post"><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list">전체 게시물</a></div>
+                        <div class="check-post"><a href="${pageContext.servletContext.contextPath}/Community_Show_MyPost.html">내 게시물</a></div>
                     </div>
                     <!-- 게시글 목록 -->
                     <div class="post-list">
@@ -107,7 +107,7 @@
                         <hr class="inbox">
                         <c:forEach var="bVO" items="${list}">
                             <li class="posts-li">
-                                <a href="/campus/board/view?post_id=${bVO.post_id}">
+                                <a href="${pageContext.servletContext.contextPath}/community_post?post_id=${bVO.post_id}">
                                     <div class="first-line">${bVO.title}</div>
                                     <div class="second-line">
                                         <div class="post-content">${bVO.bodypart}</div>
@@ -142,7 +142,9 @@
                                     <input type="submit" value="search" class="post-button" id="search-button">
                                 </form>
                                 <c:if test="${LogStatus=='Y'}">
-                                    <input type="button" value="글 작성" class="post-button" id="write-button">
+                                    <a href="${pageContext.servletContext.contextPath}/AuthCommunity/write">
+                                        <input type="button" value="글 작성" class="post-button" id="write-button">
+                                    </a>
                                 </c:if>
                             </div>
                         </div>

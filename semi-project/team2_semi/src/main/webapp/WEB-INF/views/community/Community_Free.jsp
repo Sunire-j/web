@@ -140,7 +140,9 @@
                                     <input type="submit" value="search" class="post-button" id="search-button">
                                 </form>
                                 <c:if test="${LogStatus=='Y'}">
-                                    <input type="button" value="글 작성" class="post-button" id="write-button">
+                                    <a href="${pageContext.servletContext.contextPath}/FreeCommunity/write">
+                                        <input type="button" value="글 작성" class="post-button" id="write-button">
+                                    </a>
                                 </c:if>
                             </div>
                         </div>

@@ -18,15 +18,15 @@
 </select>
 
 
-    <update id="replyUpdate">
-        update comment
-        set content=#{content}
-        where comment_id=${comment_id};
-    </update>
+<update id="replyUpdate">
+    update comment
+    set content=#{content}
+    where comment_id=${comment_id};
+</update>
 
 <update id="replyDelete">
     update comment
-    set content='삭제되었습니다.'
+    set content='삭제된 메세지입니다'
     where comment_id=${param1};
 </update>
 
