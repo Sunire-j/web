@@ -45,7 +45,7 @@
             <header>
                 <!-- 게시판 알려주는 박스 -->
                 <div class="intro-board"
-                    style="background-image: url(${pageContext.servletContext.contextPath}/img/Qa_Banner.png);">
+                    style="background-image: url(${pageContext.servletContext.contextPath}/img/Q&A_banner.png);">
                     <div class="board-name">Q&A게시판</div>
                 </div>
             </header>

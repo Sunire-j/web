@@ -46,7 +46,7 @@
                 <!-- 게시판 알려주는 박스 -->
                 <div class="intro-board"
                     style="background-image: url(${pageContext.servletContext.contextPath}/img/Free_Banner.png);">
-                    <div class="board-name">인증게시판</div>
+                    <div class="board-name">자유게시판</div>
                 </div>
             </header>
             <!-- #endregion -->
