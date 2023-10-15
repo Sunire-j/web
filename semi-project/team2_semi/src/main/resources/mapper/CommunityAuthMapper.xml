@@ -18,11 +18,29 @@
         <if test="searchWord != null and searchWord != ''">
             AND b.${searchKey} like '%${searchWord}%'
         </if>
+        <if test="category == 1">
+            AND b.cat = '상체' 
+        </if>        
+        <if test="category == 2">
+            AND b.cat = '하체' 
+        </if>  
         GROUP BY 
             b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
+        <choose>
+            <when test="postSort == 2">
+                ORDER BY b.like DESC
+            </when>  
+            <when test="postSort == 3">
+                ORDER BY b.views DESC
+            </when>  
+            <otherwise>
+                ORDER BY b.write_date DESC
+            </otherwise>  
+        </choose>
         limit ${onePageRecord}
         offset ${offsetPoint}
     </select>
+    
 
     <select id="totalRecordAuth">
         select count(post_id) from board
