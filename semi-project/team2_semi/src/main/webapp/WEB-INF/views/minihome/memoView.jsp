@@ -177,7 +177,7 @@
                 </div>
                 <div class="edit-profile-section">
                     <c:if test="${LogId==uVO.userid}">
-                        <input type="button" value="프로필 수정" class="edit-profile" id='edit-button'>
+                        <input type="button" value="회원 정보 수정" class="edit-profile" id='edit-button'>
                     </c:if>
                     <c:if test="${LogId!=uVO.userid}">
                         <c:if test="${follower.contains(LogId)}">
