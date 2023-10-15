@@ -18,6 +18,7 @@
     <select id="replySelect" resultType="com.team2.healthsns.vo.CommunityReplyVO">
         SELECT c.comment_id as comment_id,
         c.content as content,
+        c.isdelete as isdelete,
         c.userid AS writer,
         c.write_date as write_date,
         c.depth as depth,
@@ -26,7 +27,7 @@
         FROM comment AS c
         JOIN user_info AS u ON u.userid = c.userid
         WHERE target_post_id = ${param1}
-        ORDER BY target_parent ASC, depth ASC, write_date ASC;
+        ORDER BY target_parent ASC, depth ASC, write_date asc;
     </select>
 
     <update id="SetNormalReplyTP">
@@ -38,13 +39,13 @@
 
     <update id="replyUpdate">
         update comment
-        set content=#{content}
-        where comment_id=${comment_id};
+        set content=#{param1}
+        where comment_id=${param2};
     </update>
 
     <update id="replyDelete">
         update comment
-        set content='삭제된 메세지입니다'
+        set isdelete=1, content="삭제된 댓글입니다."
         where comment_id=${param1};
     </update>
 

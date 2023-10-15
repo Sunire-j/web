@@ -40,7 +40,7 @@ public class HomeController {
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
 		System.out.println("로그아웃찍먹하다옴");
-		mav.setViewName("redirect:/");
+		mav.setViewName("redirect:/home");
 		return mav;
 	}
 	@GetMapping("/home")

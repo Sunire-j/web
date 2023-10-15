@@ -9,6 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/default.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -45,14 +46,14 @@
     <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
     <div class="nav-01">
         <div class="logo-area">
-            <a href="index.html"><img src="${pageContext.servletContext.contextPath}/img/Logo.png" class="logo"></a>
+            <a href="${pageContext.servletContext.contextPath}/home"><img src="${pageContext.servletContext.contextPath}/img/Logo.png" class="logo"></a>
             <!-- 로고 이미지 -->
         </div>
         <div class="banner_login">
             <c:if test="${LogStatus=='Y'}">
                 <a href="${pageContext.servletContext.contextPath}/minihome?id=${LogId}">
                     <img src="" class="user-icon" id="user-icon" style="border-radius: 50%;"/></a>
-                <a href="${pageContext.servletContext.contextPath}/logout" class="login-button">로그아웃</a><!-- 이거 # 로그인으로 바꿔야함 -->
+                <a href="${pageContext.servletContext.contextPath}/logout?referer=${pageContext.request.requestURI}" class="login-button">로그아웃</a><!-- 이거 # 로그인으로 바꿔야함 -->
             </c:if>
             <c:if test="${LogStatus=='' || LogStatus=='N'}">
                 <a href="Sign_In.html" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
@@ -68,11 +69,10 @@
             <a href="${pageContext.servletContext.contextPath}/QaCommunity/list">Q&A게시판</a><!-- Q&A게시판 -->
             <a href="${pageContext.servletContext.contextPath}/map">헬스장찾기</a><!-- 헬스장찾기 -->
         </div>
-        <div class="main-search-box">
+       <!-- <div class="main-search-box">
             <input type="search" name="main-search" id="main-search" class="main-search"
-                   placeholder="전체 게시물 검색"><!-- 상단 검색박스 -->
-            <!-- 이건 이쁜거 있으면 그때 수정하는걸로 일단 input:search로 넣어둠 -->
-        </div>
+                   placeholder="전체 게시물 검색">
+        </div> -->
     </div>
 </nav>
 <hr style="margin-bottom: 0px;">

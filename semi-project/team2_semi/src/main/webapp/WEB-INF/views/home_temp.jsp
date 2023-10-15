@@ -39,7 +39,13 @@
                     <a href="#miniHome" class="nav__link">마이 홈</a>
                 </li>
                 <li class="nav__item">
-                    <a href="Sign_In.html" class="nav__link">로그인</a>
+                    <c:if test="${LogStatus =='Y'}">
+                        <a href="${pageContext.servletContext.contextPath}/user/logout" class="nav__link">로그아웃</a>
+                    </c:if>
+                    <c:if test="${LogStatus !='Y'}">
+                        <a href="${pageContext.servletContext.contextPath}/user/login" class="nav__link">로그인</a>
+                    </c:if>
+
                 </li>
             </ul>
 

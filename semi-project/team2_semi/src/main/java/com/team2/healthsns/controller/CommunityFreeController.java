@@ -7,12 +7,7 @@ import com.team2.healthsns.vo.PagingVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,20 +25,20 @@ public class CommunityFreeController {
         try {
             // Fetch the records based on the parameters in pVO
             pVO.setTotalRecord(service.totalRecordFree(pVO));
-            
+
             List<CommunityVO> communityItems = service.CommunityPageListFree(pVO);
             model.addAttribute("list", communityItems);
-            
+
             // Add all the search and sort parameters to the model to be used in the frontend
             model.addAttribute("page", pVO.getNowPage());
             model.addAttribute("searchKey", pVO.getSearchKey());
             model.addAttribute("searchWord", pVO.getSearchWord());
             model.addAttribute("category", pVO.getCategory());
             model.addAttribute("postSort", pVO.getPostSort());
-            
+
             // Add the generated URI for search and sort to the model
             model.addAttribute("uri", getUri(pVO));
-            
+
         } catch (Exception e) {
             // Optionally: Log the exception or handle it accordingly
             e.printStackTrace();
@@ -61,6 +56,7 @@ public class CommunityFreeController {
 
         return UriUtil.makeSearch(page, searchType, keyword, category, postSort);
     }
+
     @GetMapping("/FreeCommunity/write")
     public String CommunityWrite(HttpSession session) {
         String logstatus = (String) session.getAttribute("LogStatus");
@@ -105,47 +101,4 @@ public class CommunityFreeController {
         return mav;
     }
 
-    @GetMapping("/FreeCommunity/view")
-    public ModelAndView CommunityView(int post_id, PagingVO pVO) {
-        ModelAndView mav = new ModelAndView();
-        service.hitCountFree(post_id);
-        CommunityVO vo = service.CommunitySelectFree(post_id);
-        mav.addObject("vo", vo);
-        mav.addObject("pVO", pVO);
-        mav.setViewName("/community/Community_free");
-        return mav;
-    }
-
-    @GetMapping("/FreeCommunity/edit")
-    public ModelAndView CommunityEdit(int post_id) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("vo", service.CommunitySelectFree(post_id));
-        mav.setViewName("community/Community_Edit_Free");
-        return mav;
-    }
-
-    @PostMapping("/FreeCommunity/editOk")
-    public ModelAndView CommunityEditOk(CommunityVO vo) {
-        ModelAndView mav = new ModelAndView();
-        int result = service.CommunityUpdateFree(vo);
-        if (result > 0) {
-            mav.setViewName("redirect:view?post_id=" + vo.getPost_id());
-        } else {
-            mav.setViewName("community/Community_Free");
-            mav.addObject("msg", "수정");
-        }
-        return mav;
-    }
-
-    @GetMapping("/FreeCommunity/delete")
-    public ModelAndView CommunityDelete(int post_id) {
-        ModelAndView mav = new ModelAndView();
-        int result = service.CommunityDeleteFree(post_id);
-        if (result > 0) {
-            mav.setViewName("redirect:list");
-        } else {
-            mav.setViewName("redirect:view?post_id=" + post_id);
-        }
-        return mav;
-    }
 }

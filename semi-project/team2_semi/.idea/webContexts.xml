@@ -4,7 +4,9 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/community/Community_Free.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/community" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/community/Community_post.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/community" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home_temp.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/userInfoChange.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user" />
       </map>
     </option>
   </component>

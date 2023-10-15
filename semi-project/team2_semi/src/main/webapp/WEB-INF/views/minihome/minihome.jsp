@@ -127,7 +127,7 @@
 
         $(document).on('click', '.erase-button a', function () {
             if (confirm("정말로 삭제하시겠습니까?")) {
-                var guestbookid = $('.erase-button a').attr("title");
+                var guestbookid = $(this).attr("title");
                 console.log(guestbookid);
                 $.ajax({
                     url: '${pageContext.servletContext.contextPath}/minihome/guestbookDelete',

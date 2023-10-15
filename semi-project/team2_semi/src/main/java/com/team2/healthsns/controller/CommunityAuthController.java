@@ -7,12 +7,7 @@ import com.team2.healthsns.vo.PagingVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
@@ -20,7 +15,9 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 @Controller
@@ -33,20 +30,20 @@ public class CommunityAuthController {
         try {
             // Fetch the records based on the parameters in pVO
             pVO.setTotalRecord(service.totalRecordAuth(pVO));
-            
+
             List<CommunityVO> communityItems = service.CommunityPageListAuth(pVO);
             model.addAttribute("list", communityItems);
-            
+
             // Add all the search and sort parameters to the model to be used in the frontend
             model.addAttribute("page", pVO.getNowPage());
             model.addAttribute("searchKey", pVO.getSearchKey());
             model.addAttribute("searchWord", pVO.getSearchWord());
             model.addAttribute("category", pVO.getCategory());
             model.addAttribute("postSort", pVO.getPostSort());
-            
+
             // Add the generated URI for search and sort to the model
             model.addAttribute("uri", getUri(pVO));
-            
+
         } catch (Exception e) {
             // Optionally: Log the exception or handle it accordingly
             e.printStackTrace();
@@ -64,7 +61,9 @@ public class CommunityAuthController {
 
         return UriUtil.makeSearch(page, searchType, keyword, category, postSort);
     }
-    
+
+
+
     @GetMapping("/AuthCommunity/write")
     public String CommunityWrite(HttpSession session) {
         String logstatus = (String) session.getAttribute("LogStatus");
@@ -76,10 +75,10 @@ public class CommunityAuthController {
 
     @PostMapping("/AuthCommunity/writeOk")
     public ModelAndView CommunityWriteOk(@RequestParam(value = "first-part", required = false) String firstpart,
-            @RequestParam(value = "body-part", required = false) List<String> bodyparts,
-            @RequestParam("subject") String subject,
-            @RequestParam("content") String content,
-            HttpSession session) {
+                                         @RequestParam(value = "body-part", required = false) List<String> bodyparts,
+                                         @RequestParam("subject") String subject,
+                                         @RequestParam("content") String content,
+                                         HttpSession session) {
         ModelAndView mav = new ModelAndView();
         String userid = (String) session.getAttribute("LogId");
         CommunityVO bVO = new CommunityVO();
@@ -109,52 +108,101 @@ public class CommunityAuthController {
         return mav;
     }
 
-    @GetMapping("/AuthCommunity/view")
+    //여기서부터 내가 한 것
+
+    @GetMapping("/board/view")
     public ModelAndView CommunityView(int post_id, PagingVO pVO) {
+
         ModelAndView mav = new ModelAndView();
-        try {
-            service.hitCountAuth(post_id);
-            CommunityVO vo = service.CommunitySelectAuth(post_id);
-            mav.addObject("vo", vo);
-            mav.addObject("pVO", pVO);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            mav.setViewName("/community/Community_post");
+        service.hitCountAuth(post_id);
+        CommunityVO vo = service.CommunitySelectAuth(post_id);
+        if (vo == null) {
+            mav.setViewName("minihome/wrong");
             return mav;
-
         }
-    }
-
-    @GetMapping("/AuthCommunity/edit")
-    public ModelAndView CommunityEdit(int post_id) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("vo", service.CommunitySelectAuth(post_id));
-        mav.setViewName("community/Community_Edit_Auth");
+        StringBuilder sb = new StringBuilder();
+        if (vo.getBodypart() != null) {
+            StringTokenizer st = new StringTokenizer(vo.getBodypart(), "/");
+            Map<String, String> wordMap = new HashMap<>();
+            wordMap.put("chest", "가슴");
+            wordMap.put("shoulder", "어깨");
+            wordMap.put("back", "등");
+            wordMap.put("arm", "팔");
+            wordMap.put("stomach", "복부");
+            wordMap.put("waist", "허리");
+            wordMap.put("thigh", "허벅지");
+            wordMap.put("hip", "엉덩이");
+            wordMap.put("calf", "종아리");
+            while (st.hasMoreTokens()) {
+                String temp = st.nextToken();
+                if (wordMap.containsKey(temp)) {
+                    sb.append("#").append(wordMap.get(temp)).append(" ").append(" ");
+                }
+            }
+            vo.setBodypart(String.valueOf(sb));
+        }
+        mav.addObject("vo", vo);
+        mav.addObject("pVO", pVO);
+        mav.setViewName("/community/Community_post");
         return mav;
     }
 
-    @PostMapping("/AuthCommunity/editOk")
-    public ModelAndView CommunityEditOk(CommunityVO vo) {
+    @GetMapping("/board/edit")
+    public ModelAndView CommunityEdit(int post_id, HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        String logid = (String) session.getAttribute("LogId");
+        CommunityVO vo = service.CommunitySelectAuth(post_id);
+        if(!logid.equals(vo.getUserid())){
+            mav.setViewName("/minihome/wrong");
+            return mav;
+        }
+        mav.addObject("vo", vo);
+        mav.setViewName("/community/Community_Post_edit");
+        return mav;
+    }
+
+    @PostMapping("/board/editOk")
+    public ModelAndView CommunityEditOk(@RequestParam(value = "post_id")int post_id,
+                                        @RequestParam(value = "body-part",required = false)List<String> bodyparts,
+                                        @RequestParam(value="first-part",required = false)String firstpart,
+                                        @RequestParam("subject")String subject,
+                                        @RequestParam("content")String content,
+                                        HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        CommunityVO vo = new CommunityVO();
+        vo.setPost_id(post_id);
+        vo.setTitle(subject);
+        vo.setContent(content);
+        if(firstpart!=null){
+            vo.setCat(firstpart);
+        }
+        if(bodyparts!=null){
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i<bodyparts.size();i++){
+                sb.append(bodyparts.get(i)).append("/");
+            }
+            vo.setBodypart(String.valueOf(sb));
+        }
+
         int result = service.CommunityUpdateAuth(vo);
-        if (result > 0) {
-            mav.setViewName("redirect:view?post_id=" + vo.getPost_id());
-        } else {
-            mav.setViewName("community/Community_Auth");
-            mav.addObject("msg", "수정");
-        }
+        System.out.println(result==1);
+        mav.setViewName("redirect:/board/view?post_id=" + vo.getPost_id());
         return mav;
     }
 
-    @GetMapping("/AuthCommunity/delete")
+    @GetMapping("/board/delete")
     public ModelAndView CommunityDelete(int post_id) {
         ModelAndView mav = new ModelAndView();
+        CommunityVO temp = service.CommunitySelectAuth(post_id);
+        String board_cat = temp.getBoard_cat();
         int result = service.CommunityDeleteAuth(post_id);
-        if (result > 0) {
-            mav.setViewName("redirect:list");
-        } else {
-            mav.setViewName("redirect:view?post_id=" + post_id);
+        System.out.println(result==1);
+        if(board_cat.equals("auth")){
+            mav.setViewName("redirect:/AuthCommunity/list");
+        }else if(board_cat.equals("free")){
+            mav.setViewName("redirect:/FreeCommunity/list");
+        }else{
+            mav.setViewName("redirect:/QaCommunity/List");
         }
         return mav;
     }

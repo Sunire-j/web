@@ -13,4 +13,5 @@ public class CommunityReplyVO {
     private String write_date;
     private int depth;
     private String email;
+    private int isdelete;
 }
