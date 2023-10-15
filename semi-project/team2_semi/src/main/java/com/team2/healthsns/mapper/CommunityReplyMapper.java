@@ -11,4 +11,5 @@ public interface CommunityReplyMapper {
     public List<CommunityReplyVO> replySelect(int no);
     public int replyUpdate(CommunityReplyVO vo);
     public int replyDelete(int replyno);
+    public void SetNormalReplyTP(CommunityReplyVO vo);
 }
