@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,34 +27,33 @@ import java.util.StringTokenizer;
 public class CommunityAuthController {
     @Autowired
     CommunityService service;
+    private static final String BOARD_LIST_VIEW = "community/Community_Auth";
 
-    @GetMapping("/AuthCommunity/list")
-    public ModelAndView CommunityListAuth(PagingVO pVO) {
-        ModelAndView mav = new ModelAndView();
+    @RequestMapping(value = "AuthCommunity/list", method = RequestMethod.GET)
+    public String list(Model model, @ModelAttribute("pVO") PagingVO pVO) {
+        logger.info("Fetching community list with paging info: {}", pVO);
 
-        // 데이터 가져오기
-        pVO.setTotalRecord(service.totalRecordAuth(pVO));
-        List<CommunityVO> list = service.CommunityPageListAuth(pVO);
+        try {
+            List<CommunityVO> communityItems = service.CommunityPageListAuth(pVO);
+            model.addAttribute("list", communityItems);
+            model.addAttribute("uri", getUri(pVO));
+        } catch (Exception e) {
+            logger.error("Error fetching community list", e);
+            // Handle the exception e.g. redirect to error page
+        }
 
-        // URI 생성
+        return BOARD_LIST_VIEW;
+    }
+
+    private String getUri(PagingVO pVO) {
         int page = pVO.getNowPage();
         int perPageNum = pVO.getOnePageRecord();
         String searchType = pVO.getSearchKey();
         String keyword = pVO.getSearchWord();
-
         String category = pVO.getCategory(); // 카테고리 정보 가져오기
         String postSort = pVO.getPostSort(); // 정렬 옵션 가져오기
 
-        String uri = UriUtil.makeSearch(page, perPageNum, searchType, keyword, category, postSort);
-
-        mav.addObject("list", list);
-        mav.addObject("pVO", pVO);
-        mav.addObject("uri", uri);
-        mav.setViewName("community/Community_Auth");
-        System.out.println(pVO);
-        System.out.println("List size: " + list.size());
-        list.forEach(System.out::println);
-        return mav;
+        return UriUtil.makeSearch(page, perPageNum, searchType, keyword, category, postSort);
     }
 
     @GetMapping("/AuthCommunity/write")
@@ -65,10 +67,10 @@ public class CommunityAuthController {
 
     @PostMapping("/AuthCommunity/writeOk")
     public ModelAndView CommunityWriteOk(@RequestParam(value = "first-part", required = false) String firstpart,
-                                         @RequestParam(value = "body-part", required = false) List<String> bodyparts,
-                                         @RequestParam("subject") String subject,
-                                         @RequestParam("content") String content,
-                                         HttpSession session) {
+            @RequestParam(value = "body-part", required = false) List<String> bodyparts,
+            @RequestParam("subject") String subject,
+            @RequestParam("content") String content,
+            HttpSession session) {
         ModelAndView mav = new ModelAndView();
         String userid = (String) session.getAttribute("LogId");
         CommunityVO bVO = new CommunityVO();
@@ -97,7 +99,6 @@ public class CommunityAuthController {
 
         return mav;
     }
-
 
     @GetMapping("/AuthCommunity/view")
     public ModelAndView CommunityView(int post_id, PagingVO pVO) {

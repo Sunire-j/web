@@ -125,7 +125,8 @@
                     <div class="post-end-line">
                         <div class="inboard-search-area">
                             <div class="search flex-container"> <!-- Add a class to make this a flex container -->
-                                <form method="get" action="${pageContext.servletContext.contextPath}/AuthCommunity/list" onsubmit="return searchCheck()">
+                                <form method="get" action="${pageContext.servletContext.contextPath}/AuthCommunity/list"
+                                    onsubmit="return searchCheck()">
                                     <select name="searchKey">
                                         <option value="title">제목</option>
                                         <option value="content">글내용</option>
@@ -143,44 +144,57 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="paging">
                         <ul>
                             <!-- prev 페이지 -->
-                            <c:if test="${pVO.nowPage==1}">
-                                <li>prev</li>
-                            </c:if>
-                            <c:if test="${pVO.nowPage>1}">
-                                <li><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage-1}<c:if test="
-                                        ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                            </c:if>">prev</a></li>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${pVO.nowPage == 1}">
+                                    <li>prev</li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a
+                                            href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage-1}&${param.searchKey!=null ? 'searchKey=' + param.searchKey : ''}&${param.searchWord!=null ? 'searchWord=' + param.searchWord : ''}">prev</a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
 
                             <!-- 번호 페이지 -->
-                            <c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage+pVO.onePageCount-1}"
+                            <c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage + pVO.onePageCount - 1}"
                                 step="1">
-                                <c:if test="${p<=pVO.totalPage}">
-                                    <c:if test="${p==pVO.nowPage}">
-                                        <li class="paging-button active">${p}</li>
-                                    </c:if>
-                                    <c:if test="${p!=pVO.nowPage}">
-                                        <li class="paging-button"><a
-                                                href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${p}<c:if test="
-                                                ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                                    </c:if>">${p}</a></li>
-                                </c:if>
+                                <c:if test="${p <= pVO.totalPage}">
+                                    <c:choose>
+                                        <c:when test="${p == pVO.nowPage}">
+                                            <li class="paging-button active">${p}</li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="paging-button">
+                                                <a
+                                                    href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${p}${(not empty param.searchKey) ? '&searchKey=' + param.searchKey : ''}${(not empty param.searchWord) ? '&searchWord=' + param.searchWord : ''}">${p}</a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:if>
                             </c:forEach>
-
-                            <!-- next 페이지 -->
-                            <c:if test="${pVO.nowPage<pVO.totalPage}">
-                                <li><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage+1}<c:if test="
-                                        ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                            </c:if>">next</a></li>
-                            </c:if>
-                            <c:if test="${pVO.nowPage>=pVO.totalPage}">
-                                <li>next</li>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${pVO.nowPage < pVO.totalPage}">
+                                    <c:set var="nextUrl"
+                                           value="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage + 1}" />
+                                           
+                                    <c:if test="${param.searchKey!=null}">
+                                        <c:set var="nextUrl" value="${nextUrl}&searchKey=${param.searchKey}" />
+                                    </c:if>
+                            
+                                    <c:if test="${param.searchWord!=null}">
+                                        <c:set var="nextUrl" value="${nextUrl}&searchWord=${param.searchWord}" />
+                                    </c:if>
+                                    
+                                    <li><a href="${nextUrl}">next</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>next</li>
+                                </c:otherwise>
+                            </c:choose>
+                            
                         </ul>
                     </div>
                 </div>

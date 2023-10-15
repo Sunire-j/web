@@ -28,7 +28,7 @@ public class MapController {
 		return mav;
 	}
 
-	@PostMapping("/submit-review") // "/submit-review" URL¿¡ ´ëÇÑ POST ¿äÃ»À» Ã³¸®ÇÏ´Â ¸Þ¼Òµå
+	@PostMapping("/submit-review")
 	public ModelAndView submitReview(@RequestParam("placeName") String placeName,
 			@RequestParam("comment") String comment, @RequestParam("x") String x, @RequestParam("y") String y,
 			HttpSession session, @RequestParam("rating") int rating) {
@@ -50,9 +50,9 @@ public class MapController {
 		}
 		
 		if(result > 0) {
-			System.out.println("db¿¡ µé¾î°¨");
+			System.out.println("dbï¿½ï¿½ ï¿½ï¿½î°¨");
 		}else {
-			System.out.println("¾Èµé¾î°¨");
+			System.out.println("ï¿½Èµï¿½î°¨");
 		}
 		return mav;
 

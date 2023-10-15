@@ -236,6 +236,7 @@ select {
   display: flex;
   justify-content: space-around; 
   align-items: center;
+}
 
 .post-button {
   width: 100px;
@@ -249,9 +250,14 @@ select {
 .post-button:hover,
 .paging-button:hover {
   background-color: #31386d;
+  color: #fff;  
 }
 
-.post-button:active,
-.paging-button:active {
-  background-color: var(--blue-basic-color);
+.paging-button a {
+    color: inherit;           /* 링크의 색상을 상위 요소와 동일하게 */
+    text-decoration: none;    /* 링크 밑줄 제거 */
+}
+
+.paging-button a:hover {
+    text-decoration: underline; /* 링크에 마우스 오버 시 밑줄 표시 */
 }

@@ -65,7 +65,7 @@
                             <option value="2" ${pagingVO.category=='2' ? 'selected' : '' }>하체</option>
                         </select>
                         <div class="check-post"><a
-                                href="${pageContext.servletContext.contextPath}/AuthCommunity/list">전체 게시물</a></div>
+                                href="${pageContext.servletContext.contextPath}/QaCommunity/list">전체 게시물</a></div>
                         <div class="check-post"><a
                                 href="${pageContext.servletContext.contextPath}/Community_Show_MyPost.html">내 게시물</a>
                         </div>
@@ -124,7 +124,7 @@
                     <div class="post-end-line">
                         <div class="inboard-search-area">
                             <div class="search flex-container"> <!-- Add a class to make this a flex container -->
-                                <form method="get" action="${pageContext.servletContext.contextPath}/AuthCommunity/list" onsubmit="return searchCheck()">
+                                <form method="get" action="${pageContext.servletContext.contextPath}/QaCommunity/list" onsubmit="return searchCheck()">
                                     <select name="searchKey">
                                         <option value="title">제목</option>
                                         <option value="content">글내용</option>
@@ -146,42 +146,42 @@
                     <div class="paging">
                         <ul>
                             <!-- prev 페이지 -->
-                            <c:if test="${pVO.nowPage==1}">
-                                <li>prev</li>
-                            </c:if>
-                            <c:if test="${pVO.nowPage>1}">
-                                <li><a href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${pVO.nowPage-1}<c:if test="
-                                        ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                            </c:if>">prev</a></li>
-                            </c:if>
-
+                            <c:choose>
+                                <c:when test="${pVO.nowPage == 1}">
+                                    <li>prev</li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${pVO.nowPage-1}&${param.searchKey!=null ? 'searchKey=' + param.searchKey : ''}&${param.searchWord!=null ? 'searchWord=' + param.searchWord : ''}">prev</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                    
                             <!-- 번호 페이지 -->
-                            <c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage+pVO.onePageCount-1}"
-                                step="1">
-                                <c:if test="${p<=pVO.totalPage}">
-                                    <c:if test="${p==pVO.nowPage}">
-                                        <li class="paging-button active">${p}</li>
-                                    </c:if>
-                                    <c:if test="${p!=pVO.nowPage}">
-                                        <li class="paging-button"><a
-                                                href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${p}<c:if test="
-                                                ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                                    </c:if>">${p}</a></li>
-                                </c:if>
+                            <c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage + pVO.onePageCount - 1}" step="1">
+                                <c:if test="${p <= pVO.totalPage}">
+                                    <c:choose>
+                                        <c:when test="${p == pVO.nowPage}">
+                                            <li class="paging-button active">${p}</li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="paging-button">
+                                                <a href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${p}${(not empty param.searchKey) ? '&searchKey=' + param.searchKey : ''}${(not empty param.searchWord) ? '&searchWord=' + param.searchWord : ''}">${p}</a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:if>
                             </c:forEach>
-
+                    
                             <!-- next 페이지 -->
-                            <c:if test="${pVO.nowPage<pVO.totalPage}">
-                                <li><a href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${pVO.nowPage+1}<c:if test="
-                                        ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                            </c:if>">next</a></li>
-                            </c:if>
-                            <c:if test="${pVO.nowPage>=pVO.totalPage}">
-                                <li>next</li>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${pVO.nowPage < pVO.totalPage}">
+                                    <li><a href="${pageContext.servletContext.contextPath}/QaCommunity/list?nowPage=${pVO.nowPage + 1}&${param.searchKey!=null ? 'searchKey=' + param.searchKey : ''}&${param.searchWord!=null ? 'searchWord=' + param.searchWord : ''}">next</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>next</li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
-                    </div>
+                    </div>                    
                 </div>
             </div>
             <script src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
@@ -203,7 +203,7 @@
                 let postSort = $("#post-sort-select").val();
                 let searchWord = $("#inboard-search").val();
 
-                let url = "${pageContext.servletContext.contextPath}/AuthCommunity/list";
+                let url = "${pageContext.servletContext.contextPath}/QaCommunity/list";
                 url += "?category=" + category;
                 url += "&postSort=" + postSort;
                 url += "&searchWord=" + encodeURIComponent(searchWord);
