@@ -41,7 +41,7 @@ public class UserController {
         //유저정보 다 가져와야함
         UserVO uservo = service.UserSelectAll(userid);
         mav.addObject("uservo", uservo);
-        mav.setViewName("/user/myPage");
+        mav.setViewName("/user/userInfoChange");
         return mav;
     }
 
