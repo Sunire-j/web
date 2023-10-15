@@ -45,7 +45,7 @@
             <header>
                 <!-- 게시판 알려주는 박스 -->
                 <div class="intro-board"
-                    style="background-image: url(${pageContext.servletContext.contextPath}/img/Free_Banner.png);">
+                    style="background-image: url(${pageContext.servletContext.contextPath}/img/Auth_Banner.png);">
                     <div class="board-name">인증게시판</div>
                 </div>
             </header>
@@ -59,7 +59,7 @@
                 <div class="right">
                     <!-- 2차카테고리, 전체글, 내글 버튼 -->
                     <div class="second-category">
-                        <select name="category" id="second-cat">
+                        <select name="category" id="second-cat" value="${pVO.category}">
                             <option value="0" ${pagingVO.category=='0' ? 'selected' : '' }>카테고리</option>
                             <option value="1" ${pagingVO.category=='1' ? 'selected' : '' }>상체</option>
                             <option value="2" ${pagingVO.category=='2' ? 'selected' : '' }>하체</option>
@@ -75,7 +75,8 @@
                         <div class="post-list-head">
                             <div class="post-sort">
                                 <div style="color: #464d86;">정렬</div>
-                                <select name="post-sort" id="post-sort-select" class="post-sort-select">
+                                <select name="post-sort" id="post-sort-select" value="${pVO.postSort}"
+                                    onchange="updateURL();">">
                                     <option value="1" ${pagingVO.postSort=='1' ? 'selected' : '' }>최신순</option>
                                     <option value="2" ${pagingVO.postSort=='2' ? 'selected' : '' }>좋아요순</option>
                                     <option value="3" ${pagingVO.postSort=='3' ? 'selected' : '' }>조회순</option>
@@ -125,14 +126,17 @@
                     <div class="post-end-line">
                         <div class="inboard-search-area">
                             <div class="search flex-container"> <!-- Add a class to make this a flex container -->
-                                <form method="get" action="${pageContext.servletContext.contextPath}/AuthCommunity/list" onsubmit="return searchCheck()">
+                                <form method="get" action="${pageContext.servletContext.contextPath}/AuthCommunity/list"
+                                    onsubmit="return searchCheck()">
                                     <select name="searchKey">
-                                        <option value="title">제목</option>
-                                        <option value="content">글내용</option>
-                                        <option value="userid">글쓴이</option>
+                                        <option value="title" ${pVO.searchKey=='title' ? 'selected' : '' }>제목</option>
+                                        <option value="content" ${pVO.searchKey=='content' ? 'selected' : '' }>글내용
+                                        </option>
+                                        <option value="userid" ${pVO.searchKey=='userid' ? 'selected' : '' }>글쓴이
+                                        </option>
                                     </select>
-                                    <input type="search" name="inboard-search" id="inboard-search"
-                                        value="${pagingVO.searchWord}" class="inboard-search" placeholder="자유게시판 내 검색">
+                                    <input type="search" name="searchWord" id="inboard-search" value="${pVO.searchWord}"
+                                        class="inboard-search" placeholder="자유게시판 내 검색">
                                     <input type="submit" value="search" class="post-button" id="search-button">
                                 </form>
                                 <c:if test="${LogStatus=='Y'}">
@@ -143,44 +147,65 @@
                             </div>
                         </div>
                     </div>
+                    <c:url var="prevUrl" value="/AuthCommunity/list">
+                        <c:param name="nowPage" value="${pVO.nowPage-1}" />
+                        <c:param name="searchKey" value="${pVO.searchKey}" />
+                        <c:param name="searchWord" value="${pVO.searchWord}" />
+                        <c:param name="category" value="${pVO.category}" />
+                        <c:param name="postSort" value="${pVO.postSort}" />
+                    </c:url>
 
+                    <c:url var="nextUrl" value="/AuthCommunity/list">
+                        <c:param name="nowPage" value="${pVO.nowPage+1}" />
+                        <c:param name="searchKey" value="${pVO.searchKey}" />
+                        <c:param name="searchWord" value="${pVO.searchWord}" />
+                        <c:param name="category" value="${pVO.category}" />
+                        <c:param name="postSort" value="${pVO.postSort}" />
+                    </c:url>
                     <div class="paging">
                         <ul>
                             <!-- prev 페이지 -->
-                            <c:if test="${pVO.nowPage==1}">
-                                <li>prev</li>
-                            </c:if>
-                            <c:if test="${pVO.nowPage>1}">
-                                <li><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage-1}<c:if test="
-                                        ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                            </c:if>">prev</a></li>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${pVO.nowPage == 1}">
+                                    <li>prev</li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="${prevUrl}">prev</a></li>
+                                </c:otherwise>
+                            </c:choose>
 
                             <!-- 번호 페이지 -->
-                            <c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage+pVO.onePageCount-1}"
+                            <c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage + pVO.onePageCount - 1}"
                                 step="1">
-                                <c:if test="${p<=pVO.totalPage}">
-                                    <c:if test="${p==pVO.nowPage}">
-                                        <li class="paging-button active">${p}</li>
-                                    </c:if>
-                                    <c:if test="${p!=pVO.nowPage}">
-                                        <li class="paging-button"><a
-                                                href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${p}<c:if test="
-                                                ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                                    </c:if>">${p}</a></li>
-                                </c:if>
+                                <c:if test="${p <= pVO.totalPage}">
+                                    <c:url var="pageNumUrl" value="/AuthCommunity/list">
+                                        <c:param name="nowPage" value="${p}" />
+                                        <c:param name="searchKey" value="${pVO.searchKey}" />
+                                        <c:param name="searchWord" value="${pVO.searchWord}" />
+                                        <c:param name="category" value="${pVO.category}" />
+                                        <c:param name="postSort" value="${pVO.postSort}" />
+                                    </c:url>
+                                    <c:choose>
+                                        <c:when test="${p == pVO.nowPage}">
+                                            <li class="paging-button active">${p}</li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="paging-button">
+                                                <a href="${pageNumUrl}">${p}</a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:if>
                             </c:forEach>
-
                             <!-- next 페이지 -->
-                            <c:if test="${pVO.nowPage<pVO.totalPage}">
-                                <li><a href="${pageContext.servletContext.contextPath}/AuthCommunity/list?nowPage=${pVO.nowPage+1}<c:if test="
-                                        ${pVO.searchWord!=null}">&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}
-                            </c:if>">next</a></li>
-                            </c:if>
-                            <c:if test="${pVO.nowPage>=pVO.totalPage}">
-                                <li>next</li>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${pVO.nowPage < pVO.totalPage}">
+                                    <li><a href="${nextUrl}">next</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>next</li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                     </div>
                 </div>
@@ -197,25 +222,46 @@
                 }
                 return true;
             }
-
+        
+            function updateURL() {
+                const selectedValue = document.getElementById("post-sort-select").value;
+                const currentURL = window.location.href;
+                const newURL = currentURL + (currentURL.includes("?") ? "&" : "?") + "postSort=" + selectedValue;
+                window.location.href = newURL;
+            }
+        
             function constructUrl() {
+                let currentParams = new URLSearchParams(window.location.search);
+        
                 let category = $("#second-cat").val();
                 let postSort = $("#post-sort-select").val();
                 let searchWord = $("#inboard-search").val();
-
+        
+                currentParams.set('category', category);
+                currentParams.set('postSort', postSort);
+                currentParams.set('searchWord', encodeURIComponent(searchWord));
+        
                 let url = "${pageContext.servletContext.contextPath}/AuthCommunity/list";
-                url += "?category=" + category;
-                url += "&postSort=" + postSort;
-                url += "&searchWord=" + encodeURIComponent(searchWord);
+                url += "?" + currentParams.toString();
+        
                 return url;
             }
-
+        
+            // 페이지가 로드되면 현재 URL의 값을 사용하여 드롭다운 값을 설정합니다.
+            $(document).ready(function() {
+                let params = new URLSearchParams(window.location.search);
+        
+                if (params.has('category')) {
+                    $('#second-cat').val(params.get('category'));
+                }
+                if (params.has('postSort')) {
+                    $('#post-sort-select').val(params.get('postSort'));
+                }
+            });
+        
             $("#second-cat, #post-sort-select").change(function () {
                 window.location.href = constructUrl();
             });
-
-            $("#search-button").click(function (e) {
-                e.preventDefault();  // prevent the default form submission
-                window.location.href = constructUrl();
-            });
+        
         </script>
+        

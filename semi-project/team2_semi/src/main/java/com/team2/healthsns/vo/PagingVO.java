@@ -14,7 +14,7 @@ public class PagingVO {
     private int totalPage;
     private int offsetPoint = (nowPage - 1) * onePageRecord;
     private int onePageCount = 5;
-    private int startPage = 1;
+    private int startPage = 1;;
     private String searchKey;
     private String searchWord;
     private String category;

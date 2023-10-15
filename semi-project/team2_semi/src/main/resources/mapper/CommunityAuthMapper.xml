@@ -4,40 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team2.healthsns.mapper.CommunityAuthMapper">
-
-    <sql id="categoryFilter">
-        <choose>
-            <!-- 상체 -->
-            <when test="category == '1'">
-                AND b.cat = '상체'
-            </when>
-            <!-- 하체 -->
-            <when test="category == '2'">
-                AND b.cat = '하체'
-            </when>
-        </choose>
-    </sql>
-    
-    <sql id="sort">
-        <choose>
-            <!-- 최신순 -->
-            <when test="postSort == '1'">
-                ORDER BY b.write_date DESC
-            </when>
-            <!-- 좋아요순 -->
-            <when test="postSort == '2'">
-                ORDER BY b.like DESC
-            </when>
-            <!-- 조회순 -->
-            <when test="postSort == '3'">
-                ORDER BY b.views DESC
-            </when>
-            <!-- 기본 정렬: 최신순 -->
-            <otherwise>
-                ORDER BY b.write_date DESC
-            </otherwise>
-        </choose>
-    </sql>    
     
     <insert id="communityInsertAuth">
         insert into board(title, content, userid, board_cat, cat, bodypart)
@@ -49,16 +15,32 @@
         from board b
         left join comment c on b.post_id = c.target_post_id
         where board_cat = 'auth'
-        <include refid="categoryFilter" />
         <if test="searchWord != null and searchWord != ''">
-            AND title like CONCAT('%', #{searchWord}, '%')
+            AND b.${searchKey} like '%${searchWord}%'
         </if>
+        <if test="category == 1">
+            AND b.cat = '상체' 
+        </if>        
+        <if test="category == 2">
+            AND b.cat = '하체' 
+        </if>  
         GROUP BY 
             b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
-        <include refid="sort" />
-        limit #{onePageRecord}
-        offset #{offsetPoint}
+        <choose>
+            <when test="postSort == 2">
+                ORDER BY b.like DESC
+            </when>  
+            <when test="postSort == 3">
+                ORDER BY b.views DESC
+            </when>  
+            <otherwise>
+                ORDER BY b.write_date DESC
+            </otherwise>  
+        </choose>
+        limit ${onePageRecord}
+        offset ${offsetPoint}
     </select>
+    
 
     <select id="totalRecordAuth">
         select count(post_id) from board
@@ -67,8 +49,7 @@
             AND title like CONCAT('%', #{searchWord}, '%')
         </if>
     </select>
-
-
+    
 
     <update id="hitCountAuth">
         update board
