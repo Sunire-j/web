@@ -35,4 +35,46 @@
         ORDER BY views DESC
         LIMIT 9;
     </select>
+
+    <select id="idCheck" resultType="int">
+        select count(userid) from user
+        where userid=#{param1}
+    </select>
+
+
+    <!-- 회원가입 -->
+    <insert id="userInsert">
+        insert into
+        USER_INFO(userid,userpwd,username,email,pwd_q,pwd_a,profile_img)
+        values(#{userid}, #{userpwd}, #{username}, #{email}, #{pwd_q},
+        #{pwd_a}, #{profile_img})
+    </insert>
+
+    <!-- 로그인 -->
+    <select id="loginSelect">
+        select userid, username
+        from USER_INFO
+        where userid=#{param1}
+        and userpwd=#{param2}
+    </select>
+
+    <!-- 아아디 찾기 -->
+    <select id="findId">
+        select userid from USER_INFO where email=#{useremail}
+    </select>
+
+    <!-- 비밀번호 찾기 -->
+    <select id="findPw"> <!-- true, false 반환 -->
+        SELECT userid
+        FROM user_info
+        WHERE userid=#{param1} AND email=#{param2} AND pwd_q=#{param3} AND
+        pwd_a=#{param4}
+    </select>
+
+    <!-- 비밀번호 변경 -->
+    <update id="changePwd">
+        update user_info
+        set userpwd = #{param1}
+        where userid = #{param2}
+    </update>
 </mapper>

@@ -1,45 +1,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/community-nav.css">
-<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/userForm.css">
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/community-nav.css">
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/userInfoChange.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
 	rel="stylesheet">
 
-<script>
-    $(function () {
-        $("input[value='중복 확인']").click(function () {
-            if ($("#userid").val() == "") {
-                alert("아이디를 입력 후 중복검사하세요.");
-                return;
-            }
-            window.open("/campus/user/idCheck?userid=" + $("#userid").val(), "idCheck", "width=500px,height=300px");
-        });
-        $("#userid").keyup(function(){
-            $("#chk").val("N");
-        })
-    });
-    
-</script>
-<h1>회원가입</h1>
+<h1>회원 정보 수정</h1>
 
 <div id="warning"></div>
 
 <div class="signup-area">
 	<div class="signup-area2">
-    <form method="post" action="${pageContext.servletContext.contextPath}/userFormOK" id="userFrm">
+    <form method="post" action="" id="userFrm">
         <div class="id-input">
 			<label for="userid">아이디</label>
             <input type="text" name="userid" id="userid" placeholder="8~16글자의 대소문자, 숫자만 지원합니다." class="inputtext">
             <input type="button" value="확인" class="id-check" id="id-check">
         </div>
         
-        <div class="pwd-input">
-			<label for="userpwd">비밀번호</label>
-            <input type="password" name="userpwd" id="userpwd" class="inputtext"
-                placeholder="8~16글자의 대소문자, 숫자, 특수문자 중 2가지 이상 사용">
-        </div>
+		<div class="pwd-input">
+                    <label for="userpwd">기존 비밀번호</label>
+                    <input type="password" name="userpwd" id="userpwd" class="inputtext"
+                        placeholder="">
+                </div>
+
+                <div class="pwd2-input">
+                    <label for="userpwd2">새로운 비밀번호</label>
+                    <input type="password" name="userpwd" id="userpwd" class="inputtext"
+                        placeholder="8~16글자 대문자, 소문자, 숫자, 특수문자 중 2가지 이상 사용">
+                </div>
         
         <div class="name-input">
  			<label for="username">닉네임 </label>
@@ -64,11 +57,8 @@
         <div class="Answer">
             <input type="text" name="pwd_a" id="pwd_a" class="inputtext" placeholder="비밀번호 찾기 답">
         </div>
-        <div class="agree">
-            <p>개인정보 수집 및 이용 동의</p>
-            <input type="checkbox" name="agree" id="agree">
-        </div>
-        <input type="submit" value="회원가입" class="signup-submit">
+
+        <input type="submit" value="수정 완료" class="signup-submit">
 
     </form>
     </div>

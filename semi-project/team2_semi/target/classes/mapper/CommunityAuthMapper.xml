@@ -4,40 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team2.healthsns.mapper.CommunityAuthMapper">
-
-    <sql id="categoryFilter">
-        <choose>
-            <!-- 상체 -->
-            <when test="category == '1'">
-                AND b.cat = '상체'
-            </when>
-            <!-- 하체 -->
-            <when test="category == '2'">
-                AND b.cat = '하체'
-            </when>
-        </choose>
-    </sql>
-    
-    <sql id="sort">
-        <choose>
-            <!-- 최신순 -->
-            <when test="postSort == '1'">
-                ORDER BY b.write_date DESC
-            </when>
-            <!-- 좋아요순 -->
-            <when test="postSort == '2'">
-                ORDER BY b.like DESC
-            </when>
-            <!-- 조회순 -->
-            <when test="postSort == '3'">
-                ORDER BY b.views DESC
-            </when>
-            <!-- 기본 정렬: 최신순 -->
-            <otherwise>
-                ORDER BY b.write_date DESC
-            </otherwise>
-        </choose>
-    </sql>    
     
     <insert id="communityInsertAuth">
         insert into board(title, content, userid, board_cat, cat, bodypart)
@@ -49,15 +15,30 @@
         from board b
         left join comment c on b.post_id = c.target_post_id
         where board_cat = 'auth'
-        <include refid="categoryFilter" />
         <if test="searchWord != null and searchWord != ''">
-            AND title like CONCAT('%', #{searchWord}, '%')
+            AND b.${searchKey} like '%${searchWord}%'
         </if>
-        GROUP BY 
-            b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
-        <include refid="sort" />
-        limit #{onePageRecord}
-        offset #{offsetPoint}
+        <if test="category == 1">
+            AND b.cat = 'upper'
+        </if>
+        <if test="category == 2">
+            AND b.cat = 'lower'
+        </if>
+        GROUP BY
+        b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
+        <choose>
+            <when test="postSort == 2">
+                ORDER BY b.like DESC
+            </when>
+            <when test="postSort == 3">
+                ORDER BY b.views DESC
+            </when>
+            <otherwise>
+                ORDER BY b.write_date DESC
+            </otherwise>
+        </choose>
+        limit ${onePageRecord}
+        offset ${offsetPoint}
     </select>
 
     <select id="totalRecordAuth">
@@ -68,11 +49,7 @@
         </if>
     </select>
 
-    <select id="communitySelectAuth" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as write_date,bodypart, board_cat
-        from board
-        where post_id = #{param1}
-    </select>
+
 
     <update id="hitCountAuth">
         update board
@@ -82,7 +59,7 @@
 
     <update id="communityUpdateAuth">
         update board
-        set title = #{title}, content = #{content}
+        set title = #{title}, content = #{content}, cat = #{cat}, bodypart=#{bodypart}
         where post_id = #{post_id}
     </update>
 
@@ -90,5 +67,21 @@
         delete from board
         where post_id = #{param1}
     </update>
+
+    <select id="communitySelectAuth" resultType="com.team2.healthsns.vo.CommunityVO">
+        SELECT
+        b.post_id AS post_id,
+        b.title AS title,
+        b.userid AS userid,
+        b.content AS content,
+        b.views AS views,
+        DATE_FORMAT(b.write_date,'%m-%d %h:%i') AS write_date,
+        b.bodypart AS bodypart,
+        b.board_cat AS board_cat,
+        b.cat as cat,
+        (SELECT COUNT(*) FROM comment c WHERE c.target_post_id = b.post_id) AS commentsCount
+        FROM board b
+        WHERE post_id = #{param1}
+    </select>
 
 </mapper>

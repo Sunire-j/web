@@ -6,29 +6,48 @@
 <mapper namespace="com.team2.healthsns.mapper.CommunityReplyMapper">
 
     <insert id="replyInsert">
-        insert into comment(target_post_id, content, userid)
-        values(${target_post_id}, #{content}, #{userid});
+        insert into comment(target_post_id, content, userid, depth
+        <if test="target_parent != null">, target_parent</if>)
+        values(#{post_id}, #{content}, #{writer}, #{depth}
+        <if test="target_parent != null">, #{target_parent}</if>);
+        <selectKey keyProperty="comment_id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
-<select id="replySelect" resultType="com.team2.healthsns.vo.CommunityReplyVO">
-    select comment_id, content, userid, write_date
-    from comment
-    where target_post_id = ${param1}
-    order by target_parent asc, depth asc, write_date asc;
-</select>
+    <select id="replySelect" resultType="com.team2.healthsns.vo.CommunityReplyVO">
+        SELECT c.comment_id as comment_id,
+        c.content as content,
+        c.isdelete as isdelete,
+        c.userid AS writer,
+        c.write_date as write_date,
+        c.depth as depth,
+        c.target_post_id AS post_id,
+        u.email as email
+        FROM comment AS c
+        JOIN user_info AS u ON u.userid = c.userid
+        WHERE target_post_id = ${param1}
+        ORDER BY target_parent ASC, depth ASC, write_date asc;
+    </select>
+
+    <update id="SetNormalReplyTP">
+        update comment
+        set target_parent = #{comment_id}
+        where comment_id = #{comment_id}
+    </update>
 
 
-<update id="replyUpdate">
-    update comment
-    set content=#{content}
-    where comment_id=${comment_id};
-</update>
+    <update id="replyUpdate">
+        update comment
+        set content=#{param1}
+        where comment_id=${param2};
+    </update>
 
-<update id="replyDelete">
-    update comment
-    set content='삭제된 메세지입니다'
-    where comment_id=${param1};
-</update>
+    <update id="replyDelete">
+        update comment
+        set isdelete=1, content="삭제된 댓글입니다."
+        where comment_id=${param1};
+    </update>
 
 
 </mapper>

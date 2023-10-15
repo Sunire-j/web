@@ -33,4 +33,41 @@ public class UserServicempl implements UserService {
         return mapper.getTopPostsByDate(date);
     }
 
+    @Override
+    public int userInsert(UserVO vo) {
+        return mapper.userInsert(vo);
+    }
+
+    // 로그인
+    @Override
+    public UserVO loginSelect(String userid, String userpwd) {
+        return mapper.loginSelect(userid, userpwd);
+    }
+
+    // 아이디 중복 체크
+    @Override
+    public int idCheck(String userid) {
+
+        return mapper.idCheck(userid);
+    }
+
+    // 아이디 찾기 기능 구현
+    @Override
+    public String findId(String email) { // findId 메서드 선언, email 파라미터를 입력 받음
+        String foundId = mapper.findId(email); // mapper 객체의 findId 메서드 호출하여 얻은 CRUD 수행 결과물을 foundId에 저장.
+        return foundId != null ? foundId : ""; // 조회된 결과값이 널인 경우 ""반환, 널이 아니면 foundId값 반환.
+    }
+
+    @Override
+    // 비밀번호 찾기 기능 구현
+    public String findPw(String userid, String email, String pwd_q, String pwd_a) {
+        return mapper.findPw(userid, email, pwd_q, pwd_a);
+    }
+
+    @Override
+    public int changePwd(String pwd, String userid) {
+        // TODO Auto-generated method stub
+        return mapper.changePwd(pwd, userid);
+    }
+
 }

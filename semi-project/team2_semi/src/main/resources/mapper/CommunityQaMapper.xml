@@ -51,10 +51,10 @@
             AND b.${searchKey} like '%${searchWord}%'
         </if>
         <if test="category == 1">
-            AND b.cat = '상체' 
+            AND b.cat = 'upper'
         </if>        
         <if test="category == 2">
-            AND b.cat = '하체' 
+            AND b.cat = 'lower'
         </if>  
         GROUP BY 
             b.post_id, b.title, b.userid, b.views, b.write_date, b.cat

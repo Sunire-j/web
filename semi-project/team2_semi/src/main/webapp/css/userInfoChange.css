@@ -1,0 +1,78 @@
+h1,
+#warning {
+  text-align: center;
+}
+
+#warning {
+  font-weight: bold;
+  font-size: 18px;
+  color: red;
+}
+
+.signup-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.signup-area2 {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Question {
+  display: flex;
+  justify-content: space-between; /* 입력란 박스 사이의 간격을 조절합니다. */
+}
+
+label {
+  margin-right: 20px; /* You can adjust the value to control the spacing */
+}
+
+label[for="userpwd"] {
+  margin-left: -54px; /* Adjust the value to move it as desired */
+}
+
+label[for="userpwd2"] {
+  margin-left: -70px; /* Adjust the value to move it as desired */
+}
+
+.inputtext,
+select {
+  width: 300px;
+  height: 40px;
+  margin: 10px 0; /* 상단과 하단 마진을 조절하여 간격을 설정합니다. */
+}
+
+.agree {
+  display: flex;
+  justify-content: center;
+}
+
+.signup-submit {
+  width: 100px;
+  height: 40px;
+  font-size: 1.2em;
+  align-self: center;
+  margin-top: 20px; /* 하단 마진을 조절합니다. */
+}
+
+.pwd_q, #pwd_a {
+  margin-left: 73px; /* Adjust the value to move them as desired */
+}
+
+.pwd_q{
+  width: 308px;
+  height: 40px;
+}
+
+.signup-submit {
+    font-size: 14px; /* Adjust the font size as desired */
+}

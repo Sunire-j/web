@@ -23,8 +23,8 @@ public class CommunityReplyServicempl implements CommunityReplyService{
     }
 
     @Override
-    public int replyUpdate(CommunityReplyVO vo) {
-        return mapper.replyUpdate(vo);
+    public int replyUpdate(String editcontent, int commentid){
+        return mapper.replyUpdate(editcontent,commentid);
     }
 
     @Override

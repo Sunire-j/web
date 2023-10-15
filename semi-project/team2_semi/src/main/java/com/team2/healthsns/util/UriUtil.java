@@ -9,7 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class UriUtil {
 
     public static String makeSearch(int page, String searchType, String keyword, String category,
-            String postSort) {
+                                    String postSort) {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("searchType", searchType)

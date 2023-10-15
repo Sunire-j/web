@@ -9,7 +9,7 @@ import java.util.List;
 public interface CommunityReplyMapper {
     public int replyInsert(CommunityReplyVO vo);
     public List<CommunityReplyVO> replySelect(int no);
-    public int replyUpdate(CommunityReplyVO vo);
+    public int replyUpdate(String editcontent, int commentid);
     public int replyDelete(int replyno);
     public void SetNormalReplyTP(CommunityReplyVO vo);
 }

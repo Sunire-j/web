@@ -29,20 +29,20 @@ public class CommunityQaController {
         try {
             // Fetch the records based on the parameters in pVO
             pVO.setTotalRecord(service.totalRecordQa(pVO));
-            
+
             List<CommunityVO> communityItems = service.CommunityPageListQa(pVO);
             model.addAttribute("list", communityItems);
-            
+
             // Add all the search and sort parameters to the model to be used in the frontend
             model.addAttribute("page", pVO.getNowPage());
             model.addAttribute("searchKey", pVO.getSearchKey());
             model.addAttribute("searchWord", pVO.getSearchWord());
             model.addAttribute("category", pVO.getCategory());
             model.addAttribute("postSort", pVO.getPostSort());
-            
+
             // Add the generated URI for search and sort to the model
             model.addAttribute("uri", getUri(pVO));
-            
+
         } catch (Exception e) {
             // Optionally: Log the exception or handle it accordingly
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class CommunityQaController {
         System.out.println("PostSort value: " + pVO.getPostSort());
         return "community/Community_Qa";
     }
-    
+
     private String getUri(PagingVO pVO) {
         int page = pVO.getNowPage();
         String searchType = pVO.getSearchKey();
@@ -105,47 +105,4 @@ public class CommunityQaController {
         return mav;
     }
 
-    @GetMapping("/QaCommunity/view")
-    public ModelAndView CommunityView(int post_id, PagingVO pVO) {
-        ModelAndView mav = new ModelAndView();
-        service.hitCountQa(post_id);
-        CommunityVO vo = service.CommunitySelectQa(post_id);
-        mav.addObject("vo", vo);
-        mav.addObject("pVO", pVO);
-        mav.setViewName("/community/Community_Qa");
-        return mav;
-    }
-
-    @GetMapping("/QaCommunity/edit")
-    public ModelAndView CommunityEdit(int post_id) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("vo", service.CommunitySelectQa(post_id));
-        mav.setViewName("community/Community_Edit_Qa");
-        return mav;
-    }
-
-    @PostMapping("/QaCommunity/editOk")
-    public ModelAndView CommunityEditOk(CommunityVO vo) {
-        ModelAndView mav = new ModelAndView();
-        int result = service.CommunityUpdateQa(vo);
-        if (result > 0) {
-            mav.setViewName("redirect:view?no=" + vo.getPost_id());
-        } else {
-            mav.setViewName("community/community_Qa");
-            mav.addObject("msg", "수정");
-        }
-        return mav;
-    }
-
-    @GetMapping("/QaCommunity/delete")
-    public ModelAndView CommunityDelete(int post_id) {
-        ModelAndView mav = new ModelAndView();
-        int result = service.CommunityDeleteQa(post_id);
-        if (result > 0) {
-            mav.setViewName("redirect:list");
-        } else {
-            mav.setViewName("redirect:view?no=" + post_id);
-        }
-        return mav;
-    }
 }

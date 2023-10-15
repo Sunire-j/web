@@ -8,14 +8,12 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
 
 <!-- #게시물 선택 바 시작-->
-<div class="check-post">
-    <a href="javascript:history.back();">전체 게시물</a>&nbsp;&nbsp;&nbsp;
-    <a href="#">내 게시물</a>
-    <hr>
-</div>
+
 
 <form method="post" action="${pageContext.servletContext.contextPath}/QaCommunity/writeOk"
       style="margin: 0 auto; width: 1000px">
+    <input type="text" name="subject" placeholder="제목" style="margin-top: 30px; height: 30px; width: 300px"/>
+    <hr/>
     <div class="body-select" style="margin-top: 10px; margin-bottom: 10px;">
         <b>주요부위</b> &nbsp; &nbsp;
         상체 : <input type="radio" name="first-part" value="upper"/>

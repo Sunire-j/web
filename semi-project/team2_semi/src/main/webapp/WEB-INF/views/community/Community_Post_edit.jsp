@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/community-nav.css">
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/community-header.css">
@@ -9,30 +10,74 @@
 
 <!-- #게시물 선택 바 시작-->
 
-<form method="post" action="${pageContext.servletContext.contextPath}/AuthCommunity/writeOk"
+<form method="post" action="${pageContext.servletContext.contextPath}/board/editOk"
       style="margin: 0 auto; width: 1000px">
-    <input type="text" name="subject" placeholder="제목" style="margin-top: 30px; height: 30px; width: 300px"/>
-    <hr/>
+    <input type="hidden" name="post_id" value="${vo.post_id}"/>
+    <input type="text" name="subject" placeholder="제목" style="margin-top: 30px; height: 30px; width: 300px" value="${vo.title}"/>
+    <hr>
     <div class="body-select" style="margin-top: 10px; margin-bottom: 10px;">
         <b>주요부위</b> &nbsp; &nbsp;
-        상체 : <input type="radio" name="first-part" value="upper"/>
-        하체 : <input type="radio" name="first-part" value="lower"/>
+        상체 : <input type="radio" name="first-part" value="upper"
+    <c:if test="${vo.cat=='upper'}">
+        checked
+    </c:if>
+    />
+        하체 : <input type="radio" name="first-part" value="lower"
+            <c:if test="${vo.cat=='lower'}">
+                checked
+            </c:if>
+    />
         <hr style="margin-top: 10px"/>
-        가슴 : <input type="checkbox" name="body-part" value="chest">
-        어깨 : <input type="checkbox" name="body-part" value="shoulder">
-        등 : <input type="checkbox" name="body-part" value="back">
-        팔 : <input type="checkbox" name="body-part" value="arm">
-        복부 : <input type="checkbox" name="body-part" value="stomach">
-        허리 : <input type="checkbox" name="body-part" value="waist">
+        가슴 : <input type="checkbox" name="body-part" value="chest"
+                    <c:if test="${fn:contains(vo.bodypart,'chest')}">
+            checked
+    </c:if>
+    >
+        어깨 : <input type="checkbox" name="body-part" value="shoulder"
+    <c:if test="${fn:contains(vo.bodypart,'shoulder')}">
+                    checked
+    </c:if>
+    >
+        등 : <input type="checkbox" name="body-part" value="back"
+    <c:if test="${fn:contains(vo.bodypart,'back')}">
+                   checked
+    </c:if>
+    >
+        팔 : <input type="checkbox" name="body-part" value="arm"
+    <c:if test="${fn:contains(vo.bodypart,'arm')}">
+                   checked
+    </c:if>
+    >
+        복부 : <input type="checkbox" name="body-part" value="stomach"
+    <c:if test="${fn:contains(vo.bodypart,'stomach')}">
+                    checked
+    </c:if>
+    >
+        허리 : <input type="checkbox" name="body-part" value="waist"
+    <c:if test="${fn:contains(vo.bodypart,'waist')}">
+                    checked
+    </c:if>
+    >
         <br/>
-        허벅지 : <input type="checkbox" name="body-part" value="thigh">
-        엉덩이 : <input type="checkbox" name="body-part" value="hip">
-        종아리 : <input type="checkbox" name="body-part" value="calf">
+        허벅지 : <input type="checkbox" name="body-part" value="thigh"
+    <c:if test="${fn:contains(vo.bodypart,'thigh')}">
+                     checked
+    </c:if>
+    >
+        엉덩이 : <input type="checkbox" name="body-part" value="hip"
+    <c:if test="${fn:contains(vo.bodypart,'hip')}">
+                     checked
+    </c:if>
+    >
+        종아리 : <input type="checkbox" name="body-part" value="calf"
+    <c:if test="${fn:contains(vo.bodypart,'calf')}">
+                     checked
+    </c:if>
+    >
     </div>
-    <input type="text" name="subject" placeholder="제목"/>
-    <textarea id="ckEditor" name="content"></textarea>
+    <textarea id="ckEditor" name="content">${vo.content}</textarea>
     <div class="write">
-        <button id="writeButton" type="button">작성</button>
+        <button id="writeButton" type="button">수정</button>
     </div>
 </form>
 

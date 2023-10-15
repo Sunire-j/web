@@ -1,12 +1,10 @@
 package com.team2.healthsns.controller;
 import com.team2.healthsns.service.CommunityReplyService;
 import com.team2.healthsns.vo.CommunityReplyVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -59,14 +57,14 @@ public class CommunityReplyController {
     //댓글수정(DB)
     @PostMapping("/editOk")
     @ResponseBody
-    public String replyEditOk(CommunityReplyVO vo){
-        return service.replyUpdate(vo)+"";
+    public int replyEditOk(String editcontent, int commentid){
+        return service.replyUpdate(editcontent, commentid);
     }
 
     //댓글삭제
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     @ResponseBody
-    public String replyDelete(int replyno){
-        return service.replyDelete(replyno)+"";
+    public int replyDelete(int commentid){
+        return service.replyDelete(commentid);
     }
 }

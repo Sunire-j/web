@@ -19,28 +19,27 @@
             AND b.${searchKey} like '%${searchWord}%'
         </if>
         <if test="category == 1">
-            AND b.cat = '상체' 
-        </if>        
+            AND b.cat = 'upper'
+        </if>
         <if test="category == 2">
-            AND b.cat = '하체' 
-        </if>  
-        GROUP BY 
-            b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
+            AND b.cat = 'lower'
+        </if>
+        GROUP BY
+        b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
         <choose>
             <when test="postSort == 2">
                 ORDER BY b.like DESC
-            </when>  
+            </when>
             <when test="postSort == 3">
                 ORDER BY b.views DESC
-            </when>  
+            </when>
             <otherwise>
                 ORDER BY b.write_date DESC
-            </otherwise>  
+            </otherwise>
         </choose>
         limit ${onePageRecord}
         offset ${offsetPoint}
     </select>
-    
 
     <select id="totalRecordAuth">
         select count(post_id) from board
@@ -49,7 +48,8 @@
             AND title like CONCAT('%', #{searchWord}, '%')
         </if>
     </select>
-    
+
+
 
     <update id="hitCountAuth">
         update board
@@ -59,7 +59,7 @@
 
     <update id="communityUpdateAuth">
         update board
-        set title = #{title}, content = #{content}
+        set title = #{title}, content = #{content}, cat = #{cat}, bodypart=#{bodypart}
         where post_id = #{post_id}
     </update>
 

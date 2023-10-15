@@ -41,7 +41,7 @@
                         default: medal = (i + 1) + '. '; break;
                     }
                     var obj = result[i];
-                    $(rankingItems[i]).find('a').text(medal + obj.title).attr('href', "#"+obj.post_id); //#자리에 뷰 주소 들어가야함
+                    $(rankingItems[i]).find('a').text(medal + obj.title).attr('href', "${pageContext.servletContext.contextPath}/board/view?post_id="+obj.post_id); //#자리에 뷰 주소 들어가야함
                 }
             },
             error:function(error){

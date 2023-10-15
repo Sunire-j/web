@@ -14,6 +14,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         System.out.println(logStatus);
         if(logStatus==null || !logStatus.equals("Y")){
             response.sendRedirect(request.getContextPath()+"/");//로그인 매핑으로 바꿔야함
+            System.out.println("false직전");
             return false;
         }
 
