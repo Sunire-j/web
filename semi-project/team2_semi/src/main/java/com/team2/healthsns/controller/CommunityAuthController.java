@@ -27,35 +27,44 @@ import java.util.StringTokenizer;
 public class CommunityAuthController {
     @Autowired
     CommunityService service;
-    private static final String BOARD_LIST_VIEW = "community/Community_Auth";
 
-    @RequestMapping(value = "AuthCommunity/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/AuthCommunity/list", method = RequestMethod.GET)
     public String list(Model model, @ModelAttribute("pVO") PagingVO pVO) {
-        logger.info("Fetching community list with paging info: {}", pVO);
-
         try {
+            // Fetch the records based on the parameters in pVO
+            pVO.setTotalRecord(service.totalRecordAuth(pVO));
+            
             List<CommunityVO> communityItems = service.CommunityPageListAuth(pVO);
             model.addAttribute("list", communityItems);
+            
+            // Add all the search and sort parameters to the model to be used in the frontend
+            model.addAttribute("page", pVO.getNowPage());
+            model.addAttribute("searchKey", pVO.getSearchKey());
+            model.addAttribute("searchWord", pVO.getSearchWord());
+            model.addAttribute("category", pVO.getCategory());
+            model.addAttribute("postSort", pVO.getPostSort());
+            
+            // Add the generated URI for search and sort to the model
             model.addAttribute("uri", getUri(pVO));
+            
         } catch (Exception e) {
-            logger.error("Error fetching community list", e);
-            // Handle the exception e.g. redirect to error page
+            // Optionally: Log the exception or handle it accordingly
+            e.printStackTrace();
         }
-
-        return BOARD_LIST_VIEW;
+        System.out.println("PostSort value: " + pVO.getPostSort());
+        return "community/Community_Auth";
     }
 
     private String getUri(PagingVO pVO) {
         int page = pVO.getNowPage();
-        int perPageNum = pVO.getOnePageRecord();
         String searchType = pVO.getSearchKey();
         String keyword = pVO.getSearchWord();
-        String category = pVO.getCategory(); // 카테고리 정보 가져오기
-        String postSort = pVO.getPostSort(); // 정렬 옵션 가져오기
+        String category = pVO.getCategory(); // Fetch category info
+        String postSort = pVO.getPostSort(); // Fetch sort option
 
-        return UriUtil.makeSearch(page, perPageNum, searchType, keyword, category, postSort);
+        return UriUtil.makeSearch(page, searchType, keyword, category, postSort);
     }
-
+    
     @GetMapping("/AuthCommunity/write")
     public String CommunityWrite(HttpSession session) {
         String logstatus = (String) session.getAttribute("LogStatus");

@@ -8,11 +8,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class UriUtil {
 
-    public static String makeSearch(int page, int perPageNum, String searchType, String keyword, String category,
+    public static String makeSearch(int page, String searchType, String keyword, String category,
             String postSort) {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
-                .queryParam("perPageNum", perPageNum)
                 .queryParam("searchType", searchType)
                 .queryParam("keyword", encoding(keyword))
                 .queryParam("category", category)

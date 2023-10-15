@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team2.healthsns.mapper.CommunityFreeMapper">
- 
+
     <sql id="categoryFilter">
         <choose>
             <!-- 상체 -->
@@ -50,13 +50,12 @@
         left join comment c on b.post_id = c.target_post_id
         where board_cat = 'free'
         <if test="searchWord != null and searchWord != ''">
-            AND title like CONCAT('%', #{searchWord}, '%')
+            AND b.${searchKey} like '%${searchWord}%'
         </if>
         GROUP BY 
             b.post_id, b.title, b.userid, b.views, b.write_date, b.cat
-        <include refid="sort" />
-        limit #{onePageRecord}
-        offset #{offsetPoint}
+        limit ${onePageRecord}
+        offset ${offsetPoint}
     </select>
 
     <select id="totalRecordFree">

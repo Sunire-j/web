@@ -5,8 +5,12 @@ import com.team2.healthsns.vo.CommunityVO;
 import com.team2.healthsns.vo.PagingVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
@@ -20,28 +24,41 @@ public class CommunityQaController {
     @Autowired
     CommunityService service;
 
-    @GetMapping("/QaCommunity/list")
-    public ModelAndView CommunityListQa(PagingVO pVO) {
-        ModelAndView mav = new ModelAndView();
-        pVO.setTotalRecord(service.totalRecordQa(pVO));
-        List<CommunityVO> list = service.CommunityPageListQa(pVO);
-
-        // URI 생성
+    @RequestMapping(value = "/QaCommunity/list", method = RequestMethod.GET)
+    public String list(Model model, @ModelAttribute("pVO") PagingVO pVO) {
+        try {
+            // Fetch the records based on the parameters in pVO
+            pVO.setTotalRecord(service.totalRecordQa(pVO));
+            
+            List<CommunityVO> communityItems = service.CommunityPageListQa(pVO);
+            model.addAttribute("list", communityItems);
+            
+            // Add all the search and sort parameters to the model to be used in the frontend
+            model.addAttribute("page", pVO.getNowPage());
+            model.addAttribute("searchKey", pVO.getSearchKey());
+            model.addAttribute("searchWord", pVO.getSearchWord());
+            model.addAttribute("category", pVO.getCategory());
+            model.addAttribute("postSort", pVO.getPostSort());
+            
+            // Add the generated URI for search and sort to the model
+            model.addAttribute("uri", getUri(pVO));
+            
+        } catch (Exception e) {
+            // Optionally: Log the exception or handle it accordingly
+            e.printStackTrace();
+        }
+        System.out.println("PostSort value: " + pVO.getPostSort());
+        return "community/Community_Qa";
+    }
+    
+    private String getUri(PagingVO pVO) {
         int page = pVO.getNowPage();
-        int perPageNum = pVO.getOnePageRecord();
         String searchType = pVO.getSearchKey();
         String keyword = pVO.getSearchWord();
+        String category = pVO.getCategory(); // Fetch category info
+        String postSort = pVO.getPostSort(); // Fetch sort option
 
-        String category = pVO.getCategory(); // 카테고리 정보 가져오기
-        String postSort = pVO.getPostSort(); // 정렬 옵션 가져오기
-
-        String uri = UriUtil.makeSearch(page, perPageNum, searchType, keyword, category, postSort);
-
-        mav.addObject("list", list);
-        mav.addObject("pVO", pVO);
-        mav.addObject("uri", uri);
-        mav.setViewName("community/Community_Qa");
-        return mav;
+        return UriUtil.makeSearch(page, searchType, keyword, category, postSort);
     }
 
     @GetMapping("/QaCommunity/write")
