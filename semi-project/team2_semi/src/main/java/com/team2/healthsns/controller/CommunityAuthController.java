@@ -49,7 +49,6 @@ public class CommunityAuthController {
             // Optionally: Log the exception or handle it accordingly
             e.printStackTrace();
         }
-        System.out.println("PostSort value: " + pVO.getPostSort());
         return "community/Community_Auth";
     }
 
