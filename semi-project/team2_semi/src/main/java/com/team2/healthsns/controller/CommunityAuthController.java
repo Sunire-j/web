@@ -203,7 +203,7 @@ public class CommunityAuthController {
         }else if(board_cat.equals("free")){
             mav.setViewName("redirect:/FreeCommunity/list");
         }else{
-            mav.setViewName("redirect:/QaCommunity/List");
+            mav.setViewName("redirect:/QaCommunity/list");
         }
         return mav;
     }
