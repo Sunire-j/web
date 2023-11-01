@@ -12,7 +12,7 @@
 <link rel="stylesheet"
       href="${pageContext.servletContext.contextPath}/css/community-map.css">
 <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43f789e75b8922b41ac6921c8e130658&libraries=services"></script>
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey="카카오API키 입력 영역"&libraries=services"></script>
 
 
 <header>
